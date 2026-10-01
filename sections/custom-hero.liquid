@@ -1,0 +1,316 @@
+<div class="climb-hero">
+  <div class="climb-hero__content">
+    <div class="climb-hero__copy">
+      {% if section.settings.label != blank %}
+        <div class="climb-hero__label">
+          {{ section.settings.label }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="climb-hero__heading">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.tagline != blank %}
+        <p class="climb-hero__tagline">
+          {{ section.settings.tagline }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="climb-hero__button"
+        >
+          {{ section.settings.button_text }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.image %}
+    <div class="climb-hero__image">
+      <img
+        src="{{ section.settings.image | image_url: width: 1600 }}"
+        alt="{{ section.settings.heading | escape }}"
+        width="{{ section.settings.image.width }}"
+        height="{{ section.settings.image.height }}"
+      >
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .climb-hero {
+    position: relative;
+    min-height: 720px;
+    overflow: hidden;
+    background: #000000;
+    color: #ffffff;
+  }
+
+  /* =========================================
+     CONTENT
+  ========================================= */
+
+  .climb-hero__content {
+    position: relative;
+    z-index: 3;
+
+    width: 52%;
+    min-height: 720px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 6rem 0 6rem 6%;
+  }
+
+  .climb-hero__copy {
+    width: min(620px, 100%);
+  }
+
+  /* =========================================
+     LABEL
+  ========================================= */
+
+  .climb-hero__label {
+    margin-bottom: 1.5rem;
+
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    color: #fbb040;
+  }
+
+  /* =========================================
+     HEADLINE
+  ========================================= */
+
+  .climb-hero__heading {
+    margin: 0;
+
+    max-width: 650px;
+
+    font-size: clamp(4rem, 7vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.84;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+
+    color: #ffffff;
+  }
+
+  /* =========================================
+     TAGLINE
+  ========================================= */
+
+  .climb-hero__tagline {
+    max-width: 430px;
+
+    margin: 2rem 0 2.5rem;
+
+    font-size: 1.05rem;
+    line-height: 1.5;
+
+    color: #ffffff;
+  }
+
+  /* =========================================
+     BUTTON
+  ========================================= */
+
+  .climb-hero__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    padding: 1rem 1.5rem;
+
+    background: #fbb040;
+    color: #000000;
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .climb-hero__button span {
+    font-size: 1.25rem;
+    line-height: 0;
+  }
+
+  .climb-hero__button:hover {
+    background: #ed5825;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* =========================================
+     IMAGE
+  ========================================= */
+
+  .climb-hero__image {
+    position: absolute;
+
+    top: 0;
+    right: -2%;
+
+    width: 62%;
+    height: 100%;
+
+    z-index: 2;
+
+    /*
+      Keep the existing angled image shape.
+    */
+    clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 25% 100%, 8% 75%, 5% 45%);
+  }
+
+  .climb-hero__image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* =========================================
+     TABLET
+  ========================================= */
+
+  @media screen and (max-width: 900px) {
+    .climb-hero {
+      min-height: 650px;
+    }
+
+    .climb-hero__content {
+      width: 55%;
+      min-height: 650px;
+      padding-left: 5%;
+    }
+
+    .climb-hero__heading {
+      font-size: clamp(3.5rem, 8vw, 5.5rem);
+    }
+
+    .climb-hero__image {
+      width: 60%;
+    }
+  }
+
+  /* =========================================
+     MOBILE
+  ========================================= */
+
+  @media screen and (max-width: 650px) {
+    .climb-hero {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .climb-hero__image {
+      position: relative;
+
+      order: 1;
+
+      top: auto;
+      right: auto;
+
+      width: 100%;
+      height: 400px;
+
+      clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%, 5% 65%);
+    }
+
+    .climb-hero__content {
+      order: 2;
+
+      width: 100%;
+      min-height: auto;
+
+      padding: 3rem 1.25rem 4rem;
+    }
+
+    .climb-hero__copy {
+      width: 100%;
+    }
+
+    .climb-hero__label {
+      margin-bottom: 1rem;
+      font-size: 0.7rem;
+    }
+
+    .climb-hero__heading {
+      font-size: clamp(3.25rem, 15vw, 5rem);
+      line-height: 0.86;
+    }
+
+    .climb-hero__tagline {
+      margin: 1.5rem 0 2rem;
+      font-size: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Climb Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Eyebrow",
+      "default": "BOULDERING / FITNESS / COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Headline",
+      "default": "FIND YOUR NEXT CLIMB"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Description",
+      "default": "Climb, train, and connect with a community built for every level."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "JOIN NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Climber photo"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Climb Hero"
+    }
+  ]
+}
+{% endschema %}
