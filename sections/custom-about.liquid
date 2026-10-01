@@ -48,18 +48,17 @@
   .custom-about {
     background: #754c29;
     color: #ffffff;
-    padding: 0 0 0 6rem;
+    padding: 0;
   }
   .custom-about__content {
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
   }
   .custom-about__copy {
     max-width: 600px;
-    padding: 7rem 0;
+    padding: 7rem 0 7rem 6rem;
     align-self: center;
   }
   .custom-about__eyebrow {
@@ -106,17 +105,22 @@
   }
   .custom-about__image {
     width: 100%;
+    height: 100%;
     overflow: hidden;
   }
   .custom-about__image img {
     display: block;
     width: 100%;
-    height: 650px;
+    height: 100%;
+    min-height: 100%;
     object-fit: cover;
   }
   @media screen and (max-width: 750px) {
     .custom-about {
       padding: 4rem 1.25rem;
+    }
+    .custom-about__copy {
+      padding: 0;
     }
     .custom-about__content {
       grid-template-columns: 1fr;
