@@ -173,5 +173,8 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+    {{ 'gsap.min.js' | asset_url | script_tag }}
+    {{ 'ScrollTrigger.min.js' | asset_url | script_tag }}
+    {{ 'animations.js' | asset_url | script_tag }}
   </body>
 </html>
