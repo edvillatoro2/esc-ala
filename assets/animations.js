@@ -30,5 +30,5 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     initHeroAnimation();
     ScrollTrigger.refresh();
-  }, 200);
+  }, 500);
 });

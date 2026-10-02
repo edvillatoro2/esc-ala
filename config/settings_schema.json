@@ -94,7 +94,7 @@
       {
         "type": "font_picker",
         "id": "type_body_font",
-        "default": "work_sans_n4",
+        "default": "vina_sans_n4",
         "label": "t:options.body"
       },
       {
@@ -106,7 +106,7 @@
       {
         "type": "font_picker",
         "id": "type_heading_font",
-        "default": "anonymous_pro_n4",
+        "default": "bungee_n4",
         "label": "t:options.heading"
       },
       {
