@@ -33,12 +33,27 @@
     {% if section.settings.image %}
       <div class="custom-about__image">
         <img
+          class="custom-about__wall"
           src="{{ section.settings.image | image_url: width: 1200 }}"
           alt="{{ section.settings.image.alt | escape }}"
           width="{{ section.settings.image.width }}"
           height="{{ section.settings.image.height }}"
           loading="lazy"
         >
+        {% for i in (1..6) %}
+          {% assign hold_key = 'hold_' | append: i %}
+          {% assign hold = section.settings[hold_key] %}
+          {% if hold %}
+            <img
+              class="custom-about__hold custom-about__hold--{{ i }}"
+              src="{{ hold | image_url: width: 400 }}"
+              alt=""
+              width="{{ hold.width }}"
+              height="{{ hold.height }}"
+              loading="lazy"
+            >
+          {% endif %}
+        {% endfor %}
       </div>
     {% endif %}
   </div>
@@ -52,14 +67,12 @@
   }
   .custom-about__content {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
+    display: flex;
+    flex-direction: row-reverse;
   }
   .custom-about__copy {
-    max-width: 600px;
-    padding: 7rem 0 7rem 6rem;
-    align-self: center;
+    max-width: 50%;
+    padding: 7rem 6rem;
   }
   .custom-about__eyebrow {
     margin-bottom: 1.5rem;
@@ -71,7 +84,7 @@
   }
   .custom-about__heading {
     margin: 0;
-    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-size: clamp(3.5rem, 5vw, 6.5rem);
     line-height: 0.86;
     font-weight: 900;
     letter-spacing: -0.045em;
@@ -105,16 +118,53 @@
     transform: translateY(-2px);
   }
   .custom-about__image {
-    width: 100%;
-    height: 100%;
+    position: relative;
     overflow: hidden;
   }
-  .custom-about__image img {
-    display: block;
-    width: 100%;
+  .custom-about__wall {
     height: 100%;
-    min-height: 100%;
-    object-fit: cover;
+    width: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-about__hold {
+    position: absolute;
+    z-index: 2;
+    width: clamp(55px, 9vw, 100px);
+    height: auto;
+    pointer-events: none;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .custom-about__hold--1 {
+    left: 10%;
+    top: 65%;
+  }
+
+  .custom-about__hold--2 {
+    left: 29%;
+    top: 27%;
+  }
+
+  .custom-about__hold--3 {
+    left: 42%;
+    top: 22%;
+  }
+
+  .custom-about__hold--4 {
+    left: 66%;
+    top: 2%;
+  }
+
+  .custom-about__hold--5 {
+    left: 65%;
+    top: 22%;
+  }
+
+  .custom-about__hold--6 {
+    left: 21%;
+    top: 45%;
   }
   @media screen and (max-width: 750px) {
     .custom-about {
@@ -124,14 +174,15 @@
       padding: 0;
     }
     .custom-about__content {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 3rem;
     }
     .custom-about__heading {
       font-size: clamp(3rem, 10vw, 5rem);
     }
-    .custom-about__image img {
-      height: 450px;
+    .custom-about__hold {
+      width: clamp(45px, 14vw, 85px);
     }
   }
 {% endstylesheet %}
@@ -173,6 +224,36 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_1",
+      "label": "Climbing Hold 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_2",
+      "label": "Climbing Hold 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_3",
+      "label": "Climbing Hold 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_4",
+      "label": "Climbing Hold 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_5",
+      "label": "Climbing Hold 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "hold_6",
+      "label": "Climbing Hold 6"
     }
   ],
   "presets": [
