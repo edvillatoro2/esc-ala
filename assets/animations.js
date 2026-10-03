@@ -74,72 +74,52 @@ function initAboutAnimation() {
 }
 
 function initFeaturesAnimation() {
-  const features = document.querySelector(".custom-features");
   const cards = document.querySelectorAll(".custom-feature");
   const scroller = document.querySelector(".page-wrapper");
 
-  if (!features || cards.length < 3 || !scroller) {
+  console.log("FEATURES DEBUG:", {
+    cards: cards.length,
+    scroller,
+  });
+
+  if (!cards.length || !scroller) {
     console.log("Features animation: element missing");
     return;
   }
 
   console.log("Features animation: initializing");
 
-  // Starting positions
-  gsap.set(cards[0], {
-    x: -300,
-    rotation: -8,
+  const startingPositions = [
+    { x: -400, y: 0, rotation: -8 },
+    { x: 400, y: 0, rotation: 8 },
+    { x: 0, y: 200, rotation: 8 },
+  ];
+
+  cards.forEach((card, index) => {
+    const position = startingPositions[index];
+
+    gsap.fromTo(
+      card,
+      {
+        x: position.x,
+        y: position.y,
+        rotation: position.rotation,
+      },
+      {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          end: "top 50%",
+          scrub: true,
+          scroller: scroller,
+        },
+      },
+    );
   });
-
-  gsap.set(cards[1], {
-    x: 300,
-    rotation: 8,
-  });
-
-  gsap.set(cards[2], {
-    y: 300,
-    rotation: 8,
-  });
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: features,
-      start: "top 80%",
-      end: "top 20%",
-      scrub: true,
-      scroller: scroller,
-    },
-  });
-
-  tl.to(
-    cards[0],
-    {
-      x: 0,
-      rotation: 0,
-      ease: "none",
-    },
-    0,
-  );
-
-  tl.to(
-    cards[1],
-    {
-      x: 0,
-      rotation: 0,
-      ease: "none",
-    },
-    0.15,
-  );
-
-  tl.to(
-    cards[2],
-    {
-      y: 0,
-      rotation: 0,
-      ease: "none",
-    },
-    0.3,
-  );
 }
 
 window.addEventListener("load", () => {

@@ -1,0 +1,209 @@
+<div class="custom-plan">
+  <div class="custom-plan__content">
+    <div class="custom-plan__copy">
+      {% if section.settings.eyebrow != blank %}
+        <div class="custom-plan__eyebrow">
+          {{ section.settings.eyebrow }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="custom-plan__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="custom-plan__text">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <a
+          href="{{ section.settings.button_link }}"
+          class="custom-plan__button"
+        >
+          {{ section.settings.button_text }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .custom-plan {
+    background: #f2eee6;
+    color: #000000;
+    overflow: hidden;
+  }
+
+  .custom-plan__content {
+    display: flex;
+    min-height: 620px;
+  }
+
+  /* COPY */
+
+  .custom-plan__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 6rem;
+  }
+
+  .custom-plan__eyebrow {
+    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .custom-plan__heading {
+    margin: 0;
+    font-size: clamp(3.5rem, 5.5vw, 6.5rem);
+    line-height: 0.85;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+  .custom-plan__text {
+    max-width: 440px;
+    margin-top: 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  /* BUTTON */
+  .custom-plan__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: #ed5825;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 0.275s ease, transform 0.275s ease;
+  }
+  .custom-plan__button span {
+    font-size: 1.25rem;
+    line-height: 0;
+  }
+  .custom-plan__button:hover {
+    background: #fbb040;
+    color: #000000;
+    transform: translateY(4px);
+  }
+  /* IMAGE */
+  .custom-plan__image {
+    position: relative;
+    overflow: hidden;
+    min-height: 620px;
+  }
+  .custom-plan__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+  }
+  .custom-plan:hover .custom-plan__image img {
+    transform: scale(1.03);
+  }
+
+  /* TABLET */
+
+  @media screen and (max-width: 900px) {
+    .custom-plan__content {
+      grid-template-columns: 45% 55%;
+      min-height: 500px;
+    }
+
+    .custom-plan__copy {
+      padding: 4rem 3rem;
+    }
+
+    .custom-plan__image {
+      min-height: 500px;
+    }
+  }
+
+  /* MOBILE */
+
+  @media screen and (max-width: 650px) {
+    .custom-plan__content {
+      display: flex;
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .custom-plan__copy {
+      padding: 4rem 1.25rem;
+    }
+
+    .custom-plan__heading {
+      font-size: clamp(3rem, 14vw, 5rem);
+    }
+
+    .custom-plan__image {
+      min-height: 400px;
+      height: 400px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Plan Your Visit",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "PLAN YOUR VISIT"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CLIMB, TRAIN, CONNECT"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Everything you need to get started, from your first visit to your next project.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "GET STARTED"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plan Your Visit"
+    }
+  ]
+}
+{% endschema %}

@@ -43,7 +43,11 @@
       },
       "block_order": ["feature_1", "feature_2", "feature_3"],
       "settings": {}
+    },
+    "plan_your_visit": {
+      "type": "custom-plan-visit",
+      "settings": {}
     }
   },
-  "order": ["custom_hero", "custom_about", "custom_features"]
+  "order": ["custom_hero", "custom_about", "custom_features", "plan_your_visit"]
 }
