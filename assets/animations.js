@@ -92,34 +92,68 @@ function initFeaturesAnimation() {
   const startingPositions = [
     { x: -400, y: 0, rotation: -8 },
     { x: 400, y: 0, rotation: 8 },
-    { x: 0, y: 200, rotation: 8 },
+    { x: 0, y: 365, rotation: 8 },
   ];
 
-  cards.forEach((card, index) => {
-    const position = startingPositions[index];
+  const mm = gsap.matchMedia();
 
-    gsap.fromTo(
-      card,
-      {
-        x: position.x,
-        y: position.y,
-        rotation: position.rotation,
-      },
-      {
-        x: 0,
-        y: 0,
-        rotation: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%",
-          end: "top 50%",
-          scrub: true,
-          scroller: scroller,
+  // DESKTOP
+  mm.add("(min-width: 990px)", () => {
+    cards.forEach((card, index) => {
+      const position = startingPositions[index];
+
+      gsap.fromTo(
+        card,
+        {
+          x: position.x,
+          y: position.y,
+          rotation: position.rotation,
         },
-      },
-    );
+        {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            end: "top 50%",
+            scrub: true,
+            scroller: scroller,
+          },
+        },
+      );
+    });
   });
+
+  // MOBILE
+  //   mm.add("(max-width: 200px)", () => {
+  //     cards.forEach((card, index) => {
+  //       const position = startingPositions[index];
+
+  //       gsap.fromTo(
+  //         card,
+  //         {
+  //           x: position.x,
+  //           y: position.y,
+  //           rotation: position.rotation,
+  //         },
+  //         {
+  //           x: 0,
+  //           y: 0,
+  //           rotation: 0,
+  //           ease: "none",
+  //           scrollTrigger: {
+  //             trigger: card,
+  //             start: "top bottom",
+  //             end: "center center",
+  //             scrub: true,
+  //             scroller: scroller,
+  //           },
+  //         },
+  //       );
+  //     });
+  //   });
 }
 
 window.addEventListener("load", () => {
