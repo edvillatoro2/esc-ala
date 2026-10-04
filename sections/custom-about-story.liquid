@@ -1,0 +1,198 @@
+<div class="about-story">
+  <div class="about-story__inner">
+    <div class="about-story__heading">
+      <span class="about-story__eyebrow">02 / OUR STORY</span>
+
+      <h2 class="about-story__title">
+        OUR<br>
+        <span>STORY</span>
+      </h2>
+    </div>
+
+    <div class="about-story__content">
+      <div class="about-story__intro">
+        <p>ESC-ALA WAS BUILT AROUND A SIMPLE IDEA: CLIMBING SHOULD BE FOR EVERYONE.</p>
+      </div>
+
+      <div class="about-story__copy">
+        <p>A PLACE TO MOVE, CHALLENGE YOURSELF, MEET NEW PEOPLE, AND FIND YOUR OWN WAY UP THE WALL.</p>
+
+        <p>
+          FROM YOUR FIRST CLIMB TO YOUR NEXT PROJECT, ESC-ALA IS DESIGNED TO MAKE THE EXPERIENCE FEEL APPROACHABLE,
+          CREATIVE, AND FUN.
+        </p>
+      </div>
+
+      <div class="about-story__details">
+        <div>
+          <span>01</span>
+          <strong>CLIMB</strong>
+        </div>
+
+        <div>
+          <span>02</span>
+          <strong>COMMUNITY</strong>
+        </div>
+
+        <div>
+          <span>03</span>
+          <strong>PROGRESSION</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-story {
+    position: relative;
+    overflow: hidden;
+    background: #f2f0e9;
+    color: #0b0f2b;
+  }
+
+  .about-story__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 140px 0;
+  }
+
+  .about-story__heading {
+    margin-bottom: 90px;
+  }
+
+  .about-story__eyebrow {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .about-story__title {
+    margin: 0;
+    font-size: clamp(80px, 14vw, 210px);
+    line-height: 0.76;
+    letter-spacing: -0.07em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .about-story__title span {
+    display: inline-block;
+    padding-left: 10vw;
+  }
+
+  .about-story__content {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) minmax(300px, 1fr);
+    gap: 10vw;
+    margin-left: 16%;
+  }
+
+  .about-story__intro p {
+    margin: 0;
+    max-width: 320px;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .about-story__copy {
+    max-width: 560px;
+  }
+
+  .about-story__copy p {
+    margin: 0 0 28px;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .about-story__details {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 45px;
+    border-top: 1px solid rgba(11, 15, 43, 0.3);
+  }
+
+  .about-story__details div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+  }
+
+  .about-story__details span {
+    font-size: 10px;
+    opacity: 0.55;
+  }
+
+  .about-story__details strong {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  @media screen and (max-width: 749px) {
+    .about-story__inner {
+      width: calc(100% - 32px);
+      padding: 90px 0;
+    }
+
+    .about-story__heading {
+      margin-bottom: 60px;
+    }
+
+    .about-story__eyebrow {
+      margin-bottom: 22px;
+    }
+
+    .about-story__title {
+      font-size: clamp(68px, 20vw, 110px);
+    }
+
+    .about-story__title span {
+      padding-left: 15vw;
+    }
+
+    .about-story__content {
+      display: block;
+      margin-left: 0;
+    }
+
+    .about-story__intro {
+      margin-bottom: 45px;
+    }
+
+    .about-story__intro p {
+      font-size: 16px;
+    }
+
+    .about-story__copy p {
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .about-story__details {
+      margin-top: 45px;
+    }
+
+    .about-story__details strong {
+      font-size: 10px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Story",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Story"
+    }
+  ]
+}
+{% endschema %}

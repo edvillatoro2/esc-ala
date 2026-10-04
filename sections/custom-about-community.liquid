@@ -1,0 +1,327 @@
+<section class="about-community">
+  <div class="about-community__inner">
+    <div class="about-community__header">
+      <div>
+        <span class="about-community__eyebrow">03 / THE COMMUNITY</span>
+
+        <h2 class="about-community__title">
+          FIND YOUR
+          <span>PEOPLE.</span>
+        </h2>
+      </div>
+
+      <p class="about-community__intro">
+        CLIMBING IS BETTER TOGETHER. WHETHER YOU'RE HERE FOR YOUR FIRST SESSION OR YOUR NEXT PROJECT, THERE'S A PLACE
+        FOR YOU.
+      </p>
+    </div>
+
+    <div class="about-community__visual">
+      <div class="about-community__holds">
+        <span class="hold hold--1"></span>
+        <span class="hold hold--2"></span>
+        <span class="hold hold--3"></span>
+        <span class="hold hold--4"></span>
+        <span class="hold hold--5"></span>
+        <span class="hold hold--6"></span>
+        <span class="hold hold--7"></span>
+        <span class="hold hold--8"></span>
+      </div>
+
+      <div class="about-community__center">
+        <span>ESC-ALA</span>
+        <strong>CLIMB TOGETHER</strong>
+      </div>
+
+      <div class="about-community__corner">
+        <span>CLIMB</span>
+        <span>CONNECT</span>
+        <span>REPEAT</span>
+      </div>
+    </div>
+
+    <div class="about-community__footer">
+      <span>EVERYONE STARTS SOMEWHERE.</span>
+
+      <span class="about-community__arrow">↘</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-community {
+    position: relative;
+    overflow: hidden;
+    background: #0b0f2b;
+    color: #ffffff;
+  }
+
+  .about-community__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 140px 0 32px;
+  }
+
+  .about-community__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 70px;
+  }
+
+  .about-community__eyebrow {
+    display: block;
+    margin-bottom: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    opacity: 0.6;
+  }
+
+  .about-community__title {
+    max-width: 900px;
+    margin: 0;
+    font-size: clamp(70px, 11vw, 170px);
+    line-height: 0.78;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .about-community__title span {
+    display: block;
+    color: #ffc107;
+    padding-left: 8vw;
+  }
+
+  .about-community__intro {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .about-community__visual {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    background: #1a1e3b;
+  }
+
+  .about-community__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .about-community__center span {
+    font-size: clamp(70px, 12vw, 170px);
+    line-height: 0.8;
+    font-weight: 800;
+    letter-spacing: -0.08em;
+    color: #ffc107;
+  }
+
+  .about-community__center strong {
+    margin-top: 24px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .about-community__holds {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hold {
+    position: absolute;
+    display: block;
+    width: 65px;
+    height: 52px;
+    border-radius: 48% 52% 42% 58%;
+    background: #ffc107;
+    transform: rotate(-18deg);
+  }
+
+  .hold--1 {
+    top: 12%;
+    left: 10%;
+  }
+
+  .hold--2 {
+    top: 26%;
+    left: 30%;
+    width: 45px;
+    height: 60px;
+    transform: rotate(24deg);
+  }
+
+  .hold--3 {
+    top: 13%;
+    right: 18%;
+    width: 80px;
+    height: 48px;
+    transform: rotate(12deg);
+  }
+
+  .hold--4 {
+    top: 58%;
+    left: 12%;
+    width: 52px;
+    height: 72px;
+    transform: rotate(40deg);
+  }
+
+  .hold--5 {
+    right: 11%;
+    bottom: 15%;
+    width: 72px;
+    height: 55px;
+    transform: rotate(-32deg);
+  }
+
+  .hold--6 {
+    right: 31%;
+    top: 48%;
+    width: 42px;
+    height: 65px;
+    transform: rotate(18deg);
+  }
+
+  .hold--7 {
+    left: 37%;
+    bottom: 12%;
+    width: 70px;
+    height: 48px;
+    transform: rotate(-10deg);
+  }
+
+  .hold--8 {
+    top: 72%;
+    right: 45%;
+    width: 35px;
+    height: 55px;
+    transform: rotate(55deg);
+  }
+
+  .about-community__corner {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .about-community__corner span {
+    padding: 7px 9px;
+    background: #ffc107;
+    color: #0b0f2b;
+  }
+
+  .about-community__footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .about-community__arrow {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .about-community__inner {
+      width: calc(100% - 32px);
+      padding: 90px 0 24px;
+    }
+
+    .about-community__header {
+      display: block;
+      margin-bottom: 45px;
+    }
+
+    .about-community__eyebrow {
+      margin-bottom: 22px;
+    }
+
+    .about-community__title {
+      font-size: clamp(62px, 18vw, 105px);
+    }
+
+    .about-community__title span {
+      padding-left: 10vw;
+    }
+
+    .about-community__intro {
+      max-width: 300px;
+      margin-top: 35px;
+      font-size: 12px;
+    }
+
+    .about-community__visual {
+      min-height: 470px;
+    }
+
+    .about-community__center span {
+      font-size: 22vw;
+    }
+
+    .about-community__center strong {
+      margin-top: 18px;
+      font-size: 9px;
+    }
+
+    .hold {
+      width: 45px;
+      height: 38px;
+    }
+
+    .hold--2,
+    .hold--4,
+    .hold--6,
+    .hold--8 {
+      width: 32px;
+      height: 45px;
+    }
+
+    .hold--3,
+    .hold--5,
+    .hold--7 {
+      width: 52px;
+      height: 38px;
+    }
+
+    .about-community__corner {
+      right: 12px;
+      bottom: 12px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Community",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Community"
+    }
+  ]
+}
+{% endschema %}

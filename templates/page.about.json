@@ -3,7 +3,15 @@
     "about_hero": {
       "type": "custom-about-hero",
       "settings": {}
+    },
+    "about_story": {
+      "type": "custom-about-story",
+      "settings": {}
+    },
+    "about_community": {
+      "type": "custom-about-community",
+      "settings": {}
     }
   },
-  "order": ["about_hero"]
+  "order": ["about_hero", "about_story", "about_community"]
 }
