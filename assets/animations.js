@@ -125,35 +125,85 @@ function initFeaturesAnimation() {
       );
     });
   });
+}
 
-  // MOBILE
-  //   mm.add("(max-width: 200px)", () => {
-  //     cards.forEach((card, index) => {
-  //       const position = startingPositions[index];
+function initCommunityCursorAnimation() {
+  const community = document.querySelector(".about-community");
+  const holds = document.querySelectorAll(".about-community__hold .hold");
 
-  //       gsap.fromTo(
-  //         card,
-  //         {
-  //           x: position.x,
-  //           y: position.y,
-  //           rotation: position.rotation,
-  //         },
-  //         {
-  //           x: 0,
-  //           y: 0,
-  //           rotation: 0,
-  //           ease: "none",
-  //           scrollTrigger: {
-  //             trigger: card,
-  //             start: "top bottom",
-  //             end: "center center",
-  //             scrub: true,
-  //             scroller: scroller,
-  //           },
-  //         },
-  //       );
-  //     });
-  //   });
+  if (!community || !holds.length) {
+    console.log("Community cursor animation: element missing", {
+      community,
+      holds: holds.length,
+    });
+    return;
+  }
+
+  console.log("Community cursor animation: found", {
+    community,
+    holds: holds.length,
+    gsap: typeof gsap,
+  });
+
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 750px)", () => {
+    console.log("Community cursor animation: initializing");
+
+    const quickX = [];
+    const quickY = [];
+
+    holds.forEach((hold, index) => {
+      const strength = 8 + (index % 3) * 3;
+
+      quickX[index] = gsap.quickTo(hold, "x", {
+        duration: 0.5,
+        ease: "power3.out",
+      });
+
+      quickY[index] = gsap.quickTo(hold, "y", {
+        duration: 0.5,
+        ease: "power3.out",
+      });
+
+      hold.dataset.strength = strength;
+    });
+
+    const moveHolds = (event) => {
+      const rect = community.getBoundingClientRect();
+
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const percentX = (mouseX - centerX) / centerX;
+      const percentY = (mouseY - centerY) / centerY;
+
+      holds.forEach((hold, index) => {
+        const strength = Number(hold.dataset.strength);
+
+        quickX[index](percentX * strength);
+        quickY[index](percentY * strength);
+      });
+    };
+
+    const resetHolds = () => {
+      holds.forEach((hold, index) => {
+        quickX[index](0);
+        quickY[index](0);
+      });
+    };
+
+    community.addEventListener("mousemove", moveHolds);
+    community.addEventListener("mouseleave", resetHolds);
+
+    return () => {
+      community.removeEventListener("mousemove", moveHolds);
+      community.removeEventListener("mouseleave", resetHolds);
+    };
+  });
 }
 
 window.addEventListener("load", () => {
@@ -161,6 +211,7 @@ window.addEventListener("load", () => {
     initHeroAnimation();
     initAboutAnimation();
     initFeaturesAnimation();
+    initCommunityCursorAnimation();
     ScrollTrigger.refresh();
   }, 500);
 });

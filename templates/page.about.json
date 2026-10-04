@@ -11,7 +11,11 @@
     "about_community": {
       "type": "custom-about-community",
       "settings": {}
+    },
+    "about_values": {
+      "type": "custom-about-values",
+      "settings": {}
     }
   },
-  "order": ["about_hero", "about_story", "about_community"]
+  "order": ["about_hero", "about_story", "about_community", "about_values"]
 }

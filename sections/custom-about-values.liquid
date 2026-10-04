@@ -1,0 +1,254 @@
+<div class="about-values">
+  <div class="about-values__inner">
+    <div class="about-values__header">
+      <div class="about-values__eyebrow">
+        <span>04 / WHAT WE BELIEVE</span>
+      </div>
+
+      <h2 class="about-values__title">
+        CLIMB<br>
+        <span>YOUR WAY.</span>
+      </h2>
+
+      <p class="about-values__intro">
+        THERE'S NO SINGLE WAY TO CLIMB. WE'RE HERE TO CREATE A SPACE WHERE EVERYONE CAN FIND THE STYLE, PACE, AND
+        COMMUNITY THAT WORKS FOR THEM.
+      </p>
+    </div>
+
+    <div class="about-values__list">
+      <article class="about-values__item">
+        <span class="about-values__number">01</span>
+
+        <div class="about-values__content">
+          <h3>PEOPLE FIRST</h3>
+          <p>
+            Climbing is better together. We build a community where beginners, regulars, and experienced climbers all
+            have a place.
+          </p>
+        </div>
+
+        <span class="about-values__arrow">↗</span>
+      </article>
+
+      <article class="about-values__item">
+        <span class="about-values__number">02</span>
+
+        <div class="about-values__content">
+          <h3>PROGRESS OVER PERFECTION</h3>
+          <p>
+            Every climb counts. We celebrate the small wins, the projects that take time, and everything you learn along
+            the way.
+          </p>
+        </div>
+
+        <span class="about-values__arrow">↗</span>
+      </article>
+
+      <article class="about-values__item">
+        <span class="about-values__number">03</span>
+
+        <div class="about-values__content">
+          <h3>STAY CURIOUS</h3>
+          <p>
+            Try a new problem. Learn a new technique. Find a different way up. There's always something new to discover.
+          </p>
+        </div>
+
+        <span class="about-values__arrow">↗</span>
+      </article>
+
+      <article class="about-values__item">
+        <span class="about-values__number">04</span>
+
+        <div class="about-values__content">
+          <h3>HAVE FUN</h3>
+          <p>Climbing should challenge you, but it should also make you want to come back tomorrow.</p>
+        </div>
+
+        <span class="about-values__arrow">↗</span>
+      </article>
+    </div>
+
+    <div class="about-values__footer">
+      <span>CLIMB / CONNECT / PROGRESS</span>
+      <span>ESC-ALA</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .about-values {
+    width: 100%;
+    background: #f2f0e9;
+    color: #0b0f2b;
+  }
+
+  .about-values__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 120px 0 32px;
+  }
+
+  .about-values__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    column-gap: 48px;
+    align-items: end;
+    margin-bottom: 90px;
+  }
+
+  .about-values__eyebrow {
+    grid-column: 1 / -1;
+    margin-bottom: 42px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .about-values__title {
+    margin: 0;
+    font-size: clamp(76px, 11vw, 170px);
+    line-height: 0.78;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .about-values__title span {
+    display: inline-block;
+    color: #ffc107;
+  }
+
+  .about-values__intro {
+    max-width: 300px;
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .about-values__list {
+    border-top: 2px solid #0b0f2b;
+  }
+
+  .about-values__item {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) 40px;
+    gap: 28px;
+    align-items: start;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(11, 15, 43, 0.3);
+    transition: padding-left 180ms ease;
+  }
+
+  .about-values__item:hover {
+    padding-left: 14px;
+  }
+
+  .about-values__number {
+    padding-top: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    opacity: 0.55;
+  }
+
+  .about-values__content h3 {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 3vw, 44px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+
+  .about-values__content p {
+    max-width: 580px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .about-values__arrow {
+    justify-self: end;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .about-values__footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 18px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  @media screen and (max-width: 749px) {
+    .about-values__inner {
+      width: calc(100% - 32px);
+      padding: 88px 0 24px;
+    }
+
+    .about-values__header {
+      display: block;
+      margin-bottom: 56px;
+    }
+
+    .about-values__eyebrow {
+      margin-bottom: 32px;
+    }
+
+    .about-values__title {
+      font-size: clamp(64px, 18vw, 105px);
+    }
+
+    .about-values__intro {
+      max-width: 280px;
+      margin-top: 32px;
+      font-size: 13px;
+    }
+
+    .about-values__item {
+      grid-template-columns: 38px minmax(0, 1fr) 24px;
+      gap: 12px;
+      padding: 26px 0;
+    }
+
+    .about-values__item:hover {
+      padding-left: 0;
+    }
+
+    .about-values__content h3 {
+      font-size: 25px;
+      line-height: 0.95;
+    }
+
+    .about-values__content p {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .about-values__arrow {
+      font-size: 20px;
+    }
+
+    .about-values__footer {
+      font-size: 8px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Values",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Values"
+    }
+  ]
+}
+{% endschema %}
