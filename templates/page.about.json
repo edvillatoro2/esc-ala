@@ -17,7 +17,7 @@
       "settings": {}
     },
     "about_cta": {
-      "type": "custom-about-cta",
+      "type": "custom-cta",
       "settings": {}
     }
   },
