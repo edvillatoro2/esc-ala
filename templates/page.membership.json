@@ -54,8 +54,17 @@
         }
       },
       "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
+    },
+    "membership_cta": {
+      "type": "custom-cta",
+      "settings": {}
     }
   },
 
-  "order": ["membership_hero", "membership_plans", "membership_faq"]
+  "order": [
+    "membership_hero",
+    "membership_plans",
+    "membership_faq",
+    "membership_cta"
+  ]
 }
