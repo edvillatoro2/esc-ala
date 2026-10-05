@@ -15,7 +15,17 @@
     "about_values": {
       "type": "custom-about-values",
       "settings": {}
+    },
+    "about_cta": {
+      "type": "custom-about-cta",
+      "settings": {}
     }
   },
-  "order": ["about_hero", "about_story", "about_community", "about_values"]
+  "order": [
+    "about_hero",
+    "about_story",
+    "about_community",
+    "about_values",
+    "about_cta"
+  ]
 }

@@ -1,0 +1,243 @@
+<div class="about-cta">
+  <div class="about-cta__inner">
+    <div class="about-cta__top">
+      {% if section.settings.eyebrow != blank %}
+        <span class="about-cta__eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
+      {% if section.settings.number != blank %}
+        <span class="about-cta__number">{{ section.settings.number }}</span>
+      {% endif %}
+    </div>
+    <div class="about-cta__content">
+      <h2 class="about-cta__title">
+        {% if section.settings.title_line_1 != blank %}
+          {{ section.settings.title_line_1 }}
+        {% endif %}
+
+        {% if section.settings.title_line_2 != blank %}
+          <span>{{ section.settings.title_line_2 }}</span>
+        {% endif %}
+        {% if section.settings.title_line_3 != blank %}
+          {{ section.settings.title_line_3 }}
+        {% endif %}
+      </h2>
+      <div class="about-cta__action">
+        {% if section.settings.description != blank %}
+          <p>{{ section.settings.description }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a href="/pages/contact" class="about-cta__button">
+            {{ section.settings.button_label }}
+            <span>↗</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="about-cta__bottom">
+      {% if section.settings.footer_1 != blank %}
+        <span>{{ section.settings.footer_1 }}</span>
+      {% endif %}
+      {% if section.settings.footer_2 != blank %}
+        <span>{{ section.settings.footer_2 }}</span>
+      {% endif %}
+      {% if section.settings.footer_3 != blank %}
+        <span>{{ section.settings.footer_3 }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-cta {
+    background: #ffc107;
+    color: #0b0f2b;
+    padding: 7rem 2rem 2rem;
+  }
+  .about-cta__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .about-cta__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0b0f2b;
+    padding-bottom: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .about-cta__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.5fr);
+    gap: 4rem;
+    padding: 5rem 0 7rem;
+  }
+  .about-cta__title {
+    margin: 0;
+    max-width: 950px;
+    font-size: clamp(4rem, 8.5vw, 9rem);
+    line-height: 0.84;
+    letter-spacing: -0.055em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .about-cta__title span {
+    display: block;
+    margin-left: 8vw;
+  }
+  .about-cta__action {
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .about-cta__action p {
+    max-width: 280px;
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .about-cta__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    min-width: 240px;
+    padding: 1.1rem 1.25rem;
+    background: #0b0f2b;
+    color: #ffc107;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .about-cta__button span {
+    font-size: 1.2rem;
+  }
+  .about-cta__button:hover {
+    transform: translate(-4px, -4px);
+    background: #ffffff;
+    color: #0b0f2b;
+  }
+  .about-cta__bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #0b0f2b;
+    padding-top: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  @media screen and (max-width: 749px) {
+    .about-cta {
+      padding: 4rem 1.25rem 1.5rem;
+    }
+    .about-cta__top {
+      font-size: 0.65rem;
+    }
+    .about-cta__content {
+      display: block;
+      padding: 4rem 0 5rem;
+    }
+    .about-cta__title {
+      font-size: clamp(3.5rem, 17vw, 6rem);
+      line-height: 0.86;
+    }
+    .about-cta__title span {
+      margin-left: 10vw;
+    }
+    .about-cta__action {
+      margin-top: 3rem;
+      gap: 1.5rem;
+    }
+    .about-cta__action p {
+      max-width: 300px;
+    }
+    .about-cta__button {
+      width: 100%;
+    }
+    .about-cta__bottom {
+      gap: 0.75rem;
+      font-size: 0.55rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "ESC-ALA®"
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Number",
+      "default": " 05 / READY TO CLIMB?"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "YOUR NEXT"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "SESSION"
+    },
+    {
+      "type": "text",
+      "id": "title_line_3",
+      "label": "Title Line 3",
+      "default": "STARTS HERE."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "PLAN YOUR VISIT"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Ready to take on the challenge?"
+    },
+    {
+      "type": "text",
+      "id": "footer_1",
+      "label": "Footer 1",
+      "default": "BOULDER"
+    },
+    {
+      "type": "text",
+      "id": "footer_2",
+      "label": "Footer 2",
+      "default": "COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "footer_3",
+      "label": "Footer 3",
+      "default": "GOOD TIMES"
+    }
+  ],
+  "presets": [
+    {
+      "name": "About CTA"
+    }
+  ]
+}
+{% endschema %}
