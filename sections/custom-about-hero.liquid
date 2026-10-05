@@ -1,18 +1,31 @@
 <div class="about-hero">
   <div class="about-hero__inner">
     <div class="about-hero__top">
-      <span class="about-hero__eyebrow">WHO WE ARE</span>
-      <span class="about-hero__number">01 / 05</span>
+      {% if section.settings.label != blank %}
+        <span class="about-hero__eyebrow">
+          {{ section.settings.label }}
+        </span>
+      {% endif %}
+      {% if section.settings.number != blank %}
+        <span class="about-hero__number">
+          {{ section.settings.number }}
+        </span>
+      {% endif %}
     </div>
 
     <div class="about-hero__title-wrap">
-      <h1 class="about-hero__title">
-        ABOUT<br>
-        <span>ESC-ALA</span>
-      </h1>
+      {% if section.settings.title_line_1 != blank %}
+        <h1 class="about-hero__title">
+          {{ section.settings.title_line_1 }}
+          <br>
+          <span>{{ section.settings.title_line_2 }}</span>
+        </h1>
+      {% endif %}
 
       <div class="about-hero__intro">
-        <p>MORE THAN A CLIMBING GYM. A PLACE TO CLIMB, CONNECT, AND PUSH YOURSELF.</p>
+        {% if section.settings.intro != blank %}
+          <p>{{ section.settings.intro }}</p>
+        {% endif %}
       </div>
     </div>
 
@@ -30,16 +43,19 @@
       {% endif %}
 
       <div class="about-hero__label">
-        <span>CLIMB</span>
-        <span>CONNECT</span>
-        <span>CREATE</span>
+        {% if section.settings.hero_label_1 != blank %}
+          <span>{{ section.settings.hero_label_1 }}</span>
+          <span>{{ section.settings.hero_label_2 }}</span>
+          <span>{{ section.settings.hero_label_3 }}</span>
+        {% endif %}
       </div>
     </div>
 
     <div class="about-hero__bottom">
-      <span>SCROLL TO EXPLORE</span>
-
-      <span class="about-hero__arrow"> ↓ </span>
+      {% if section.settings.scroll_indicator != blank %}
+        <span>{{ section.settings.scroll_indicator }}</span>
+        <span class="about-hero__arrow"> ↓ </span>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -227,9 +243,63 @@
   "name": "About Hero",
   "settings": [
     {
+      "type": "text",
+      "id": "label",
+      "label": "Eyebrow",
+      "default": "WHO WE ARE"
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Number",
+      "default": "01 / 05"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "ABOUT"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "ESC-ALA"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": "Hero image"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "MORE THAN A CLIMBING GYM. A PLACE TO CLIMB, CONNECT, AND PUSH YOURSELF."
+    },
+    {
+      "type": "text",
+      "id": "hero_label_1",
+      "label": "Hero Label",
+      "default": "CLIMB"
+    },
+    {
+      "type": "text",
+      "id": "hero_label_2",
+      "label": "Hero Label",
+      "default": "CONNECT"
+    },
+    {
+      "type": "text",
+      "id": "hero_label_3",
+      "label": "Hero Label",
+      "default": "CREATE"
+    },
+    {
+      "type": "text",
+      "id": "scroll_indicator",
+      "label": "Scroll Indicator",
+      "default": "SCROLL TO EXPLORE"
     }
   ],
   "presets": [

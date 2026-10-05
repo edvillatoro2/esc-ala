@@ -1,19 +1,29 @@
-<section class="about-community">
+<div class="about-community">
   <div class="about-community__inner">
     <div class="about-community__header">
       <div>
-        <span class="about-community__eyebrow">03 / THE COMMUNITY</span>
+        {% if section.settings.eyebrow != blank %}
+          <span class="about-community__eyebrow">
+            {{ section.settings.eyebrow }}
+          </span>
+        {% endif %}
 
-        <h2 class="about-community__title">
-          FIND YOUR
-          <span>PEOPLE.</span>
-        </h2>
+        {% if section.settings.title_line_1 != blank %}
+          <h2 class="about-community__title">
+            {{ section.settings.title_line_1 }}
+
+            {% if section.settings.title_line_2 != blank %}
+              <span>{{ section.settings.title_line_2 }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
       </div>
 
-      <p class="about-community__intro">
-        CLIMBING IS BETTER TOGETHER. WHETHER YOU'RE HERE FOR YOUR FIRST SESSION OR YOUR NEXT PROJECT, THERE'S A PLACE
-        FOR YOU.
-      </p>
+      {% if section.settings.intro != blank %}
+        <p class="about-community__intro">
+          {{ section.settings.intro }}
+        </p>
+      {% endif %}
     </div>
 
     <div class="about-community__visual">
@@ -29,24 +39,39 @@
       </div>
 
       <div class="about-community__center">
-        <span>ESC-ALA</span>
-        <strong>CLIMB TOGETHER</strong>
+        {% if section.settings.center_label != blank %}
+          <span>{{ section.settings.center_label }}</span>
+        {% endif %}
+
+        {% if section.settings.center_title != blank %}
+          <strong>{{ section.settings.center_title }}</strong>
+        {% endif %}
       </div>
 
       <div class="about-community__corner">
-        <span>CLIMB</span>
-        <span>CONNECT</span>
-        <span>REPEAT</span>
+        {% if section.settings.corner_label_1 != blank %}
+          <span>{{ section.settings.corner_label_1 }}</span>
+        {% endif %}
+
+        {% if section.settings.corner_label_2 != blank %}
+          <span>{{ section.settings.corner_label_2 }}</span>
+        {% endif %}
+
+        {% if section.settings.corner_label_3 != blank %}
+          <span>{{ section.settings.corner_label_3 }}</span>
+        {% endif %}
       </div>
     </div>
 
     <div class="about-community__footer">
-      <span>EVERYONE STARTS SOMEWHERE.</span>
+      {% if section.settings.footer_text != blank %}
+        <span>{{ section.settings.footer_text }}</span>
+      {% endif %}
 
       <span class="about-community__arrow">↘</span>
     </div>
   </div>
-</section>
+</div>
 
 <style>
   .about-community {
@@ -317,7 +342,68 @@
 {% schema %}
 {
   "name": "About Community",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "03 / THE COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "FIND YOUR"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "PEOPLE."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "CLIMBING IS BETTER TOGETHER. WHETHER YOU'RE HERE FOR YOUR FIRST SESSION OR YOUR NEXT PROJECT, THERE'S A PLACE FOR YOU."
+    },
+    {
+      "type": "text",
+      "id": "center_label",
+      "label": "Center Label",
+      "default": "ESC-ALA"
+    },
+    {
+      "type": "text",
+      "id": "center_title",
+      "label": "Center Title",
+      "default": "CLIMB TOGETHER"
+    },
+    {
+      "type": "text",
+      "id": "corner_label_1",
+      "label": "Corner Label 1",
+      "default": "CLIMB"
+    },
+    {
+      "type": "text",
+      "id": "corner_label_2",
+      "label": "Corner Label 2",
+      "default": "CONNECT"
+    },
+    {
+      "type": "text",
+      "id": "corner_label_3",
+      "label": "Corner Label 3",
+      "default": "REPEAT"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "EVERYONE STARTS SOMEWHERE."
+    }
+  ],
   "presets": [
     {
       "name": "About Community"

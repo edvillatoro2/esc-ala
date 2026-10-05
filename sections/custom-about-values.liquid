@@ -2,18 +2,27 @@
   <div class="about-values__inner">
     <div class="about-values__header">
       <div class="about-values__eyebrow">
-        <span>04 / WHAT WE BELIEVE</span>
+        {% if section.settings.eyebrow != blank %}
+          <span>{{ section.settings.eyebrow }}</span>
+        {% endif %}
       </div>
 
       <h2 class="about-values__title">
-        CLIMB<br>
-        <span>YOUR WAY.</span>
+        {% if section.settings.title_line_1 != blank %}
+          {{ section.settings.title_line_1 -}}
+          <br>
+        {% endif %}
+
+        {% if section.settings.title_line_2 != blank %}
+          <span>{{ section.settings.title_line_2 }}</span>
+        {% endif %}
       </h2>
 
-      <p class="about-values__intro">
-        THERE'S NO SINGLE WAY TO CLIMB. WE'RE HERE TO CREATE A SPACE WHERE EVERYONE CAN FIND THE STYLE, PACE, AND
-        COMMUNITY THAT WORKS FOR THEM.
-      </p>
+      {% if section.settings.intro != blank %}
+        <p class="about-values__intro">
+          {{ section.settings.intro }}
+        </p>
+      {% endif %}
     </div>
 
     <div class="about-values__list">
@@ -21,11 +30,15 @@
         <span class="about-values__number">01</span>
 
         <div class="about-values__content">
-          <h3>PEOPLE FIRST</h3>
-          <p>
-            Climbing is better together. We build a community where beginners, regulars, and experienced climbers all
-            have a place.
-          </p>
+          {% if section.settings.value_1_title != blank %}
+            <h3>{{ section.settings.value_1_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.value_1_text != blank %}
+            <p>
+              {{ section.settings.value_1_text }}
+            </p>
+          {% endif %}
         </div>
 
         <span class="about-values__arrow">↗</span>
@@ -35,11 +48,15 @@
         <span class="about-values__number">02</span>
 
         <div class="about-values__content">
-          <h3>PROGRESS OVER PERFECTION</h3>
-          <p>
-            Every climb counts. We celebrate the small wins, the projects that take time, and everything you learn along
-            the way.
-          </p>
+          {% if section.settings.value_2_title != blank %}
+            <h3>{{ section.settings.value_2_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.value_2_text != blank %}
+            <p>
+              {{ section.settings.value_2_text }}
+            </p>
+          {% endif %}
         </div>
 
         <span class="about-values__arrow">↗</span>
@@ -49,10 +66,15 @@
         <span class="about-values__number">03</span>
 
         <div class="about-values__content">
-          <h3>STAY CURIOUS</h3>
-          <p>
-            Try a new problem. Learn a new technique. Find a different way up. There's always something new to discover.
-          </p>
+          {% if section.settings.value_3_title != blank %}
+            <h3>{{ section.settings.value_3_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.value_3_text != blank %}
+            <p>
+              {{ section.settings.value_3_text }}
+            </p>
+          {% endif %}
         </div>
 
         <span class="about-values__arrow">↗</span>
@@ -62,8 +84,15 @@
         <span class="about-values__number">04</span>
 
         <div class="about-values__content">
-          <h3>HAVE FUN</h3>
-          <p>Climbing should challenge you, but it should also make you want to come back tomorrow.</p>
+          {% if section.settings.value_4_title != blank %}
+            <h3>{{ section.settings.value_4_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.value_4_text != blank %}
+            <p>
+              {{ section.settings.value_4_text }}
+            </p>
+          {% endif %}
         </div>
 
         <span class="about-values__arrow">↗</span>
@@ -71,8 +100,13 @@
     </div>
 
     <div class="about-values__footer">
-      <span>CLIMB / CONNECT / PROGRESS</span>
-      <span>ESC-ALA</span>
+      {% if section.settings.footer_left != blank %}
+        <span>{{ section.settings.footer_left }}</span>
+      {% endif %}
+
+      {% if section.settings.footer_right != blank %}
+        <span>{{ section.settings.footer_right }}</span>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -244,7 +278,92 @@
 {% schema %}
 {
   "name": "About Values",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "04 / WHAT WE BELIEVE"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "CLIMB"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "YOUR WAY."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "THERE'S NO SINGLE WAY TO CLIMB. WE'RE HERE TO CREATE A SPACE WHERE EVERYONE CAN FIND THE STYLE, PACE, AND COMMUNITY THAT WORKS FOR THEM."
+    },
+    {
+      "type": "text",
+      "id": "value_1_title",
+      "label": "Value 1 Title",
+      "default": "PEOPLE FIRST"
+    },
+    {
+      "type": "textarea",
+      "id": "value_1_text",
+      "label": "Value 1 Description",
+      "default": "Climbing is better together. We build a community where beginners, regulars, and experienced climbers all have a place."
+    },
+    {
+      "type": "text",
+      "id": "value_2_title",
+      "label": "Value 2 Title",
+      "default": "PROGRESS OVER PERFECTION"
+    },
+    {
+      "type": "textarea",
+      "id": "value_2_text",
+      "label": "Value 2 Description",
+      "default": "Every climb counts. We celebrate the small wins, the projects that take time, and everything you learn along the way."
+    },
+    {
+      "type": "text",
+      "id": "value_3_title",
+      "label": "Value 3 Title",
+      "default": "STAY CURIOUS"
+    },
+    {
+      "type": "textarea",
+      "id": "value_3_text",
+      "label": "Value 3 Description",
+      "default": "Try a new problem. Learn a new technique. Find a different way up. There's always something new to discover."
+    },
+    {
+      "type": "text",
+      "id": "value_4_title",
+      "label": "Value 4 Title",
+      "default": "HAVE FUN"
+    },
+    {
+      "type": "textarea",
+      "id": "value_4_text",
+      "label": "Value 4 Description",
+      "default": "Climbing should challenge you, but it should also make you want to come back tomorrow."
+    },
+    {
+      "type": "text",
+      "id": "footer_left",
+      "label": "Footer Left",
+      "default": "CLIMB / CONNECT / PROGRESS"
+    },
+    {
+      "type": "text",
+      "id": "footer_right",
+      "label": "Footer Right",
+      "default": "ESC-ALA"
+    }
+  ],
   "presets": [
     {
       "name": "About Values"

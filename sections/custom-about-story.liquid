@@ -1,43 +1,57 @@
 <div class="about-story">
   <div class="about-story__inner">
     <div class="about-story__heading">
-      <span class="about-story__eyebrow">02 / OUR STORY</span>
+      {% if section.settings.eyebrow != blank %}
+        <span class="about-story__eyebrow">{{ section.settings.eyebrow }}</span>
+      {% endif %}
 
-      <h2 class="about-story__title">
-        OUR<br>
-        <span>STORY</span>
-      </h2>
+      {% if section.settings.title_line_1 != blank %}
+        <h2 class="about-story__title">
+          {{ section.settings.title_line_1 }}
+          {% if section.settings.title_line_2 != blank %}
+            <span>{{ section.settings.title_line_2 }}</span>
+          {% endif %}
+        </h2>
+      {% endif %}
     </div>
 
     <div class="about-story__content">
       <div class="about-story__intro">
-        <p>ESC-ALA WAS BUILT AROUND A SIMPLE IDEA: CLIMBING SHOULD BE FOR EVERYONE.</p>
+        {% if section.settings.intro_text != blank %}
+          <p>{{ section.settings.intro_text }}</p>
+        {% endif %}
       </div>
 
       <div class="about-story__copy">
-        <p>A PLACE TO MOVE, CHALLENGE YOURSELF, MEET NEW PEOPLE, AND FIND YOUR OWN WAY UP THE WALL.</p>
-
-        <p>
-          FROM YOUR FIRST CLIMB TO YOUR NEXT PROJECT, ESC-ALA IS DESIGNED TO MAKE THE EXPERIENCE FEEL APPROACHABLE,
-          CREATIVE, AND FUN.
-        </p>
+        {% if section.settings.copy_text_1 != blank %}
+          <p>{{ section.settings.copy_text_1 }}</p>
+        {% endif %}
+        {% if section.settings.copy_text_2 != blank %}
+          <p>{{ section.settings.copy_text_2 }}</p>
+        {% endif %}
       </div>
 
       <div class="about-story__details">
-        <div>
-          <span>01</span>
-          <strong>CLIMB</strong>
-        </div>
+        {% if section.settings.detail_1 != blank %}
+          <div>
+            <span>01</span>
+            <strong>{{ section.settings.detail_1 }}</strong>
+          </div>
+        {% endif %}
 
-        <div>
-          <span>02</span>
-          <strong>COMMUNITY</strong>
-        </div>
+        {% if section.settings.detail_2 != blank %}
+          <div>
+            <span>02</span>
+            <strong>{{ section.settings.detail_2 }}</strong>
+          </div>
+        {% endif %}
 
-        <div>
-          <span>03</span>
-          <strong>PROGRESSION</strong>
-        </div>
+        {% if section.settings.detail_3 != blank %}
+          <div>
+            <span>03</span>
+            <strong>{{ section.settings.detail_3 }}</strong>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -188,7 +202,62 @@
 {% schema %}
 {
   "name": "About Story",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "02 / OUR STORY"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "OUR"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "STORY"
+    },
+    {
+      "type": "text",
+      "id": "intro_text",
+      "label": "Intro Text",
+      "default": "ESC-ALA WAS BUILT AROUND A SIMPLE IDEA: CLIMBING SHOULD BE FOR EVERYONE."
+    },
+    {
+      "type": "text",
+      "id": "copy_text_1",
+      "label": "Copy Text 1",
+      "default": "A PLACE TO MOVE, CHALLENGE YOURSELF, MEET NEW PEOPLE, AND FIND YOUR OWN WAY UP THE WALL."
+    },
+    {
+      "type": "text",
+      "id": "copy_text_2",
+      "label": "Copy Text 2",
+      "default": "FROM YOUR FIRST CLIMB TO YOUR NEXT PROJECT, ESC-ALA IS DESIGNED TO MAKE THE EXPERIENCE FEEL APPROACHABLE, CREATIVE, AND FUN."
+    },
+    {
+      "type": "text",
+      "id": "detail_1",
+      "label": "Detail 1",
+      "default": "CLIMB"
+    },
+    {
+      "type": "text",
+      "id": "detail_2",
+      "label": "Detail 2",
+      "default": "COMMUNITY"
+    },
+    {
+      "type": "text",
+      "id": "detail_3",
+      "label": "Detail 3",
+      "default": "PROGRESSION"
+    }
+  ],
   "presets": [
     {
       "name": "About Story"
