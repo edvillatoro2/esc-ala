@@ -1,0 +1,292 @@
+<div class="membership-faq">
+  <div class="membership-faq__inner">
+    <div class="membership-faq__header">
+      {% if section.settings.eyebrow != blank %}
+        <span class="membership-faq__eyebrow">
+          {{ section.settings.eyebrow }}
+        </span>
+      {% endif %}
+
+      <div class="membership-faq__heading">
+        {% if section.settings.title_line_1 != blank %}
+          <h2 class="membership-faq__title">
+            {{ section.settings.title_line_1 }}
+            {% if section.settings.title_line_2 != blank %}
+              <span>{{ section.settings.title_line_2 }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
+        {% if section.settings.intro != blank %}
+          <p class="membership-faq__intro">
+            {{ section.settings.intro }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="membership-faq__list">
+      {% for block in section.blocks %}
+        <details class="membership-faq__item" {{ block.shopify_attributes }}>
+          <summary class="membership-faq__question">
+            <span>{{ block.settings.question }}</span>
+            <span class="membership-faq__icon">+</span>
+          </summary>
+          <div class="membership-faq__answer">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.footer_text != blank %}
+      <div class="membership-faq__footer">
+        <span>{{ section.settings.footer_text }}</span>
+        {% if section.settings.footer_label != blank %}
+          <span>{{ section.settings.footer_label }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .membership-faq {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    padding: 8rem 2rem;
+  }
+  .membership-faq__inner {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+  }
+  .membership-faq__header {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 48px;
+    margin-bottom: 5rem;
+  }
+  .membership-faq__eyebrow {
+    padding-top: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  .membership-faq__heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 48px;
+    align-items: end;
+  }
+  .membership-faq__title {
+    margin: 0;
+    font-size: clamp(64px, 10vw, 150px);
+    line-height: 0.8;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .membership-faq__title span {
+    display: inline-block;
+    color: #fbb040;
+  }
+  .membership-faq__intro {
+    max-width: 260px;
+    margin: 0 0 6px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .membership-faq__list {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .membership-faq__item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .membership-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 32px;
+    padding: 28px 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .membership-faq__item:not([open]) .membership-faq__answer {
+    display: none;
+  }
+
+  .membership-faq__item[open] .membership-faq__answer {
+    display: block;
+  }
+  .membership-faq__question:focus-visible {
+    outline: 2px solid #fbb040;
+    outline-offset: 4px;
+  }
+  .membership-faq__question::-webkit-details-marker {
+    display: none;
+  }
+  .membership-faq__icon {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ed5825;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+  .membership-faq__item[open] .membership-faq__icon {
+    transform: rotate(45deg);
+  }
+  .membership-faq__answer {
+    max-width: 720px;
+    padding: 0 68px 30px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .membership-faq__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-top: 20px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .membership-faq__footer span:last-child {
+    color: #fbb040;
+  }
+
+  @media screen and (max-width: 749px) {
+    .membership-faq {
+      padding: 5rem 1rem;
+    }
+    .membership-faq__header {
+      display: block;
+      margin-bottom: 3rem;
+    }
+    .membership-faq__eyebrow {
+      display: block;
+      margin-bottom: 32px;
+    }
+    .membership-faq__heading {
+      display: block;
+    }
+    .membership-faq__title {
+      font-size: clamp(58px, 18vw, 100px);
+    }
+    .membership-faq__intro {
+      margin-top: 28px;
+      font-size: 13px;
+    }
+    .membership-faq__question {
+      padding: 22px 0;
+      font-size: 15px;
+    }
+    .membership-faq__answer {
+      padding: 0 40px 24px 0;
+      font-size: 14px;
+    }
+    .membership-faq__footer {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Membership FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "03 / FAQ"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "GOOD TO"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "KNOW."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "EVERYTHING YOU NEED TO KNOW BEFORE YOU START CLIMBING."
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "STILL HAVE QUESTIONS?"
+    },
+    {
+      "type": "text",
+      "id": "footer_label",
+      "label": "Footer Label",
+      "default": "ASK US"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "DO I NEED EXPERIENCE TO CLIMB?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "NOT AT ALL. ESC-ALA IS DESIGNED FOR ALL EXPERIENCE LEVELS, INCLUDING FIRST-TIME CLIMBERS."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership FAQ",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

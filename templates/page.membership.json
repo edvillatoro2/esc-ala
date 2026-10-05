@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "membership_hero": {
+      "type": "custom-page-hero",
+      "settings": {
+        "label": "MEMBERSHIP",
+        "number": "01 / 03",
+        "title_line_1": "CLIMB",
+        "title_line_2": "MORE.",
+        "intro": "ONE MEMBERSHIP. UNLIMITED CLIMBING. A COMMUNITY TO KEEP YOU COMING BACK.",
+        "hero_label_1": "CLIMB",
+        "hero_label_2": "CONNECT",
+        "hero_label_3": "PROGRESS",
+        "scroll_indicator": "SCROLL TO EXPLORE"
+      }
+    },
+
+    "membership_plans": {
+      "type": "custom-membership-plans",
+      "settings": {}
+    },
+
+    "membership_faq": {
+      "type": "custom-membership-faq",
+      "settings": {},
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "DO I NEED EXPERIENCE TO CLIMB?",
+            "answer": "NOT AT ALL. ESC-ALA IS DESIGNED FOR ALL EXPERIENCE LEVELS, INCLUDING FIRST-TIME CLIMBERS."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "WHAT DOES A MEMBERSHIP INCLUDE?",
+            "answer": "MEMBERS GET UNLIMITED CLIMBING, MEMBER PERKS, AND ACCESS TO THE COMMUNITY AT ESC-ALA."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "CAN I TRY ESC-ALA BEFORE BECOMING A MEMBER?",
+            "answer": "YES. OUR DAY PASS IS A SIMPLE WAY TO TRY THE GYM AND SEE IF ESC-ALA IS THE RIGHT FIT FOR YOU."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "DO YOU OFFER CLIMBING FOR BEGINNERS?",
+            "answer": "ABSOLUTELY. OUR GYM IS DESIGNED TO BE APPROACHABLE FOR FIRST-TIME CLIMBERS WHILE STILL OFFERING CHALLENGES FOR EXPERIENCED CLIMBERS."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4"]
+    }
+  },
+
+  "order": ["membership_hero", "membership_plans", "membership_faq"]
+}

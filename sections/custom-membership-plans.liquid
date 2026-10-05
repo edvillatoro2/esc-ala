@@ -1,0 +1,561 @@
+<div class="membership-plans">
+  <div class="membership-plans__inner">
+    <div class="membership-plans__header">
+      <div class="membership-plans__eyebrow">
+        {% if section.settings.eyebrow != blank %}
+          {{ section.settings.eyebrow }}
+        {% endif %}
+      </div>
+
+      <div class="membership-plans__heading-wrap">
+        {% if section.settings.title_line_1 != blank %}
+          <h2 class="membership-plans__heading">
+            {{ section.settings.title_line_1 }}
+            {% if section.settings.title_line_2 != blank %}
+              <span>{{ section.settings.title_line_2 }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.intro != blank %}
+          <div class="membership-plans__intro">
+            {{ section.settings.intro }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="membership-plans__list">
+      <article class="membership-plan">
+        <div class="membership-plan__top">
+          {% if section.settings.plan_1_label != blank %}
+            <span class="membership-plan__label">
+              {{ section.settings.plan_1_label }}
+            </span>
+          {% endif %}
+          <span class="membership-plan__number">01</span>
+        </div>
+
+        <div class="membership-plan__main">
+          {% if section.settings.plan_1_title != blank %}
+            <h3 class="membership-plan__title">
+              {{ section.settings.plan_1_title }}
+            </h3>
+          {% endif %}
+          {% if section.settings.plan_1_price != blank %}
+            <div class="membership-plan__price">
+              {{ section.settings.plan_1_price }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="membership-plan__bottom">
+          {% if section.settings.plan_1_description != blank %}
+            <p>{{ section.settings.plan_1_description }}</p>
+          {% endif %}
+          {% if section.settings.plan_1_button != blank %}
+            <a
+              href="{{ section.settings.plan_1_link }}"
+              class="membership-plan__button"
+            >
+              {{ section.settings.plan_1_button }}
+              <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
+        </div>
+      </article>
+
+      {% comment %} plan 2 {% endcomment %}
+      <article class="membership-plan membership-plan--featured">
+        <div class="membership-plan__top">
+          {% if section.settings.plan_2_label != blank %}
+            <span class="membership-plan__label">
+              {{ section.settings.plan_2_label }}
+            </span>
+          {% endif %}
+          <span class="membership-plan__number">02</span>
+        </div>
+
+        <div class="membership-plan__main">
+          {% if section.settings.plan_2_title != blank %}
+            <h3 class="membership-plan__title">
+              {{ section.settings.plan_2_title }}
+            </h3>
+          {% endif %}
+
+          {% if section.settings.plan_2_price != blank %}
+            <div class="membership-plan__price">
+              {{ section.settings.plan_2_price }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="membership-plan__bottom">
+          {% if section.settings.plan_2_description != blank %}
+            <p>{{ section.settings.plan_2_description }}</p>
+          {% endif %}
+
+          {% if section.settings.plan_2_button != blank %}
+            <a
+              href="{{ section.settings.plan_2_link }}"
+              class="membership-plan__button"
+            >
+              {{ section.settings.plan_2_button }}
+              <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
+        </div>
+      </article>
+
+      {% comment %} plan 3 {% endcomment %}
+      <article class="membership-plan">
+        <div class="membership-plan__top">
+          {% if section.settings.plan_3_label != blank %}
+            <span class="membership-plan__label">
+              {{ section.settings.plan_3_label }}
+            </span>
+          {% endif %}
+
+          <span class="membership-plan__number">03</span>
+        </div>
+
+        <div class="membership-plan__main">
+          {% if section.settings.plan_3_title != blank %}
+            <h3 class="membership-plan__title">
+              {{ section.settings.plan_3_title }}
+            </h3>
+          {% endif %}
+
+          {% if section.settings.plan_3_price != blank %}
+            <div class="membership-plan__price">
+              {{ section.settings.plan_3_price }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="membership-plan__bottom">
+          {% if section.settings.plan_3_description != blank %}
+            <p>{{ section.settings.plan_3_description }}</p>
+          {% endif %}
+          {% if section.settings.plan_3_button != blank %}
+            <a
+              href="{{ section.settings.plan_3_link }}"
+              class="membership-plan__button"
+            >
+              {{ section.settings.plan_3_button }}
+              <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
+        </div>
+      </article>
+    </div>
+
+    <div class="membership-plans__footer">
+      {% if section.settings.footer_left != blank %}
+        <span>{{ section.settings.footer_left }}</span>
+      {% endif %}
+
+      {% if section.settings.footer_right != blank %}
+        <span>{{ section.settings.footer_right }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .membership-plans {
+    background: #754c29;
+    color: #ffffff;
+    overflow: hidden;
+  }
+  .membership-plans__inner {
+    width: 100%;
+  }
+  .membership-plans__header {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 48px;
+    padding: 6rem;
+  }
+  .membership-plans__eyebrow {
+    padding-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .membership-plans__heading-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 48px;
+    align-items: end;
+  }
+  .membership-plans__heading {
+    margin: 0;
+    font-size: clamp(4rem, 8vw, 9rem);
+    line-height: 0.8;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+  .membership-plans__heading span {
+    display: inline-block;
+    color: #ed5825;
+  }
+  .membership-plans__intro {
+    max-width: 280px;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .membership-plans__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .membership-plan {
+    display: flex;
+    flex-direction: column;
+    min-height: 560px;
+    padding: 2rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .membership-plan:last-child {
+    border-right: 0;
+  }
+  .membership-plan--featured {
+    background: #fbb040;
+    color: #000000;
+  }
+  .membership-plan__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .membership-plan__label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .membership-plan__number {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    opacity: 0.55;
+  }
+  .membership-plan__main {
+    margin-top: auto;
+    margin-bottom: 3rem;
+  }
+  .membership-plan__title {
+    margin: 0;
+    font-size: clamp(3.5rem, 5vw, 6rem);
+    line-height: 0.8;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+  }
+  .membership-plan__price {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .membership-plan__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .membership-plan__bottom p {
+    max-width: 340px;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .membership-plan__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: #ed5825;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 0.275s ease, color 0.275s ease, transform 0.275s ease;
+  }
+  .membership-plan__button span {
+    font-size: 1.25rem;
+    line-height: 0;
+  }
+  .membership-plan__button:hover {
+    background: #fbb040;
+    color: #000000;
+    transform: translateY(4px);
+  }
+  .membership-plan--featured .membership-plan__button {
+    background: #ed5825;
+    color: #ffffff;
+  }
+
+  .membership-plan--featured .membership-plan__button:hover {
+    background: #000000;
+    color: #ffffff;
+  }
+  .membership-plans__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .membership-plans__footer span:last-child {
+    color: #fbb040;
+  }
+
+  /* TABLET */
+  @media screen and (max-width: 900px) {
+    .membership-plans__header {
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 32px;
+      padding: 4rem 3rem;
+    }
+    .membership-plans__heading-wrap {
+      display: block;
+    }
+    .membership-plans__intro {
+      margin-top: 2rem;
+    }
+    .membership-plan {
+      min-height: 480px;
+      padding: 1.5rem;
+    }
+    .membership-plan__title {
+      font-size: clamp(3rem, 6vw, 5rem);
+    }
+  }
+
+  /* MOBILE */
+  @media screen and (max-width: 650px) {
+    .membership-plans__header {
+      display: block;
+      padding: 4rem 1.25rem;
+    }
+    .membership-plans__eyebrow {
+      margin-bottom: 2rem;
+    }
+    .membership-plans__heading {
+      font-size: clamp(3.5rem, 15vw, 6rem);
+    }
+    .membership-plans__intro {
+      margin-top: 2rem;
+    }
+    .membership-plans__list {
+      display: block;
+    }
+    .membership-plan {
+      min-height: 460px;
+      padding: 1.5rem 1.25rem;
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    .membership-plan:last-child {
+      border-bottom: 0;
+    }
+    .membership-plan__main {
+      margin-bottom: 2.5rem;
+    }
+    .membership-plan__title {
+      font-size: clamp(3.5rem, 16vw, 6rem);
+    }
+    .membership-plans__footer {
+      padding: 1rem 1.25rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Membership Plans",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "02 / MEMBERSHIP"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "CHOOSE"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "YOUR PLAN."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "FIND A MEMBERSHIP THAT FITS THE WAY YOU CLIMB."
+    },
+
+    {
+      "type": "header",
+      "content": "Plan 1"
+    },
+    {
+      "type": "text",
+      "id": "plan_1_label",
+      "label": "Label",
+      "default": "FLEXIBLE"
+    },
+    {
+      "type": "text",
+      "id": "plan_1_title",
+      "label": "Title",
+      "default": "DAY PASS"
+    },
+    {
+      "type": "text",
+      "id": "plan_1_price",
+      "label": "Price",
+      "default": "$25 / DAY"
+    },
+    {
+      "type": "textarea",
+      "id": "plan_1_description",
+      "label": "Description",
+      "default": "Perfect for trying ESC-ALA or fitting climbing into your week when you can."
+    },
+    {
+      "type": "text",
+      "id": "plan_1_button",
+      "label": "Button",
+      "default": "GET A DAY PASS"
+    },
+    {
+      "type": "url",
+      "id": "plan_1_link",
+      "label": "Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Plan 2"
+    },
+    {
+      "type": "text",
+      "id": "plan_2_label",
+      "label": "Label",
+      "default": "MOST POPULAR"
+    },
+    {
+      "type": "text",
+      "id": "plan_2_title",
+      "label": "Title",
+      "default": "UNLIMITED"
+    },
+    {
+      "type": "text",
+      "id": "plan_2_price",
+      "label": "Price",
+      "default": "$89 / MONTH"
+    },
+    {
+      "type": "textarea",
+      "id": "plan_2_description",
+      "label": "Description",
+      "default": "Unlimited climbing, member perks, and a reason to keep coming back."
+    },
+    {
+      "type": "text",
+      "id": "plan_2_button",
+      "label": "Button",
+      "default": "BECOME A MEMBER"
+    },
+    {
+      "type": "url",
+      "id": "plan_2_link",
+      "label": "Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Plan 3"
+    },
+    {
+      "type": "text",
+      "id": "plan_3_label",
+      "label": "Label",
+      "default": "COMMIT"
+    },
+    {
+      "type": "text",
+      "id": "plan_3_title",
+      "label": "Title",
+      "default": "ANNUAL"
+    },
+    {
+      "type": "text",
+      "id": "plan_3_price",
+      "label": "Price",
+      "default": "$899 / YEAR"
+    },
+    {
+      "type": "textarea",
+      "id": "plan_3_description",
+      "label": "Description",
+      "default": "Our best value for climbers who already know they're here for the long haul."
+    },
+    {
+      "type": "text",
+      "id": "plan_3_button",
+      "label": "Button",
+      "default": "CHOOSE ANNUAL"
+    },
+    {
+      "type": "url",
+      "id": "plan_3_link",
+      "label": "Button Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_left",
+      "label": "Footer Left",
+      "default": "CLIMB / CONNECT / PROGRESS"
+    },
+    {
+      "type": "text",
+      "id": "footer_right",
+      "label": "Footer Right",
+      "default": "ESC-ALA®"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership Plans"
+    }
+  ]
+}
+{% endschema %}

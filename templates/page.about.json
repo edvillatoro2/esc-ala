@@ -1,8 +1,18 @@
 {
   "sections": {
     "about_hero": {
-      "type": "custom-about-hero",
-      "settings": {}
+      "type": "custom-page-hero",
+      "settings": {
+        "label": "WHO WE ARE",
+        "number": "01 / 04",
+        "title_line_1": "ABOUT",
+        "title_line_2": "ESC-ALA",
+        "intro": "MORE THAN A CLIMBING GYM. A PLACE TO CLIMB, CONNECT, AND PUSH YOURSELF.",
+        "hero_label_1": "CLIMB",
+        "hero_label_2": "CONNECT",
+        "hero_label_3": "CREATE",
+        "scroll_indicator": "SCROLL TO EXPLORE"
+      }
     },
     "about_story": {
       "type": "custom-about-story",

@@ -6,19 +6,16 @@
           {{ section.settings.eyebrow }}
         </div>
       {% endif %}
-
       {% if section.settings.heading != blank %}
         <h2 class="custom-plan__heading">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
-
       {% if section.settings.text != blank %}
         <div class="custom-plan__text">
           {{ section.settings.text }}
         </div>
       {% endif %}
-
       {% if section.settings.button_text != blank %}
         <a
           href="{{ section.settings.button_link }}"
@@ -38,14 +35,10 @@
     color: #000000;
     overflow: hidden;
   }
-
   .custom-plan__content {
     display: flex;
     min-height: 620px;
   }
-
-  /* COPY */
-
   .custom-plan__copy {
     display: flex;
     flex-direction: column;
@@ -53,7 +46,6 @@
     justify-content: center;
     padding: 6rem;
   }
-
   .custom-plan__eyebrow {
     margin-bottom: 1.5rem;
     font-size: 0.8rem;
@@ -62,7 +54,6 @@
     line-height: 1;
     text-transform: uppercase;
   }
-
   .custom-plan__heading {
     margin: 0;
     font-size: clamp(3.5rem, 5.5vw, 6.5rem);
@@ -121,39 +112,32 @@
   }
 
   /* TABLET */
-
   @media screen and (max-width: 900px) {
     .custom-plan__content {
       grid-template-columns: 45% 55%;
       min-height: 500px;
     }
-
     .custom-plan__copy {
       padding: 4rem 3rem;
     }
-
     .custom-plan__image {
       min-height: 500px;
     }
   }
 
   /* MOBILE */
-
   @media screen and (max-width: 650px) {
     .custom-plan__content {
       display: flex;
       flex-direction: column;
       min-height: auto;
     }
-
     .custom-plan__copy {
       padding: 4rem 1.25rem;
     }
-
     .custom-plan__heading {
       font-size: clamp(3rem, 14vw, 5rem);
     }
-
     .custom-plan__image {
       min-height: 400px;
       height: 400px;
