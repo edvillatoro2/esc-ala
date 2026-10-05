@@ -25,6 +25,90 @@ function initHeroAnimation() {
   });
 }
 
+function initPageHeroAnimation() {
+  const heroes = document.querySelectorAll(".about-hero");
+
+  if (!heroes.length) {
+    console.log("Page hero animation: element missing");
+    return;
+  }
+
+  console.log("Page hero animation: initializing");
+
+  heroes.forEach((hero) => {
+    const top = hero.querySelector(".about-hero__top");
+    const title = hero.querySelector(".about-hero__title");
+    const intro = hero.querySelector(".about-hero__intro");
+    const visual = hero.querySelector(".about-hero__visual");
+    const bottom = hero.querySelector(".about-hero__bottom");
+
+    const elements = [top, title, intro, visual, bottom].filter(Boolean);
+
+    // Set initial state
+    gsap.set(elements, {
+      opacity: 0,
+      y: 30,
+    });
+
+    if (visual) {
+      gsap.set(visual, {
+        opacity: 0,
+        y: 50,
+        clipPath: "inset(100% 0% 0% 0%)",
+      });
+    }
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.out",
+      },
+    });
+
+    tl.to(top, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+    })
+      .to(
+        title,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+        },
+        "-=0.25",
+      )
+      .to(
+        intro,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+        },
+        "-=0.4",
+      )
+      .to(
+        visual,
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1,
+        },
+        "-=0.3",
+      )
+      .to(
+        bottom,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+        },
+        "-=0.5",
+      );
+  });
+}
+
 function initAboutAnimation() {
   const about = document.querySelector(".custom-about");
   const holds = document.querySelectorAll(".custom-about__hold");
@@ -195,6 +279,7 @@ function initCommunityCursorAnimation() {
 window.addEventListener("load", () => {
   setTimeout(() => {
     initHeroAnimation();
+    initPageHeroAnimation();
     initAboutAnimation();
     initFeaturesAnimation();
     initCommunityCursorAnimation();
