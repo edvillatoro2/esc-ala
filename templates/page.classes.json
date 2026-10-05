@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "classes_hero": {
+      "type": "custom-page-hero",
+      "settings": {
+        "label": "CLASSES",
+        "number": "01 / 04",
+        "title_line_1": "LEARN",
+        "title_line_2": "TO CLIMB.",
+        "intro": "FROM YOUR FIRST CLIMB TO YOUR NEXT PROJECT, FIND A CLASS THAT MEETS YOU WHERE YOU ARE.",
+        "hero_label_1": "LEARN",
+        "hero_label_2": "MOVE",
+        "hero_label_3": "PROGRESS",
+        "scroll_indicator": "SCROLL TO EXPLORE"
+      }
+    }
+  },
+  "order": ["classes_hero"]
+}
