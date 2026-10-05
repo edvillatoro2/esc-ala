@@ -1,0 +1,236 @@
+<div class="class-schedule">
+  <div class="class-schedule__inner">
+    <div class="class-schedule__top">
+      {% if section.settings.eyebrow != blank %}
+        <span class="class-schedule__eyebrow">
+          {{ section.settings.eyebrow }}
+        </span>
+      {% endif %}
+      {% if section.settings.number != blank %}
+        <span class="class-schedule__number">
+          {{ section.settings.number }}
+        </span>
+      {% endif %}
+    </div>
+    <div class="class-schedule__content">
+      <h2 class="class-schedule__title">
+        {% if section.settings.title_line_1 != blank %}
+          {{ section.settings.title_line_1 }}
+        {% endif %}
+        {% if section.settings.title_line_2 != blank %}
+          <span>{{ section.settings.title_line_2 }}</span>
+        {% endif %}
+      </h2>
+      <div class="class-schedule__action">
+        {% if section.settings.description != blank %}
+          <p>{{ section.settings.description }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank %}
+          <a
+            href="{{ section.settings.button_link }}"
+            class="class-schedule__button"
+          >
+            {{ section.settings.button_label }}
+            <span>↗</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="class-schedule__bottom">
+      {% if section.settings.footer_left != blank %}
+        <span>{{ section.settings.footer_left }}</span>
+      {% endif %}
+      {% if section.settings.footer_right != blank %}
+        <span>{{ section.settings.footer_right }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .class-schedule {
+    width: 100%;
+    overflow: hidden;
+    background: #754c29;
+    color: #ffffff;
+  }
+  .class-schedule__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 8rem 0;
+  }
+  .class-schedule__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .class-schedule__number {
+    opacity: 0.55;
+  }
+  .class-schedule__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 48px;
+    align-items: end;
+  }
+  .class-schedule__title {
+    margin: 0;
+    font-size: clamp(64px, 10vw, 150px);
+    line-height: 0.8;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .class-schedule__title span {
+    display: block;
+    color: #fbb040;
+  }
+  .class-schedule__action {
+    padding-bottom: 8px;
+  }
+  .class-schedule__action p {
+    max-width: 300px;
+    margin: 0 0 28px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .class-schedule__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    min-width: 210px;
+    padding: 14px 18px;
+    background: #ed5825;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+  .class-schedule__button span {
+    font-size: 18px;
+    line-height: 1;
+  }
+  .class-schedule__button:hover {
+    background: #fbb040;
+    color: #000000;
+    transform: translateY(3px);
+  }
+  .class-schedule__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6rem;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .class-schedule__bottom span:last-child {
+    color: #fbb040;
+  }
+
+  @media screen and (max-width: 749px) {
+    .class-schedule__inner {
+      width: calc(100% - 32px);
+      padding: 6rem 0;
+    }
+    .class-schedule__top {
+      margin-bottom: 4rem;
+    }
+    .class-schedule__content {
+      display: block;
+    }
+    .class-schedule__title {
+      font-size: clamp(58px, 18vw, 100px);
+    }
+    .class-schedule__action {
+      margin-top: 36px;
+    }
+    .class-schedule__action p {
+      max-width: 280px;
+    }
+    .class-schedule__bottom {
+      margin-top: 5rem;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Class Schedule",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "03 / BOOK A CLASS"
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Number",
+      "default": "ESC-ALA®"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "FIND A"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2",
+      "default": "TIME."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "CHECK THE SCHEDULE, FIND A CLASS, AND GET READY TO CLIMB."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "VIEW SCHEDULE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "footer_left",
+      "label": "Footer Left",
+      "default": "CLIMB / CONNECT / PROGRESS"
+    },
+    {
+      "type": "text",
+      "id": "footer_right",
+      "label": "Footer Right",
+      "default": "BOOK YOUR SPOT"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Class Schedule"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,397 @@
+<div class="classes">
+  <div class="classes__inner">
+    <div class="classes__header">
+      <div class="classes__eyebrow">
+        {% if section.settings.eyebrow != blank %}
+          <span>{{ section.settings.eyebrow }}</span>
+        {% endif %}
+      </div>
+      <div class="classes__heading">
+        {% if section.settings.title_line_1 != blank %}
+          <h2 class="classes__title">
+            {{ section.settings.title_line_1 }}
+            {% if section.settings.title_line_2 != blank %}
+              <span>{{ section.settings.title_line_2 }}</span>
+            {% endif %}
+          </h2>
+        {% endif %}
+        {% if section.settings.intro != blank %}
+          <p class="classes__intro">
+            {{ section.settings.intro }}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="classes__list">
+      {% for block in section.blocks %}
+        <article class="classes__item" {{ block.shopify_attributes }}>
+          <span class="classes__number">
+            {{ block.settings.number }}
+          </span>
+          <div class="classes__content">
+            {% if block.settings.label != blank %}
+              <span class="classes__label">
+                {{ block.settings.label }}
+              </span>
+            {% endif %}
+            {% if block.settings.title != blank %}
+              <h3 class="classes__item-title">
+                {{ block.settings.title }}
+              </h3>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <p class="classes__description">
+                {{ block.settings.description }}
+              </p>
+            {% endif %}
+          </div>
+          <div class="classes__meta">
+            {% if block.settings.duration != blank %}
+              <span>{{ block.settings.duration }}</span>
+            {% endif %}
+            {% if block.settings.level != blank %}
+              <span>{{ block.settings.level }}</span>
+            {% endif %}
+          </div>
+          <span class="classes__arrow">↗</span>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="classes__footer">
+      {% if section.settings.footer_left != blank %}
+        <span>{{ section.settings.footer_left }}</span>
+      {% endif %}
+      {% if section.settings.footer_right != blank %}
+        <span>{{ section.settings.footer_right }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .classes {
+    width: 100%;
+    background: #f2f0e9;
+    color: #000000;
+    overflow: hidden;
+  }
+  .classes__inner {
+    width: min(1400px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 8rem 0;
+  }
+  .classes__header {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 48px;
+    margin-bottom: 6rem;
+  }
+  .classes__eyebrow {
+    padding-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .classes__heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 48px;
+    align-items: end;
+  }
+  .classes__title {
+    margin: 0;
+    font-size: clamp(64px, 10vw, 150px);
+    line-height: 0.8;
+    letter-spacing: -0.065em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .classes__title span {
+    display: inline-block;
+    color: #ed5825;
+  }
+  .classes__intro {
+    max-width: 300px;
+    margin: 0;
+    padding-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .classes__list {
+    border-top: 2px solid #000000;
+  }
+  .classes__item {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr) 180px 40px;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    transition: padding-left 180ms ease;
+  }
+  .classes__item:hover {
+    padding-left: 16px;
+  }
+  .classes__number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0.5;
+  }
+  .classes__content {
+    min-width: 0;
+  }
+  .classes__label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ed5825;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .classes__item-title {
+    margin: 0 0 10px;
+    font-size: clamp(28px, 3vw, 48px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .classes__description {
+    max-width: 600px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .classes__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .classes__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #ed5825;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .classes__item:hover .classes__arrow {
+    background: #fbb040;
+    color: #000000;
+  }
+  .classes__footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .classes__footer span:last-child {
+    color: #ed5825;
+  }
+
+  @media screen and (max-width: 749px) {
+    .classes__inner {
+      width: calc(100% - 32px);
+      padding: 6rem 0;
+    }
+    .classes__header {
+      display: block;
+      margin-bottom: 4rem;
+    }
+    .classes__eyebrow {
+      margin-bottom: 32px;
+    }
+    .classes__heading {
+      display: block;
+    }
+    .classes__title {
+      font-size: clamp(58px, 18vw, 100px);
+    }
+    .classes__intro {
+      margin-top: 32px;
+      max-width: 280px;
+    }
+    .classes__item {
+      grid-template-columns: 40px minmax(0, 1fr) 32px;
+      gap: 16px;
+      padding: 28px 0;
+    }
+    .classes__meta {
+      grid-column: 2;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 16px;
+      margin-top: 4px;
+      text-align: left;
+    }
+    .classes__arrow {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      width: 32px;
+      height: 32px;
+      font-size: 15px;
+    }
+    .classes__item:hover {
+      padding-left: 0;
+    }
+    .classes__footer {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Classes",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "02 / CLASSES"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title Line 1",
+      "default": "FIND YOUR"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title Line 2 (Highlighted)",
+      "default": "FLOW."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "CLASSES FOR BEGINNERS, EXPERIENCED CLIMBERS, AND EVERYONE IN BETWEEN."
+    },
+    {
+      "type": "text",
+      "id": "footer_left",
+      "label": "Footer Left",
+      "default": "LEARN / MOVE / PROGRESS"
+    },
+    {
+      "type": "text",
+      "id": "footer_right",
+      "label": "Footer Right",
+      "default": "ESC-ALA®"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "class",
+      "name": "Class",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "BEGINNER"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "INTRO TO BOULDERING"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Learn the basics of bouldering, movement, technique, and gym safety in a welcoming environment."
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "60 MIN"
+        },
+        {
+          "type": "text",
+          "id": "level",
+          "label": "Level",
+          "default": "ALL LEVELS"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Classes",
+      "blocks": [
+        {
+          "type": "class",
+          "settings": {
+            "number": "01",
+            "label": "BEGINNER",
+            "title": "INTRO TO BOULDERING",
+            "description": "Learn the basics of bouldering, movement, technique, and gym safety in a welcoming environment.",
+            "duration": "60 MIN",
+            "level": "ALL LEVELS"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "number": "02",
+            "label": "TECHNIQUE",
+            "title": "CLIMB BETTER",
+            "description": "Build better movement, body positioning, footwork, and problem-solving skills to become a more confident climber.",
+            "duration": "75 MIN",
+            "level": "BEGINNER+"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "number": "03",
+            "label": "YOUTH",
+            "title": "YOUTH CLIMB",
+            "description": "A fun introduction to climbing that helps young climbers build confidence, movement skills, and a love for the wall.",
+            "duration": "60 MIN",
+            "level": "AGES 8–14"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "number": "04",
+            "label": "PRIVATE",
+            "title": "PRIVATE COACHING",
+            "description": "One-on-one coaching focused on your goals, whether you're learning the basics or working through a project.",
+            "duration": "60 MIN",
+            "level": "ALL LEVELS"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

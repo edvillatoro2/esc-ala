@@ -13,7 +13,15 @@
         "hero_label_3": "PROGRESS",
         "scroll_indicator": "SCROLL TO EXPLORE"
       }
+    },
+    "classes": {
+      "type": "custom-classes",
+      "settings": {}
+    },
+    "classes_schedule": {
+      "type": "custom-class-schedule",
+      "settings": {}
     }
   },
-  "order": ["classes_hero"]
+  "order": ["classes_hero", "classes", "classes_schedule"]
 }
