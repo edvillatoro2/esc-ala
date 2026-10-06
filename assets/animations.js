@@ -214,55 +214,55 @@ function initFeaturesAnimation() {
 function initCommunityCursorAnimation() {
   const visual = document.querySelector(".about-community__visual");
   const holds = document.querySelectorAll(".about-community__visual .hold");
-
   if (!visual || !holds.length) {
     return;
   }
-
   const mm = gsap.matchMedia();
-
   mm.add("(min-width: 750px)", () => {
-    const quickX = [];
-    const quickY = [];
-
+    const holdData = [];
     holds.forEach((hold, index) => {
-      const strength = 12 + (index % 3) * 6;
-
-      quickX[index] = gsap.quickTo(hold, "x", {
-        duration: 0.5,
+      const strength = 0.725 + (index % 3) * 0.75;
+      const quickX = gsap.quickTo(hold, "x", {
+        duration: 0.7 + index * 0.04,
         ease: "power3.out",
       });
-
-      quickY[index] = gsap.quickTo(hold, "y", {
-        duration: 0.5,
+      const quickY = gsap.quickTo(hold, "y", {
+        duration: 0.7 + index * 0.04,
         ease: "power3.out",
       });
-
-      hold.dataset.strength = strength;
+      holdData.push({
+        hold,
+        strength,
+        quickX,
+        quickY,
+      });
     });
 
     function moveHolds(event) {
       const rect = visual.getBoundingClientRect();
-
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
+      holdData.forEach((item) => {
+        const holdRect = item.hold.getBoundingClientRect();
+        const holdCenterX = holdRect.left - rect.left + holdRect.width / 2;
+        const holdCenterY = holdRect.top - rect.top + holdRect.height / 2;
+        const distanceX = mouseX - holdCenterX;
+        const distanceY = mouseY - holdCenterY;
+        const distance = Math.sqrt(
+          distanceX * distanceX + distanceY * distanceY,
+        );
 
-      const percentX = (mouseX - rect.width / 2) / (rect.width / 2);
-
-      const percentY = (mouseY - rect.height / 2) / (rect.height / 2);
-
-      holds.forEach((hold, index) => {
-        const strength = Number(hold.dataset.strength);
-
-        quickX[index](percentX * strength);
-        quickY[index](percentY * strength);
+        const maxDistance = 650;
+        const influence = Math.max(0, 1 - distance / maxDistance);
+        item.quickX(distanceX * item.strength * influence);
+        item.quickY(distanceY * item.strength * influence);
       });
     }
 
     function resetHolds() {
-      holds.forEach((hold, index) => {
-        quickX[index](0);
-        quickY[index](0);
+      holdData.forEach((item) => {
+        item.quickX(0);
+        item.quickY(0);
       });
     }
 
@@ -276,13 +276,21 @@ function initCommunityCursorAnimation() {
   });
 }
 
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    initHeroAnimation();
-    initPageHeroAnimation();
-    initAboutAnimation();
-    initFeaturesAnimation();
-    initCommunityCursorAnimation();
-    ScrollTrigger.refresh();
-  }, 500);
+function initAnimations() {
+  initHeroAnimation();
+  initPageHeroAnimation();
+  initAboutAnimation();
+  initFeaturesAnimation();
+  initCommunityCursorAnimation();
+  ScrollTrigger.refresh();
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(initAnimations, 500);
+  });
+} else {
+  setTimeout(initAnimations, 500);
+}
+document.addEventListener("shopify:section:load", () => {
+  setTimeout(initAnimations, 100);
 });

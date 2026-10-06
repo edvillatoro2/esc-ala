@@ -7,25 +7,21 @@
             {{ section.settings.eyebrow }}
           </span>
         {% endif %}
-
         {% if section.settings.title_line_1 != blank %}
           <h2 class="about-community__title">
             {{ section.settings.title_line_1 }}
-
             {% if section.settings.title_line_2 != blank %}
               <span>{{ section.settings.title_line_2 }}</span>
             {% endif %}
           </h2>
         {% endif %}
       </div>
-
       {% if section.settings.intro != blank %}
         <p class="about-community__intro">
           {{ section.settings.intro }}
         </p>
       {% endif %}
     </div>
-
     <div class="about-community__visual">
       <div class="about-community__holds">
         <span class="hold hold--1"></span>
@@ -37,37 +33,30 @@
         <span class="hold hold--7"></span>
         <span class="hold hold--8"></span>
       </div>
-
       <div class="about-community__center">
         {% if section.settings.center_label != blank %}
           <span>{{ section.settings.center_label }}</span>
         {% endif %}
-
         {% if section.settings.center_title != blank %}
           <strong>{{ section.settings.center_title }}</strong>
         {% endif %}
       </div>
-
       <div class="about-community__corner">
         {% if section.settings.corner_label_1 != blank %}
           <span>{{ section.settings.corner_label_1 }}</span>
         {% endif %}
-
         {% if section.settings.corner_label_2 != blank %}
           <span>{{ section.settings.corner_label_2 }}</span>
         {% endif %}
-
         {% if section.settings.corner_label_3 != blank %}
           <span>{{ section.settings.corner_label_3 }}</span>
         {% endif %}
       </div>
     </div>
-
     <div class="about-community__footer">
       {% if section.settings.footer_text != blank %}
         <span>{{ section.settings.footer_text }}</span>
       {% endif %}
-
       <span class="about-community__arrow">↘</span>
     </div>
   </div>
@@ -80,7 +69,6 @@
     background: #000000;
     color: #ffffff;
   }
-
   .about-community__inner {
     width: min(1400px, calc(100% - 48px));
     margin: 0 auto;
@@ -94,7 +82,6 @@
     align-items: end;
     margin-bottom: 70px;
   }
-
   .about-community__eyebrow {
     display: block;
     margin-bottom: 30px;
@@ -103,7 +90,6 @@
     letter-spacing: 0.12em;
     opacity: 0.6;
   }
-
   .about-community__title {
     max-width: 900px;
     margin: 0;
@@ -113,13 +99,11 @@
     font-weight: 800;
     text-transform: uppercase;
   }
-
   .about-community__title span {
     display: block;
     color: #fbb040;
     padding-left: 8vw;
   }
-
   .about-community__intro {
     margin: 0;
     font-size: 14px;
@@ -127,14 +111,12 @@
     font-weight: 700;
     text-transform: uppercase;
   }
-
   .about-community__visual {
     position: relative;
     min-height: 620px;
     overflow: hidden;
     background: #1a1e3b;
   }
-
   .about-community__center {
     position: absolute;
     top: 50%;
@@ -146,7 +128,6 @@
     transform: translate(-50%, -50%);
     text-align: center;
   }
-
   .about-community__center span {
     font-size: clamp(70px, 12vw, 170px);
     line-height: 0.8;
@@ -154,89 +135,299 @@
     letter-spacing: -0.08em;
     color: #fbb040;
   }
-
   .about-community__center strong {
     margin-top: 24px;
     font-size: 12px;
     letter-spacing: 0.14em;
   }
-
-  .about-community__holds {
+  {% comment %} .about-community__holds {
     position: absolute;
     inset: 0;
-  }
-
+  } {% endcomment %}
   .hold {
     position: absolute;
     display: block;
     width: 65px;
     height: 52px;
-    border-radius: 48% 52% 42% 58%;
-    background: #fbb040;
+    background: radial-gradient(rgba(255, 255, 255, 0.22) 0, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.1px) 0 0 /
+        4px 4px,
+      radial-gradient(rgba(0, 0, 0, 0.22) 0, rgba(0, 0, 0, 0.22) 0.7px, transparent 1.1px) 2px 2px / 5px 5px,
+      linear-gradient(150deg, #fcc15e 0%, #fbb040 45%, #e29a2c 100%);
     transform: rotate(-18deg);
   }
+  .hold::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    clip-path: inherit;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 45%, rgba(90, 45, 0, 0.18));
+  }
 
+  .hold::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 8px;
+    height: 8px;
+    left: 50%;
+    top: 50%;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1a1204 0, #1a1204 2px, rgba(0, 0, 0, 0.3) 2.6px, rgba(0, 0, 0, 0) 4px);
+  }
   .hold--1 {
     top: 12%;
     left: 10%;
+    width: 96px;
+    height: 46px;
+    clip-path: polygon(
+      0% 58%,
+      4% 34%,
+      14% 12%,
+      27% 2%,
+      40% 0%,
+      53% 5%,
+      65% 20%,
+      74% 15%,
+      87% 16%,
+      97% 28%,
+      100% 47%,
+      96% 64%,
+      87% 76%,
+      76% 79%,
+      67% 74%,
+      58% 85%,
+      45% 96%,
+      30% 100%,
+      14% 93%,
+      4% 80%,
+      0% 67%
+    );
   }
-
+  .hold--1::before {
+    left: 38%;
+    top: 45%;
+  }
   .hold--2 {
     top: 26%;
     left: 30%;
-    width: 45px;
-    height: 60px;
+    width: 54px;
+    height: 64px;
     transform: rotate(24deg);
+    clip-path: polygon(
+      2% 9%,
+      7% 1%,
+      16% 0%,
+      24% 4%,
+      29% 12%,
+      45% 29%,
+      69% 38%,
+      100% 43%,
+      88% 49%,
+      78% 59%,
+      76% 68%,
+      83% 83%,
+      91% 100%,
+      83% 97%,
+      66% 87%,
+      52% 74%,
+      38% 70%,
+      26% 68%,
+      19% 57%,
+      14% 38%,
+      9% 23%,
+      2% 14%
+    );
   }
-
+  .hold--2::before {
+    left: 45%;
+    top: 52%;
+  }
   .hold--3 {
     top: 13%;
     right: 18%;
-    width: 80px;
-    height: 48px;
+    width: 90px;
+    height: 79px;
     transform: rotate(12deg);
+    clip-path: polygon(
+      83% 0%,
+      90% 5%,
+      92% 17%,
+      98% 35%,
+      100% 54%,
+      95% 72%,
+      86% 86%,
+      69% 96%,
+      48% 100%,
+      27% 98%,
+      11% 90%,
+      1% 80%,
+      0% 74%,
+      7% 68%,
+      19% 62%,
+      29% 54%,
+      33% 48%,
+      31% 44%,
+      22% 38%,
+      14% 34%,
+      13% 29%,
+      22% 23%,
+      43% 17%,
+      61% 8%,
+      73% 1%
+    );
   }
-
+  .hold--3::before {
+    left: 62%;
+    top: 62%;
+  }
   .hold--4 {
     top: 58%;
     left: 12%;
-    width: 52px;
-    height: 72px;
+    width: 84px;
+    height: 46px;
     transform: rotate(40deg);
+    clip-path: polygon(
+      2% 86%,
+      11% 100%,
+      29% 100%,
+      45% 89%,
+      53% 69%,
+      57% 44%,
+      65% 31%,
+      77% 32%,
+      86% 39%,
+      97% 35%,
+      100% 25%,
+      95% 15%,
+      83% 9%,
+      68% 2%,
+      55% 0%,
+      38% 6%,
+      23% 19%,
+      11% 42%,
+      3% 67%
+    );
   }
-
+  .hold--4::before {
+    left: 25%;
+    top: 68%;
+  }
   .hold--5 {
     right: 11%;
     bottom: 15%;
-    width: 72px;
-    height: 55px;
+    width: 76px;
+    height: 65px;
     transform: rotate(-32deg);
+    clip-path: polygon(
+      0% 46%,
+      5% 24%,
+      22% 6%,
+      43% 0%,
+      60% 1%,
+      80% 12%,
+      96% 34%,
+      100% 58%,
+      96% 76%,
+      84% 92%,
+      63% 99%,
+      43% 97%,
+      19% 86%,
+      7% 72%,
+      1% 60%
+    );
   }
-
+  .hold--5::before {
+    left: 49%;
+    top: 14%;
+  }
+  /* Two lobes */
+  .hold--5::after {
+    background: radial-gradient(ellipse at 22% 38%, rgba(255, 255, 255, 0.24) 0, rgba(255, 255, 255, 0) 40%),
+      radial-gradient(ellipse at 74% 62%, rgba(90, 45, 0, 0.24) 0, rgba(90, 45, 0, 0) 45%);
+  }
   .hold--6 {
     right: 31%;
     top: 48%;
-    width: 42px;
-    height: 65px;
+    width: 74px;
+    height: 52px;
     transform: rotate(18deg);
+    clip-path: polygon(
+      1% 88%,
+      6% 73%,
+      20% 53%,
+      38% 36%,
+      55% 20%,
+      76% 6%,
+      90% 1%,
+      99% 6%,
+      100% 18%,
+      95% 41%,
+      87% 63%,
+      76% 78%,
+      64% 86%,
+      41% 94%,
+      20% 99%,
+      6% 98%
+    );
   }
-
+  .hold--6::before {
+    left: 40%;
+    top: 52%;
+  }
   .hold--7 {
     left: 37%;
     bottom: 12%;
-    width: 70px;
-    height: 48px;
+    width: 84px;
+    height: 64px;
     transform: rotate(-10deg);
+    clip-path: polygon(
+      0% 79%,
+      4% 65%,
+      15% 46%,
+      32% 25%,
+      51% 8%,
+      68% 2%,
+      88% 1%,
+      98% 8%,
+      100% 21%,
+      98% 41%,
+      95% 78%,
+      85% 90%,
+      71% 98%,
+      54% 100%,
+      37% 97%,
+      22% 95%,
+      11% 97%,
+      2% 89%
+    );
   }
-
+  .hold--7::before {
+    left: 55%;
+    top: 45%;
+  }
   .hold--8 {
     top: 72%;
     right: 45%;
-    width: 35px;
-    height: 55px;
+    width: 36px;
+    height: 52px;
+    border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
     transform: rotate(55deg);
   }
-
+  .hold--8::after {
+    left: 24%;
+    top: 22%;
+    right: auto;
+    bottom: auto;
+    width: 52%;
+    height: 40%;
+    clip-path: none;
+    border-radius: 50% 50% 60% 60%;
+    background: linear-gradient(180deg, rgba(70, 35, 0, 0.55), rgba(70, 35, 0, 0.12));
+  }
   .about-community__corner {
     position: absolute;
     right: 24px;
@@ -250,13 +441,11 @@
     font-weight: 700;
     letter-spacing: 0.12em;
   }
-
   .about-community__corner span {
     padding: 7px 9px;
     background: #fbb040;
     color: #0b0f2b;
   }
-
   .about-community__footer {
     display: flex;
     justify-content: space-between;
@@ -265,7 +454,6 @@
     font-weight: 700;
     letter-spacing: 0.12em;
   }
-
   .about-community__arrow {
     font-size: 20px;
   }
@@ -275,48 +463,38 @@
       width: calc(100% - 32px);
       padding: 90px 0 24px;
     }
-
     .about-community__header {
       display: block;
       margin-bottom: 45px;
     }
-
     .about-community__eyebrow {
       margin-bottom: 22px;
     }
-
     .about-community__title {
       font-size: clamp(62px, 18vw, 105px);
     }
-
     .about-community__title span {
       padding-left: 10vw;
     }
-
     .about-community__intro {
       max-width: 300px;
       margin-top: 35px;
       font-size: 12px;
     }
-
     .about-community__visual {
       min-height: 470px;
     }
-
     .about-community__center span {
       font-size: 22vw;
     }
-
     .about-community__center strong {
       margin-top: 18px;
       font-size: 9px;
     }
-
     .hold {
       width: 45px;
       height: 38px;
     }
-
     .hold--2,
     .hold--4,
     .hold--6,
@@ -324,14 +502,12 @@
       width: 32px;
       height: 45px;
     }
-
     .hold--3,
     .hold--5,
     .hold--7 {
       width: 52px;
       height: 38px;
     }
-
     .about-community__corner {
       right: 12px;
       bottom: 12px;
