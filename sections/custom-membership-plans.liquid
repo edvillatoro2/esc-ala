@@ -6,7 +6,6 @@
           {{ section.settings.eyebrow }}
         {% endif %}
       </div>
-
       <div class="membership-plans__heading-wrap">
         {% if section.settings.title_line_1 != blank %}
           <h2 class="membership-plans__heading">
@@ -16,7 +15,6 @@
             {% endif %}
           </h2>
         {% endif %}
-
         {% if section.settings.intro != blank %}
           <div class="membership-plans__intro">
             {{ section.settings.intro }}
@@ -24,7 +22,6 @@
         {% endif %}
       </div>
     </div>
-
     <div class="membership-plans__list">
       <article class="membership-plan">
         <div class="membership-plan__top">
@@ -35,7 +32,6 @@
           {% endif %}
           <span class="membership-plan__number">01</span>
         </div>
-
         <div class="membership-plan__main">
           {% if section.settings.plan_1_title != blank %}
             <h3 class="membership-plan__title">
@@ -48,7 +44,6 @@
             </div>
           {% endif %}
         </div>
-
         <div class="membership-plan__bottom">
           {% if section.settings.plan_1_description != blank %}
             <p>{{ section.settings.plan_1_description }}</p>
@@ -64,7 +59,6 @@
           {% endif %}
         </div>
       </article>
-
       {% comment %} plan 2 {% endcomment %}
       <article class="membership-plan membership-plan--featured">
         <div class="membership-plan__top">
@@ -75,26 +69,22 @@
           {% endif %}
           <span class="membership-plan__number">02</span>
         </div>
-
         <div class="membership-plan__main">
           {% if section.settings.plan_2_title != blank %}
             <h3 class="membership-plan__title">
               {{ section.settings.plan_2_title }}
             </h3>
           {% endif %}
-
           {% if section.settings.plan_2_price != blank %}
             <div class="membership-plan__price">
               {{ section.settings.plan_2_price }}
             </div>
           {% endif %}
         </div>
-
         <div class="membership-plan__bottom">
           {% if section.settings.plan_2_description != blank %}
             <p>{{ section.settings.plan_2_description }}</p>
           {% endif %}
-
           {% if section.settings.plan_2_button != blank %}
             <a
               href="{{ section.settings.plan_2_link }}"
@@ -106,7 +96,6 @@
           {% endif %}
         </div>
       </article>
-
       {% comment %} plan 3 {% endcomment %}
       <article class="membership-plan">
         <div class="membership-plan__top">
@@ -115,24 +104,20 @@
               {{ section.settings.plan_3_label }}
             </span>
           {% endif %}
-
           <span class="membership-plan__number">03</span>
         </div>
-
         <div class="membership-plan__main">
           {% if section.settings.plan_3_title != blank %}
             <h3 class="membership-plan__title">
               {{ section.settings.plan_3_title }}
             </h3>
           {% endif %}
-
           {% if section.settings.plan_3_price != blank %}
             <div class="membership-plan__price">
               {{ section.settings.plan_3_price }}
             </div>
           {% endif %}
         </div>
-
         <div class="membership-plan__bottom">
           {% if section.settings.plan_3_description != blank %}
             <p>{{ section.settings.plan_3_description }}</p>
@@ -149,12 +134,10 @@
         </div>
       </article>
     </div>
-
     <div class="membership-plans__footer">
       {% if section.settings.footer_left != blank %}
         <span>{{ section.settings.footer_left }}</span>
       {% endif %}
-
       {% if section.settings.footer_right != blank %}
         <span>{{ section.settings.footer_right }}</span>
       {% endif %}

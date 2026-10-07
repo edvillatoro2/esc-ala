@@ -213,65 +213,75 @@ function initFeaturesAnimation() {
 
 function initCommunityCursorAnimation() {
   const visual = document.querySelector(".about-community__visual");
-  const holds = document.querySelectorAll(".about-community__visual .hold");
-  if (!visual || !holds.length) {
-    return;
-  }
-  const mm = gsap.matchMedia();
-  mm.add("(min-width: 750px)", () => {
-    const holdData = [];
-    holds.forEach((hold, index) => {
-      const strength = 0.725 + (index % 3) * 0.75;
-      const quickX = gsap.quickTo(hold, "x", {
-        duration: 0.7 + index * 0.04,
-        ease: "power3.out",
-      });
-      const quickY = gsap.quickTo(hold, "y", {
-        duration: 0.7 + index * 0.04,
-        ease: "power3.out",
-      });
-      holdData.push({
-        hold,
-        strength,
-        quickX,
-        quickY,
-      });
-    });
-
-    function moveHolds(event) {
+  const holds = gsap.utils.toArray(".about-community__visual .hold");
+  if (!visual || !holds.length) return;
+  const MAX_DISTANCE = 650;
+  gsap.matchMedia().add("(min-width: 750px)", () => {
+    let items = [];
+    let pointer = { x: 0, y: 0 };
+    let active = false;
+    let dirty = false;
+    // Measure once: centers relative to the visual, with transforms cleared
+    function measure() {
+      // Temporarily reset transforms so we read the true resting position
+      gsap.set(holds, { x: 0, y: 0 });
       const rect = visual.getBoundingClientRect();
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
-      holdData.forEach((item) => {
-        const holdRect = item.hold.getBoundingClientRect();
-        const holdCenterX = holdRect.left - rect.left + holdRect.width / 2;
-        const holdCenterY = holdRect.top - rect.top + holdRect.height / 2;
-        const distanceX = mouseX - holdCenterX;
-        const distanceY = mouseY - holdCenterY;
-        const distance = Math.sqrt(
-          distanceX * distanceX + distanceY * distanceY,
-        );
-
-        const maxDistance = 650;
-        const influence = Math.max(0, 1 - distance / maxDistance);
-        item.quickX(distanceX * item.strength * influence);
-        item.quickY(distanceY * item.strength * influence);
+      items = holds.map((hold, i) => {
+        const r = hold.getBoundingClientRect();
+        const duration = 0.7 + i * 0.04;
+        const vars = { duration, ease: "power3.out" };
+        return {
+          cx: r.left - rect.left + r.width / 2,
+          cy: r.top - rect.top + r.height / 2,
+          strength: 0.725 + (i % 3) * 0.75,
+          quickX: gsap.quickTo(hold, "x", vars),
+          quickY: gsap.quickTo(hold, "y", vars),
+        };
       });
     }
 
-    function resetHolds() {
-      holdData.forEach((item) => {
-        item.quickX(0);
-        item.quickY(0);
-      });
+    function update() {
+      if (!dirty) return;
+      dirty = false;
+      for (let i = 0; i < items.length; i++) {
+        const it = items[i];
+        const dx = pointer.x - it.cx;
+        const dy = pointer.y - it.cy;
+        const influence = active
+          ? Math.max(0, 1 - Math.hypot(dx, dy) / MAX_DISTANCE)
+          : 0;
+        it.quickX(dx * it.strength * influence);
+        it.quickY(dy * it.strength * influence);
+      }
     }
 
-    visual.addEventListener("mousemove", moveHolds);
-    visual.addEventListener("mouseleave", resetHolds);
+    function onMove(e) {
+      const rect = visual.getBoundingClientRect(); // one read per event, not per hold
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
+      active = true;
+      dirty = true;
+    }
+
+    function onLeave() {
+      active = false;
+      dirty = true;
+    }
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(visual);
+
+    gsap.ticker.add(update);
+    visual.addEventListener("pointermove", onMove, { passive: true });
+    visual.addEventListener("pointerleave", onLeave, { passive: true });
 
     return () => {
-      visual.removeEventListener("mousemove", moveHolds);
-      visual.removeEventListener("mouseleave", resetHolds);
+      gsap.ticker.remove(update);
+      ro.disconnect();
+      visual.removeEventListener("pointermove", onMove);
+      visual.removeEventListener("pointerleave", onLeave);
+      gsap.set(holds, { clearProps: "x,y" });
     };
   });
 }

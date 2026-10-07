@@ -6,47 +6,38 @@
           <span>{{ section.settings.eyebrow }}</span>
         {% endif %}
       </div>
-
       <h2 class="about-values__title">
         {% if section.settings.title_line_1 != blank %}
           {{ section.settings.title_line_1 -}}
           <br>
         {% endif %}
-
         {% if section.settings.title_line_2 != blank %}
           <span>{{ section.settings.title_line_2 }}</span>
         {% endif %}
       </h2>
-
       {% if section.settings.intro != blank %}
         <p class="about-values__intro">
           {{ section.settings.intro }}
         </p>
       {% endif %}
     </div>
-
     <div class="about-values__list">
       <article class="about-values__item">
         <span class="about-values__number">01</span>
-
         <div class="about-values__content">
           {% if section.settings.value_1_title != blank %}
             <h3>{{ section.settings.value_1_title }}</h3>
           {% endif %}
-
           {% if section.settings.value_1_text != blank %}
             <p>
               {{ section.settings.value_1_text }}
             </p>
           {% endif %}
         </div>
-
         <span class="about-values__arrow">↗</span>
       </article>
-
       <article class="about-values__item">
         <span class="about-values__number">02</span>
-
         <div class="about-values__content">
           {% if section.settings.value_2_title != blank %}
             <h3>{{ section.settings.value_2_title }}</h3>
@@ -58,47 +49,37 @@
             </p>
           {% endif %}
         </div>
-
         <span class="about-values__arrow">↗</span>
       </article>
-
       <article class="about-values__item">
         <span class="about-values__number">03</span>
-
         <div class="about-values__content">
           {% if section.settings.value_3_title != blank %}
             <h3>{{ section.settings.value_3_title }}</h3>
           {% endif %}
-
           {% if section.settings.value_3_text != blank %}
             <p>
               {{ section.settings.value_3_text }}
             </p>
           {% endif %}
         </div>
-
         <span class="about-values__arrow">↗</span>
       </article>
-
       <article class="about-values__item">
         <span class="about-values__number">04</span>
-
         <div class="about-values__content">
           {% if section.settings.value_4_title != blank %}
             <h3>{{ section.settings.value_4_title }}</h3>
           {% endif %}
-
           {% if section.settings.value_4_text != blank %}
             <p>
               {{ section.settings.value_4_text }}
             </p>
           {% endif %}
         </div>
-
         <span class="about-values__arrow">↗</span>
       </article>
     </div>
-
     <div class="about-values__footer">
       {% if section.settings.footer_left != blank %}
         <span>{{ section.settings.footer_left }}</span>
@@ -117,13 +98,11 @@
     background: #ffffff;
     color: #000000;
   }
-
   .about-values__inner {
     width: min(1400px, calc(100% - 48px));
     margin: 0 auto;
     padding: 120px 0 32px;
   }
-
   .about-values__header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 320px;
@@ -131,7 +110,6 @@
     align-items: end;
     margin-bottom: 90px;
   }
-
   .about-values__eyebrow {
     grid-column: 1 / -1;
     margin-bottom: 42px;
@@ -139,7 +117,6 @@
     font-weight: 800;
     letter-spacing: 0.12em;
   }
-
   .about-values__title {
     margin: 0;
     font-size: clamp(76px, 11vw, 170px);
@@ -148,12 +125,10 @@
     font-weight: 800;
     text-transform: uppercase;
   }
-
   .about-values__title span {
     display: inline-block;
     color: #ed5825;
   }
-
   .about-values__intro {
     max-width: 300px;
     margin: 0 0 8px;
@@ -162,11 +137,9 @@
     font-weight: 700;
     letter-spacing: 0.02em;
   }
-
   .about-values__list {
     border-top: 2px solid #000000;
   }
-
   .about-values__item {
     display: grid;
     grid-template-columns: 70px minmax(0, 1fr) 40px;
@@ -176,7 +149,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     transition: padding-left 180ms ease;
   }
-
   .about-values__item:hover {
     padding-left: 14px;
   }
@@ -187,7 +159,6 @@
     letter-spacing: 0.1em;
     opacity: 0.55;
   }
-
   .about-values__content h3 {
     margin: 0 0 10px;
     font-size: clamp(26px, 3vw, 44px);
@@ -195,21 +166,18 @@
     letter-spacing: -0.035em;
     font-weight: 800;
   }
-
   .about-values__content p {
     max-width: 580px;
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
   }
-
   .about-values__arrow {
     justify-self: end;
     font-size: 28px;
     line-height: 1;
     font-weight: 400;
   }
-
   .about-values__footer {
     display: flex;
     justify-content: space-between;
@@ -218,56 +186,45 @@
     font-weight: 800;
     letter-spacing: 0.12em;
   }
-
   @media screen and (max-width: 749px) {
     .about-values__inner {
       width: calc(100% - 32px);
       padding: 88px 0 24px;
     }
-
     .about-values__header {
       display: block;
       margin-bottom: 56px;
     }
-
     .about-values__eyebrow {
       margin-bottom: 32px;
     }
-
     .about-values__title {
       font-size: clamp(64px, 18vw, 105px);
     }
-
     .about-values__intro {
       max-width: 280px;
       margin-top: 32px;
       font-size: 13px;
     }
-
     .about-values__item {
       grid-template-columns: 38px minmax(0, 1fr) 24px;
       gap: 12px;
       padding: 26px 0;
     }
-
     .about-values__item:hover {
       padding-left: 0;
     }
-
     .about-values__content h3 {
       font-size: 25px;
       line-height: 0.95;
     }
-
     .about-values__content p {
       font-size: 13px;
       line-height: 1.45;
     }
-
     .about-values__arrow {
       font-size: 20px;
     }
-
     .about-values__footer {
       font-size: 8px;
     }

@@ -5,14 +5,12 @@
         {{ section.settings.eyebrow }}
       </div>
     {% endif %}
-
     {% if section.settings.heading != blank %}
       <h2 class="custom-features__heading">
         {{ section.settings.heading }}
       </h2>
     {% endif %}
   </div>
-
   <div class="custom-feature__grid">
     {% for block in section.blocks %}
       <article class="custom-feature" {{ block.shopify_attributes }}>
@@ -31,19 +29,16 @@
           <div class="custom-feature__number">
             {{ block.settings.number }}
           </div>
-
           {% if block.settings.title != blank %}
             <h3 class="custom-feature__title">
               {{ block.settings.title }}
             </h3>
           {% endif %}
-
           {% if block.settings.text != blank %}
             <div class="custom-feature__text">
               {{ block.settings.text }}
             </div>
           {% endif %}
-
           {% if block.settings.button_text != blank %}
             <a
               href="{{ block.settings.button_link }}"
@@ -98,12 +93,10 @@
     background: #fbb040;
     color: #000000;
   }
-
   .custom-feature:nth-child(2) {
     background: #ed5825;
     color: #ffffff;
   }
-
   .custom-feature:nth-child(3) {
     background: #754c29;
     color: #ffffff;

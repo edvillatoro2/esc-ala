@@ -6,19 +6,16 @@
           {{ section.settings.eyebrow }}
         </div>
       {% endif %}
-
       {% if section.settings.heading != blank %}
         <h2 class="custom-about__heading">
           {{ section.settings.heading }}
         </h2>
       {% endif %}
-
       {% if section.settings.text != blank %}
         <div class="custom-about__text">
           {{ section.settings.text }}
         </div>
       {% endif %}
-
       {% if section.settings.button_text != blank %}
         <a
           href="{{ section.settings.button_link }}"
@@ -29,7 +26,6 @@
         </a>
       {% endif %}
     </div>
-
     {% if section.settings.image %}
       <div class="custom-about__image">
         <img

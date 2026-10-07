@@ -6,33 +6,28 @@
           {{ section.settings.eyebrow }}
         </span>
       {% endif %}
-
       {% if section.settings.number != blank %}
         <span class="membership-hero__number">
           {{ section.settings.number }}
         </span>
       {% endif %}
     </div>
-
     <div class="membership-hero__heading">
       {% if section.settings.title_line_1 != blank %}
         <h1 class="membership-hero__title">
           {{ section.settings.title_line_1 -}}
           <br>
-
           {% if section.settings.title_line_2 != blank %}
             <span>{{ section.settings.title_line_2 }}</span>
           {% endif %}
         </h1>
       {% endif %}
-
       {% if section.settings.intro != blank %}
         <p class="membership-hero__intro">
           {{ section.settings.intro }}
         </p>
       {% endif %}
     </div>
-
     <div class="membership-hero__visual">
       {% if section.settings.image != blank %}
         {{
@@ -45,27 +40,22 @@
           <span>ESC-ALA</span>
         </div>
       {% endif %}
-
       <div class="membership-hero__overlay">
         {% if section.settings.image_label_1 != blank %}
           <span>{{ section.settings.image_label_1 }}</span>
         {% endif %}
-
         {% if section.settings.image_label_2 != blank %}
           <span>{{ section.settings.image_label_2 }}</span>
         {% endif %}
-
         {% if section.settings.image_label_3 != blank %}
           <span>{{ section.settings.image_label_3 }}</span>
         {% endif %}
       </div>
     </div>
-
     <div class="membership-hero__bottom">
       {% if section.settings.bottom_text != blank %}
         <span>{{ section.settings.bottom_text }}</span>
       {% endif %}
-
       {% if section.settings.bottom_right != blank %}
         <span>{{ section.settings.bottom_right }}</span>
       {% endif %}

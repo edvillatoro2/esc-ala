@@ -6,7 +6,6 @@
           {{ section.settings.eyebrow }}
         </span>
       {% endif %}
-
       <div class="membership-faq__heading">
         {% if section.settings.title_line_1 != blank %}
           <h2 class="membership-faq__title">
@@ -23,7 +22,6 @@
         {% endif %}
       </div>
     </div>
-
     <div class="membership-faq__list">
       {% for block in section.blocks %}
         <details class="membership-faq__item" {{ block.shopify_attributes }}>
@@ -37,7 +35,6 @@
         </details>
       {% endfor %}
     </div>
-
     {% if section.settings.footer_text != blank %}
       <div class="membership-faq__footer">
         <span>{{ section.settings.footer_text }}</span>
