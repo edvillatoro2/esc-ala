@@ -1,306 +1,300 @@
 gsap.registerPlugin(ScrollTrigger);
 
-function initHeroAnimation() {
-  const hero = document.querySelector(".climb-hero");
-  const image = document.querySelector(".climb-hero__image img");
-  const scroller = document.querySelector(".page-wrapper");
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => gsap.utils.toArray(selector);
 
-  if (!hero || !image || !scroller) {
-    console.log("Hero animation: element missing");
+let ctx;
+let initTimeout;
+
+//    inititalize animation
+
+function initAnimations() {
+  const scroller = $(".page-wrapper");
+  if (!scroller) {
     return;
   }
 
-  console.log("Hero animation: initializing");
+  ctx?.revert();
 
-  gsap.to(image, {
-    scale: 1.925,
-    ease: "none",
-    scrollTrigger: {
-      trigger: hero,
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-      scroller: scroller,
-    },
-  });
-}
-
-function initPageHeroAnimation() {
-  const heroes = document.querySelectorAll(".about-hero");
-
-  if (!heroes.length) {
-    console.log("Page hero animation: element missing");
-    return;
-  }
-
-  console.log("Page hero animation: initializing");
-
-  heroes.forEach((hero) => {
-    const top = hero.querySelector(".about-hero__top");
-    const title = hero.querySelector(".about-hero__title");
-    const intro = hero.querySelector(".about-hero__intro");
-    const visual = hero.querySelector(".about-hero__visual");
-    const bottom = hero.querySelector(".about-hero__bottom");
-
-    const elements = [top, title, intro, visual, bottom].filter(Boolean);
-
-    // Set initial state
-    gsap.set(elements, {
-      opacity: 0,
-      y: 30,
-    });
-
-    if (visual) {
-      gsap.set(visual, {
-        opacity: 0,
-        y: 50,
-        clipPath: "inset(100% 0% 0% 0%)",
-      });
-    }
-
-    const tl = gsap.timeline({
-      defaults: {
-        ease: "power3.out",
-      },
-    });
-
-    tl.to(top, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-    })
-      .to(
-        title,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-        },
-        "-=0.25",
-      )
-      .to(
-        intro,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-        },
-        "-=0.4",
-      )
-      .to(
-        visual,
-        {
-          opacity: 1,
-          y: 0,
-          clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1,
-        },
-        "-=0.3",
-      )
-      .to(
-        bottom,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-        },
-        "-=0.5",
-      );
-  });
-}
-
-function initAboutAnimation() {
-  const about = document.querySelector(".custom-about");
-  const holds = document.querySelectorAll(".custom-about__hold");
-  const scroller = document.querySelector(".page-wrapper");
-
-  if (!about || !holds.length || !scroller) {
-    console.log("About animation: element missing");
-    return;
-  }
-
-  console.log("About animation: initializing");
-
-  const startingPositions = [
-    { x: -180, y: 140, rotation: -35 },
-    { x: 160, y: -160, rotation: 30 },
-    { x: 200, y: 120, rotation: 40 },
-    { x: -180, y: -140, rotation: -30 },
-    { x: 180, y: 150, rotation: 35 },
-    { x: -160, y: -120, rotation: -40 },
-  ];
-
-  holds.forEach((hold, index) => {
-    gsap.set(hold, {
-      x: startingPositions[index].x,
-      y: startingPositions[index].y,
-      rotation: startingPositions[index].rotation,
-    });
-  });
-
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: about,
-      start: "top 90%",
-      end: "top 10%",
-      scrub: true,
-      scroller: scroller,
-    },
-  });
-
-  tl.to(holds, {
-    x: 0,
-    y: 0,
-    rotation: 0,
-    ease: "none",
-    stagger: 0.15,
-  });
-}
-
-function initFeaturesAnimation() {
-  const cards = document.querySelectorAll(".custom-feature");
-  const scroller = document.querySelector(".page-wrapper");
-
-  console.log("FEATURES DEBUG:", {
-    cards: cards.length,
+  ScrollTrigger.defaults({
     scroller,
   });
 
-  if (!cards.length || !scroller) {
-    console.log("Features animation: element missing");
-    return;
-  }
+  ctx = gsap.context(() => {
+    //    1. HOMEPAGE HERO
+    //    Image zooms while scrolling.
+    const hero = $(".climb-hero");
+    const image = $(".climb-hero__image img");
 
-  console.log("Features animation: initializing");
-
-  const startingPositions = [
-    { x: -400, y: 0, rotation: -8 },
-    { x: 400, y: 0, rotation: 8 },
-    { x: 0, y: 365, rotation: 8 },
-  ];
-
-  const mm = gsap.matchMedia();
-
-  // DESKTOP
-  mm.add("(min-width: 990px)", () => {
-    cards.forEach((card, index) => {
-      const position = startingPositions[index];
-
-      gsap.fromTo(
-        card,
-        {
-          x: position.x,
-          y: position.y,
-          rotation: position.rotation,
+    if (hero && image) {
+      gsap.to(image, {
+        scale: 1.925,
+        ease: "none",
+        scrollTrigger: {
+          trigger: hero,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
         },
-        {
+      });
+    }
+
+    //    2. PAGE HERO
+    //    Entrance animation used by:
+    //    About / Membership / Classes
+    const pageHeroSteps = [
+      ["top", 0.5, 0],
+      ["title", 0.8, 0.25],
+      ["intro", 0.6, 0.4],
+      ["visual", 1, 0.3],
+      ["bottom", 0.5, 0.5],
+    ];
+
+    $$(".about-hero").forEach((section) => {
+      const timeline = gsap.timeline({
+        defaults: {
+          ease: "power3.out",
+        },
+      });
+
+      pageHeroSteps.forEach(([name, duration, overlap]) => {
+        const element = section.querySelector(`.about-hero__${name}`);
+
+        if (!element) {
+          return;
+        }
+        const isVisual = name === "visual";
+
+        timeline.fromTo(
+          element,
+          {
+            autoAlpha: 0,
+            y: isVisual ? 50 : 30,
+            ...(isVisual && {
+              clipPath: "inset(100% 0% 0% 0%)",
+            }),
+          },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration,
+            ...(isVisual && {
+              clipPath: "inset(0% 0% 0% 0%)",
+            }),
+          },
+          `-=${overlap}`,
+        );
+      });
+    });
+
+    //    3. HOMEPAGE ABOUT
+    //    Climbing holds fly into position on scroll.
+    const about = $(".custom-about");
+    const holds = $$(".custom-about__hold");
+
+    const aboutFrom = [
+      { x: -180, y: 140, rotation: -35 },
+      { x: 160, y: -160, rotation: 30 },
+      { x: 200, y: 120, rotation: 40 },
+      { x: -180, y: -140, rotation: -30 },
+      { x: 180, y: 150, rotation: 35 },
+      { x: -160, y: -120, rotation: -40 },
+    ];
+
+    if (about && holds.length) {
+      gsap.from(holds, {
+        x: (index) => aboutFrom[index % aboutFrom.length].x,
+        y: (index) => aboutFrom[index % aboutFrom.length].y,
+
+        rotation: (index) => aboutFrom[index % aboutFrom.length].rotation,
+        ease: "none",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: about,
+          start: "top 90%",
+          end: "top 10%",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
+
+    //    4. HOMEPAGE FEATURES
+    //    Desktop / tablet only.
+    const featureFrom = [
+      { x: -400, y: 0, rotation: -8 },
+      { x: 400, y: 0, rotation: 8 },
+      { x: 0, y: 365, rotation: 8 },
+    ];
+
+    const featureMedia = gsap.matchMedia();
+
+    featureMedia.add("(min-width: 990px)", () => {
+      $$(".custom-feature").forEach((card, index) => {
+        const from = featureFrom[index % featureFrom.length];
+        gsap.fromTo(card, from, {
           x: 0,
           y: 0,
           rotation: 0,
           ease: "none",
+
           scrollTrigger: {
             trigger: card,
             start: "top 90%",
             end: "top 50%",
             scrub: true,
-            scroller: scroller,
+            invalidateOnRefresh: true,
           },
-        },
-      );
+        });
+      });
     });
-  });
-}
 
-function initCommunityCursorAnimation() {
-  const visual = document.querySelector(".about-community__visual");
-  const holds = gsap.utils.toArray(".about-community__visual .hold");
-  if (!visual || !holds.length) return;
-  const MAX_DISTANCE = 650;
-  gsap.matchMedia().add("(min-width: 750px)", () => {
-    let items = [];
-    let pointer = { x: 0, y: 0 };
-    let active = false;
-    let dirty = false;
-    // Measure once: centers relative to the visual, with transforms cleared
-    function measure() {
-      // Temporarily reset transforms so we read the true resting position
-      gsap.set(holds, { x: 0, y: 0 });
-      const rect = visual.getBoundingClientRect();
-      items = holds.map((hold, i) => {
-        const r = hold.getBoundingClientRect();
-        const duration = 0.7 + i * 0.04;
-        const vars = { duration, ease: "power3.out" };
+    //    5. ABOUT COMMUNITY
+    //    Cursor-attracted climbing holds.
+    //    Desktop / tablet only.
+
+    const communityVisual = $(".about-community__visual");
+    const floaters = $$(".about-community__visual .hold");
+    const communityMedia = gsap.matchMedia();
+
+    communityMedia.add("(min-width: 750px)", () => {
+      if (!communityVisual || !floaters.length) {
+        return;
+      }
+      const movers = floaters.map((element, index) => {
+        const options = {
+          duration: 0.7 + index * 0.04,
+          ease: "power3.out",
+        };
         return {
-          cx: r.left - rect.left + r.width / 2,
-          cy: r.top - rect.top + r.height / 2,
-          strength: 0.725 + (i % 3) * 0.75,
-          quickX: gsap.quickTo(hold, "x", vars),
-          quickY: gsap.quickTo(hold, "y", vars),
+          strength: 0.725 + (index % 3) * 0.75,
+          x: gsap.quickTo(element, "x", options),
+          y: gsap.quickTo(element, "y", options),
         };
       });
-    }
 
-    function update() {
-      if (!dirty) return;
-      dirty = false;
-      for (let i = 0; i < items.length; i++) {
-        const it = items[i];
-        const dx = pointer.x - it.cx;
-        const dy = pointer.y - it.cy;
-        const influence = active
-          ? Math.max(0, 1 - Math.hypot(dx, dy) / MAX_DISTANCE)
-          : 0;
-        it.quickX(dx * it.strength * influence);
-        it.quickY(dy * it.strength * influence);
-      }
-    }
+      let centers = [];
+      let visualRect;
+      let animationFrame = null;
+      let mouseX = 0;
+      let mouseY = 0;
+      let pointerInside = false;
 
-    function onMove(e) {
-      const rect = visual.getBoundingClientRect(); // one read per event, not per hold
-      pointer.x = e.clientX - rect.left;
-      pointer.y = e.clientY - rect.top;
-      active = true;
-      dirty = true;
-    }
+      //  Cache hold positions.
+      const measure = () => {
+        visualRect = communityVisual.getBoundingClientRect();
+        centers = floaters.map((element) => {
+          const rect = element.getBoundingClientRect();
+          return {
+            x:
+              rect.left -
+              visualRect.left +
+              rect.width / 2 -
+              gsap.getProperty(element, "x"),
 
-    function onLeave() {
-      active = false;
-      dirty = true;
-    }
+            y:
+              rect.top -
+              visualRect.top +
+              rect.height / 2 -
+              gsap.getProperty(element, "y"),
+          };
+        });
+      };
 
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(visual);
+      //  Move holds once per animation frame.
 
-    gsap.ticker.add(update);
-    visual.addEventListener("pointermove", onMove, { passive: true });
-    visual.addEventListener("pointerleave", onLeave, { passive: true });
+      const update = () => {
+        animationFrame = null;
+        if (!pointerInside || !centers.length) {
+          return;
+        }
 
-    return () => {
-      gsap.ticker.remove(update);
-      ro.disconnect();
-      visual.removeEventListener("pointermove", onMove);
-      visual.removeEventListener("pointerleave", onLeave);
-      gsap.set(holds, { clearProps: "x,y" });
-    };
+        const maxDistance = 650;
+
+        movers.forEach((mover, index) => {
+          const center = centers[index];
+          const dx = mouseX - center.x;
+          const dy = mouseY - center.y;
+          const distance = Math.hypot(dx, dy);
+          const influence = Math.max(0, 1 - distance / maxDistance);
+          mover.x(dx * mover.strength * influence);
+          mover.y(dy * mover.strength * influence);
+        });
+      };
+
+      //   pointer enters
+      const handlePointerEnter = () => {
+        measure();
+        pointerInside = true;
+      };
+
+      //   pointer moves
+      const handlePointerMove = (event) => {
+        if (!visualRect) {
+          measure();
+        }
+        mouseX = event.clientX - visualRect.left;
+        mouseY = event.clientY - visualRect.top;
+        pointerInside = true;
+        if (!animationFrame) {
+          animationFrame = requestAnimationFrame(update);
+        }
+      };
+
+      //   pointer leaves
+      const handlePointerLeave = () => {
+        pointerInside = false;
+        movers.forEach((mover) => {
+          mover.x(0);
+          mover.y(0);
+        });
+      };
+
+      // Recalculate positions on resize.
+      const handleResize = () => {
+        measure();
+      };
+      communityVisual.addEventListener("pointerenter", handlePointerEnter);
+      communityVisual.addEventListener("pointermove", handlePointerMove, {
+        passive: true,
+      });
+      communityVisual.addEventListener("pointerleave", handlePointerLeave);
+      window.addEventListener("resize", handleResize, { passive: true });
+
+      // Initial measurement
+      measure();
+
+      return () => {
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+        communityVisual.removeEventListener("pointerenter", handlePointerEnter);
+        communityVisual.removeEventListener("pointermove", handlePointerMove);
+        communityVisual.removeEventListener("pointerleave", handlePointerLeave);
+        window.removeEventListener("resize", handleResize);
+      };
+    });
   });
-}
-
-function initAnimations() {
-  initHeroAnimation();
-  initPageHeroAnimation();
-  initAboutAnimation();
-  initFeaturesAnimation();
-  initCommunityCursorAnimation();
   ScrollTrigger.refresh();
 }
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(initAnimations, 500);
-  });
-} else {
-  setTimeout(initAnimations, 500);
+
+// Inititalization
+function scheduleInit(delay = 500) {
+  clearTimeout(initTimeout);
+  initTimeout = setTimeout(() => {
+    initAnimations();
+  }, delay);
 }
+const start = () => {
+  scheduleInit(500);
+};
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", start, { once: true });
+} else {
+  start();
+}
+// Shopify theme editor
 document.addEventListener("shopify:section:load", () => {
-  setTimeout(initAnimations, 100);
+  scheduleInit(100);
 });
