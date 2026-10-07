@@ -173,8 +173,8 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
-    {{ 'gsap.min.js' | asset_url | script_tag }}
-    {{ 'ScrollTrigger.min.js' | asset_url | script_tag }}
-    {{ 'animations.js' | asset_url | script_tag }}
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'animations.js' | asset_url }}" defer></script>
   </body>
 </html>
