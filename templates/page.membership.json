@@ -28,21 +28,21 @@
           "type": "faq",
           "settings": {
             "question": "DO I NEED EXPERIENCE TO CLIMB?",
-            "answer": "NOT AT ALL. ESC-ALA IS DESIGNED FOR ALL EXPERIENCE LEVELS, INCLUDING FIRST-TIME CLIMBERS."
+            "answer": "NOT AT ALL. ESC_ALA IS DESIGNED FOR ALL EXPERIENCE LEVELS, INCLUDING FIRST-TIME CLIMBERS."
           }
         },
         "faq_2": {
           "type": "faq",
           "settings": {
             "question": "WHAT DOES A MEMBERSHIP INCLUDE?",
-            "answer": "MEMBERS GET UNLIMITED CLIMBING, MEMBER PERKS, AND ACCESS TO THE COMMUNITY AT ESC-ALA."
+            "answer": "MEMBERS GET UNLIMITED CLIMBING, MEMBER PERKS, AND ACCESS TO THE COMMUNITY AT ESC_ALA."
           }
         },
         "faq_3": {
           "type": "faq",
           "settings": {
-            "question": "CAN I TRY ESC-ALA BEFORE BECOMING A MEMBER?",
-            "answer": "YES. OUR DAY PASS IS A SIMPLE WAY TO TRY THE GYM AND SEE IF ESC-ALA IS THE RIGHT FIT FOR YOU."
+            "question": "CAN I TRY ESC_ALA BEFORE BECOMING A MEMBER?",
+            "answer": "YES. OUR DAY PASS IS A SIMPLE WAY TO TRY THE GYM AND SEE IF ESC_ALA IS THE RIGHT FIT FOR YOU."
           }
         },
         "faq_4": {
