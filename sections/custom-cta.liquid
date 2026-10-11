@@ -26,7 +26,7 @@
           <p>{{ section.settings.description }}</p>
         {% endif %}
         {% if section.settings.button_label != blank %}
-          <a href="/pages/contact" class="about-cta__button">
+          <a href="{{ section.settings.button_link }}" class="about-cta__button">
             {{ section.settings.button_label }}
             <span>↗</span>
           </a>
@@ -208,6 +208,11 @@
       "id": "button_label",
       "label": "Button Label",
       "default": "PLAN YOUR VISIT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     },
     {
       "type": "text",
