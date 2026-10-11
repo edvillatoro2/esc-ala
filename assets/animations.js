@@ -2,12 +2,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => gsap.utils.toArray(selector);
-
 let ctx;
 let initTimeout;
 
 //    inititalize animation
-
 function initAnimations() {
   const scroller = $(".page-wrapper");
   if (!scroller) {
@@ -153,7 +151,6 @@ function initAnimations() {
     //    5. ABOUT COMMUNITY
     //    Cursor-attracted climbing holds.
     //    Desktop / tablet only.
-
     const communityVisual = $(".about-community__visual");
     const floaters = $$(".about-community__visual .hold");
     const communityMedia = gsap.matchMedia();
@@ -203,7 +200,6 @@ function initAnimations() {
       };
 
       //  Move holds once per animation frame.
-
       const update = () => {
         animationFrame = null;
         if (!pointerInside || !centers.length) {

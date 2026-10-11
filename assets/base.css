@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   margin: 0;
   min-height: 100svh;
-  font-variation-settings: 'slnt' 0;
+  font-variation-settings: "slnt" 0;
 }
 
 :root {
@@ -21,7 +21,8 @@ body {
 html {
   /* Firefox */
   scrollbar-width: thin;
-  scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
+  scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40))
+    var(--color-background);
   scroll-behavior: smooth;
 }
 
@@ -42,7 +43,8 @@ html[scroll-lock] .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  transition: margin-inline-end var(--animation-speed) var(--animation-timing-fade-out);
+  transition: margin-inline-end var(--animation-speed)
+    var(--animation-timing-fade-out);
 }
 
 @media (min-width: 990px) {
@@ -51,7 +53,8 @@ html[scroll-lock] .page-wrapper {
     overflow-y: auto;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
+    scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40))
+      var(--color-background);
   }
 
   .page-wrapper--drawer-open shopify-account::part(dialog) {
@@ -59,7 +62,7 @@ html[scroll-lock] .page-wrapper {
   }
 
   /* The theme drawer opens from the inline-end edge, so the shift mirrors in RTL */
-  [dir='rtl'] .page-wrapper--drawer-open shopify-account::part(dialog) {
+  [dir="rtl"] .page-wrapper--drawer-open shopify-account::part(dialog) {
     translate: var(--theme-drawer-width, var(--sidebar-width));
   }
 }
@@ -101,7 +104,8 @@ select {
 .predictive-search-results__card--product,
 .predictive-search-results__card {
   position: relative;
-  transition: transform var(--hover-transition-duration) var(--hover-transition-timing),
+  transition: transform var(--hover-transition-duration)
+      var(--hover-transition-timing),
     box-shadow var(--hover-transition-duration) var(--hover-transition-timing);
   z-index: var(--layer-flat);
 }
@@ -181,11 +185,13 @@ p:empty {
     pointer-events: none;
   }
 
-  html:active-view-transition-type(page-navigation) main[data-page-transition-enabled='true'] {
+  html:active-view-transition-type(page-navigation)
+    main[data-page-transition-enabled="true"] {
     view-transition-name: main-content;
   }
 
-  html:active-view-transition-type(page-navigation) main[data-product-transition='true'][data-template*='product'] {
+  html:active-view-transition-type(page-navigation)
+    main[data-product-transition="true"][data-template*="product"] {
     view-transition-name: none;
   }
 
@@ -198,11 +204,11 @@ p:empty {
   }
 
   html:active-view-transition-type(product-image-transition) {
-    [data-view-transition-type='product-image-transition'] {
+    [data-view-transition-type="product-image-transition"] {
       view-transition-name: product-image-transition;
     }
 
-    [data-view-transition-type='product-details'] {
+    [data-view-transition-type="product-details"] {
       view-transition-name: product-details;
     }
   }
@@ -266,7 +272,11 @@ p:empty {
 .page-width-normal,
 .page-width-narrow,
 .page-width-content {
-  --page-margin: max(16px, var(--safe-area-inset-left, 0px), var(--safe-area-inset-right, 0px));
+  --page-margin: max(
+    16px,
+    var(--safe-area-inset-left, 0px),
+    var(--safe-area-inset-right, 0px)
+  );
 }
 
 @media screen and (min-width: 750px) {
@@ -274,7 +284,11 @@ p:empty {
   .page-width-normal,
   .page-width-narrow,
   .page-width-content {
-    --page-margin: max(40px, var(--safe-area-inset-left, 0px), var(--safe-area-inset-right, 0px));
+    --page-margin: max(
+      40px,
+      var(--safe-area-inset-left, 0px),
+      var(--safe-area-inset-right, 0px)
+    );
   }
 }
 
@@ -310,18 +324,22 @@ p:empty {
     calc(100% - var(--page-margin) * 2)
   );
   --full-page-grid-margin: minmax(var(--page-margin), 1fr);
-  --full-page-grid-with-margins: var(--full-page-grid-margin) var(--full-page-grid-central-column-width)
-    var(--full-page-grid-margin);
+  --full-page-grid-with-margins: var(--full-page-grid-margin)
+    var(--full-page-grid-central-column-width) var(--full-page-grid-margin);
 
   /* Utility variable gives the grid's first column width. Provides an offset width for components like carousels */
   --util-page-margin-offset: max(
     var(--page-margin),
-    calc((100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2)
+    calc(
+      (100% - min(var(--page-content-width), 100% - var(--page-margin) * 2)) / 2
+    )
   );
 
   /* Offset for full-width sections to account for the page margin,
   used for Marquee — note that --util-page-margin-offset doesn't work here */
-  --full-page-margin-inline-offset: calc(((100vw - var(--full-page-grid-central-column-width)) / 2) * -1);
+  --full-page-margin-inline-offset: calc(
+    ((100vw - var(--full-page-grid-central-column-width)) / 2) * -1
+  );
 
   width: 100%;
 
@@ -331,7 +349,7 @@ p:empty {
   /* Set up the grid */
   display: grid;
   grid-template-columns: var(--full-page-grid-with-margins);
-  min-height: var(--section-min-height, 'auto');
+  min-height: var(--section-min-height, "auto");
 }
 
 /* Place all direct children in the center column by default */
@@ -349,7 +367,7 @@ p:empty {
 }
 
 .shopify-section:not(.header-section) .section-background {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   z-index: var(--layer-section-background);
@@ -403,7 +421,9 @@ p:empty {
 }
 
 .section-content-wrapper.section-content-wrapper {
-  min-height: calc(var(--section-min-height, 'auto') - var(--section-height-offset, 0px));
+  min-height: calc(
+    var(--section-min-height, "auto") - var(--section-height-offset, 0px)
+  );
   position: relative;
   width: 100%;
   height: 100%;
@@ -474,8 +494,10 @@ p:empty {
   .grid {
     display: grid;
     gap: 0;
-    grid-template-columns: var(--margin-4xl) repeat(var(--centered-column-number), minmax(0, 1fr)) var(--margin-4xl);
-    grid-template-areas: 'column-0 column-1 column-2 column-3 column-4 column-5 column-6 column-7 column-8 column-9 column-10 column-11 column-12 column-13';
+    grid-template-columns:
+      var(--margin-4xl) repeat(var(--centered-column-number), minmax(0, 1fr))
+      var(--margin-4xl);
+    grid-template-areas: "column-0 column-1 column-2 column-3 column-4 column-5 column-6 column-7 column-8 column-9 column-10 column-11 column-12 column-13";
   }
 }
 
@@ -484,7 +506,13 @@ p:empty {
     grid-template-columns:
       1fr repeat(
         var(--centered-column-number),
-        minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
+        minmax(
+          0,
+          calc(
+            (var(--page-width) - var(--page-margin) * 2) /
+              var(--centered-column-number)
+          )
+        )
       )
       1fr;
   }
@@ -587,7 +615,7 @@ p:empty {
   fill: currentColor;
 }
 
-[data-placeholder='true'] * {
+[data-placeholder="true"] * {
   cursor: default;
 }
 
@@ -769,7 +797,8 @@ a {
   text-decoration-color: transparent;
   text-decoration-thickness: 0.075em;
   text-underline-offset: 0.125em;
-  transition: text-decoration-color var(--animation-speed) var(--animation-easing),
+  transition: text-decoration-color var(--animation-speed)
+      var(--animation-easing),
     color var(--animation-speed) var(--animation-easing);
 }
 
@@ -779,7 +808,9 @@ a {
 
 /* Add underline to text using our paragraph styles only. */
 p:not(.h1, .h2, .h3, .h4, .h5, .h6) a:where(:not(.button, .button-secondary)),
-.rte :is(p, ul, ol, table):not(.h1, .h2, .h3, .h4, .h5, .h6) a:where(:not(.button, .button-secondary)) {
+.rte
+  :is(p, ul, ol, table):not(.h1, .h2, .h3, .h4, .h5, .h6)
+  a:where(:not(.button, .button-secondary)) {
   text-decoration-color: currentcolor;
 
   &:hover {
@@ -837,7 +868,10 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button:not(.button-secondary, .button-unstyled) {
-  outline-color: var(--button-focus-outline-color, var(--button-background-color));
+  outline-color: var(
+    --button-focus-outline-color,
+    var(--button-background-color)
+  );
 }
 
 .button-secondary {
@@ -852,7 +886,7 @@ button.shopify-payment-button__button--unbranded {
 }
 
 textarea,
-input:not([type='checkbox'], [type='radio']) {
+input:not([type="checkbox"], [type="radio"]) {
   background-color: var(--color-input-background);
   border-color: var(--color-input-border);
 }
@@ -872,8 +906,8 @@ input:not(:placeholder-shown)::placeholder {
   display: none;
 }
 
-.button[aria-disabled='true'],
-.button-secondary[aria-disabled='true'],
+.button[aria-disabled="true"],
+.button-secondary[aria-disabled="true"],
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -918,7 +952,10 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
   font-family: var(--button-font-family-primary);
   text-transform: var(--button-text-case-primary);
   border-radius: var(--style-border-radius-buttons-primary);
-  outline-color: var(--button-focus-outline-color, var(--button-background-color));
+  outline-color: var(
+    --button-focus-outline-color,
+    var(--button-background-color)
+  );
 }
 
 .button-custom:hover {
@@ -1007,7 +1044,7 @@ summary:hover {
 }
 
 /* Safe-area env() values are physical; in RTL the button sits by the left-side notch */
-[dir='rtl'] .close-button {
+[dir="rtl"] .close-button {
   inset-inline-end: max(var(--margin-lg), var(--safe-area-inset-left, 0px));
 }
 
@@ -1025,7 +1062,7 @@ summary:hover {
   }
 
   .close-button:focus-visible::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: calc(-1 * var(--focus-outline-offset));
     border: var(--focus-outline-width) solid currentColor;
@@ -1035,7 +1072,8 @@ summary:hover {
 }
 
 .dialog--closed .close-button {
-  animation: elementSlideOutBottom calc(var(--animation-speed) * 0.5) var(--animation-easing) forwards;
+  animation: elementSlideOutBottom calc(var(--animation-speed) * 0.5)
+    var(--animation-easing) forwards;
 }
 
 .close-button:hover {
@@ -1092,7 +1130,10 @@ summary:hover {
   --margin-inline-start: var(--margin-inline, 0px);
   --margin-inline-end: var(--margin-inline, 0px);
 
-  padding-block: calc(var(--padding-block-start) + var(--section-top-offset, 0px)) var(--padding-block-end);
+  padding-block: calc(
+      var(--padding-block-start) + var(--section-top-offset, 0px)
+    )
+    var(--padding-block-end);
   padding-inline: var(--padding-inline-start) var(--padding-inline-end);
   margin-block: var(--margin-block-start) var(--margin-block-end);
   margin-inline: var(--margin-inline-start) var(--margin-inline-end);
@@ -1214,7 +1255,9 @@ summary:hover {
     }
 
     > .group-block--height-fill {
-      height: calc(var(--section-min-height, auto) - var(--section-height-offset, 0px));
+      height: calc(
+        var(--section-min-height, auto) - var(--section-height-offset, 0px)
+      );
     }
   }
 }
@@ -1237,7 +1280,8 @@ summary:hover {
   flex-grow: 1;
   text-align: start;
   border-radius: var(--style-border-radius-inputs);
-  transition: box-shadow var(--animation-speed) ease, background-color var(--animation-speed) ease;
+  transition: box-shadow var(--animation-speed) ease,
+    background-color var(--animation-speed) ease;
   padding: var(--input-padding);
   box-shadow: var(--input-box-shadow);
   background-color: var(--color-input-background);
@@ -1273,7 +1317,8 @@ summary:hover {
   margin-bottom: 0;
   pointer-events: none;
   position: absolute;
-  transition: top var(--animation-speed) ease, font-size var(--animation-speed) ease;
+  transition: top var(--animation-speed) ease,
+    font-size var(--animation-speed) ease;
 }
 
 /* RTE styles */
@@ -1303,7 +1348,8 @@ summary:hover {
     margin-inline: 1.5em 2.3em;
     margin-block: 3.8em;
     padding-inline-start: 0.8em;
-    border-inline-start: 1.5px solid rgb(var(--color-foreground-rgb) / var(--opacity-25));
+    border-inline-start: 1.5px solid
+      rgb(var(--color-foreground-rgb) / var(--opacity-25));
     font-style: italic;
     font-weight: 500;
   }
@@ -1326,7 +1372,8 @@ summary:hover {
   }
 
   tr:has(td) {
-    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-10));
+    border-bottom: 1px solid
+      rgb(var(--color-foreground-rgb) / var(--opacity-10));
   }
 
   th,
@@ -1342,8 +1389,8 @@ summary:hover {
 }
 
 /* Radio buttons and checkboxes - shared base styles */
-:where(input[type='radio']),
-:where(input[type='checkbox']) {
+:where(input[type="radio"]),
+:where(input[type="checkbox"]) {
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   aspect-ratio: 1;
@@ -1359,19 +1406,19 @@ summary:hover {
 }
 
 /* Radio buttons */
-input[type='radio'] {
+input[type="radio"] {
   border-radius: var(--style-border-radius-50);
   background: transparent;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-:where(input[type='radio']):checked {
+:where(input[type="radio"]):checked {
   border-color: var(--color-foreground);
   background: var(--color-background);
 }
 
-:where(input[type='radio']):checked::after {
-  content: '';
+:where(input[type="radio"]):checked::after {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%; /* stylelint-disable-line csstools/use-logical -- centring pair with a physical translate(-50%) */
@@ -1383,44 +1430,44 @@ input[type='radio'] {
   transition: background 0.2s ease;
 }
 
-:where(input[type='radio']):disabled {
+:where(input[type="radio"]):disabled {
   border-color: var(--input-disabled-border-color);
   background-color: var(--input-disabled-background-color);
   cursor: not-allowed;
 }
 
-:where(input[type='radio']):disabled:checked::after {
+:where(input[type="radio"]):disabled:checked::after {
   background: var(--input-disabled-background-color);
 }
 
-:where(input[type='radio']):not(:disabled):hover {
+:where(input[type="radio"]):not(:disabled):hover {
   border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
 }
 
-:where(input[type='radio']):not(:disabled):hover:checked {
+:where(input[type="radio"]):not(:disabled):hover:checked {
   border-color: var(--color-foreground);
   background-color: var(--color-background);
 }
 
-:where(input[type='radio']):not(:disabled):hover:checked::after {
+:where(input[type="radio"]):not(:disabled):hover:checked::after {
   background: rgb(var(--color-foreground-rgb) / var(--opacity-85));
 }
 
 /* Checkboxes */
-:where(input[type='checkbox']) {
+:where(input[type="checkbox"]) {
   border-radius: var(--checkbox-border-radius);
   background-color: var(--color-background);
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-:where(input[type='checkbox']):checked {
+:where(input[type="checkbox"]):checked {
   background-color: var(--color-foreground);
   border-color: var(--color-foreground);
 }
 
-:where(input[type='checkbox']):checked::after {
-  content: '';
+:where(input[type="checkbox"]):checked::after {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%; /* stylelint-disable-line csstools/use-logical -- centring pair with a physical translate(-50%) */
@@ -1434,36 +1481,36 @@ input[type='radio'] {
   mask-position: center;
 }
 
-:where(input[type='checkbox']):not(:disabled):hover {
+:where(input[type="checkbox"]):not(:disabled):hover {
   border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40-60));
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-5));
 }
 
-:where(input[type='checkbox']):not(:disabled):hover:checked {
+:where(input[type="checkbox"]):not(:disabled):hover:checked {
   border-color: var(--color-foreground);
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-85));
 }
 
-:where(input[type='checkbox']):disabled {
+:where(input[type="checkbox"]):disabled {
   background-color: var(--input-disabled-background-color);
   border-color: var(--input-disabled-border-color);
   cursor: not-allowed;
 }
 
-:where(input[type='checkbox']):disabled:checked::after {
+:where(input[type="checkbox"]):disabled:checked::after {
   background-color: var(--input-disabled-text-color);
 }
 
 /* Shared styles for radio buttons and checkboxes */
-:where(input[type='radio']) + label,
-:where(input[type='checkbox']) + label {
+:where(input[type="radio"]) + label,
+:where(input[type="checkbox"]) + label {
   display: inline;
   vertical-align: middle;
   cursor: pointer;
 }
 
-:where(input[type='radio']):disabled + label,
-:where(input[type='checkbox']):disabled + label {
+:where(input[type="radio"]):disabled + label,
+:where(input[type="checkbox"]):disabled + label {
   color: var(--input-disabled-text-color);
   cursor: not-allowed;
 }
@@ -1666,8 +1713,12 @@ input[type='radio'] {
 /* Slideshow Arrow Hover Animation - must stay in base.css for proper CSS cascade */
 
 slideshow-container[animate-arrows]:hover > slideshow-arrows .slideshow-control,
-slideshow-component:focus-within > slideshow-container[animate-arrows] > slideshow-arrows .slideshow-control {
-  animation: arrowsSlideIn var(--animation-speed) var(--animation-easing) forwards;
+slideshow-component:focus-within
+  > slideshow-container[animate-arrows]
+  > slideshow-arrows
+  .slideshow-control {
+  animation: arrowsSlideIn var(--animation-speed) var(--animation-easing)
+    forwards;
 }
 
 @keyframes arrowsSlideIn {
@@ -1699,8 +1750,12 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
   display: none;
 }
 
-:where(.section-resource-list.section--full-width) product-card[data-product-transition] > .group-block,
-:where(.section-carousel.section--full-width) product-card[data-product-transition] > .group-block {
+:where(.section-resource-list.section--full-width)
+  product-card[data-product-transition]
+  > .group-block,
+:where(.section-carousel.section--full-width)
+  product-card[data-product-transition]
+  > .group-block {
   @media screen and (max-width: 749px) {
     padding-inline: max(var(--padding-xs), var(--padding-inline-start))
       max(var(--padding-xs), var(--padding-inline-end));
@@ -1723,7 +1778,8 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 }
 
 /* Container styles */
-.section-content-wrapper.section-content-wrapper:where(.layout-panel-flex) .group-block--fill {
+.section-content-wrapper.section-content-wrapper:where(.layout-panel-flex)
+  .group-block--fill {
   flex: 1;
 }
 
@@ -1823,7 +1879,9 @@ slideshow-component:focus-within > slideshow-container[animate-arrows] > slidesh
 main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
   &.spacing-style,
   .spacing-style {
-    --section-top-offset: calc(var(--header-height) * var(--transparent-header-offset-boolean));
+    --section-top-offset: calc(
+      var(--header-height) * var(--transparent-header-offset-boolean)
+    );
 
     /* Any nested sections should not be offset */
     .spacing-style {
@@ -1833,6 +1891,162 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 
   /* Make sticky content immediately stick to the top of the page */
   .sticky-content {
-    margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
+    margin-top: calc(
+      var(--header-height) * var(--transparent-header-offset-boolean) * -1
+    );
+  }
+}
+
+/* navbar */
+#header-component {
+  --escala-yellow: #fbb040;
+  --escala-orange: #ed5825;
+  --escala-brown: #754c29;
+  --escala-black: #000000;
+  --escala-white: #ffffff;
+}
+/* desktop header */
+#header-component,
+#header-component .header__row,
+#header-component .header__columns {
+  background: var(--escala-black);
+}
+/* Desktop navigation links */
+#header-component .menu-list__link {
+  color: var(--escala-white);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  transition: color 180ms ease-in;
+}
+#header-component .menu-list__link:hover {
+  color: var(--escala-yellow);
+}
+
+/* mobile navbar */
+@media screen and (max-width: 749px) {
+  .menu-drawer,
+  .menu-drawer__inner-container,
+  .menu-drawer__navigation-container,
+  .menu-drawer__submenu {
+    color: var(--escala-white);
+    background: var(--escala-black);
+  }
+  .menu-drawer {
+    border-right: 1px solid var(--escala-brown);
+  }
+  /* number the main navigation links */
+  .menu-drawer__menu {
+    counter-reset: escala-menu;
+  }
+  .menu-drawer a.menu-drawer__menu-item--mainlist {
+    counter-increment: escala-menu;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-height: 76px;
+    padding: 1.15rem 1rem;
+    color: var(--escala-white);
+    background: transparent;
+    border-bottom: 1px solid rgba(117, 76, 41, 0.75);
+    font-size: clamp(1.2rem, 5vw, 1.65rem);
+    font-weight: 800;
+    letter-spacing: 0.045em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transition: color 180ms ease, background 180ms ease, padding-left 180ms ease;
+  }
+  .menu-drawer a.menu-drawer__menu-item--mainlist::before {
+    content: "0" counter(escala-menu);
+    flex: 0 0 1.8rem;
+    color: var(--escala-yellow);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  /* make link text inherit the new colors */
+  .menu-drawer .menu-drawer__menu-item-text {
+    color: inherit;
+  }
+  /* bold active and hovered states */
+  .menu-drawer a.menu-drawer__menu-item--mainlist:hover,
+  .menu-drawer a.menu-drawer__menu-item--mainlist:focus-visible,
+  .menu-drawer a.menu-drawer__menu-item--mainlist[aria-current="page"] {
+    color: var(--escala-yellow);
+    background: #17110c;
+    padding-left: 1.35rem;
+  }
+  .menu-drawer a.menu-drawer__menu-item--mainlist:hover::before,
+  .menu-drawer a.menu-drawer__menu-item--mainlist:focus-visible::before {
+    color: var(--escala-orange);
+  }
+  /* submenu links */
+  .menu-drawer .menu-drawer__menu-item--child {
+    color: var(--escala-white);
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(117, 76, 41, 0.35);
+  }
+  .menu-drawer .menu-drawer__menu-item--child:hover,
+  .menu-drawer .menu-drawer__menu-item--child:focus-visible {
+    color: var(--escala-yellow);
+  }
+  /* close, back and navigation icons */
+  .menu-drawer .menu-drawer__close-button,
+  .menu-drawer .menu-drawer__back-button,
+  .menu-drawer svg,
+  .menu-drawer .svg-wrapper {
+    color: var(--escala-yellow);
+  }
+  .menu-drawer .menu-drawer__close-button,
+  .menu-drawer .menu-drawer__back-button {
+    border-color: var(--escala-brown);
+  }
+  /* orange Plan Your Visit CTA */
+  .menu-drawer a[href*="plan-your-visit"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 1.5rem 1rem;
+    padding: 1.2rem 1rem;
+    color: var(--escala-black);
+    background: var(--escala-orange);
+    border: 1px solid var(--escala-orange);
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    transition: background 180ms ease, border-color 180ms ease,
+      transform 180ms ease;
+  }
+  .menu-drawer a[href*="plan-your-visit"]:hover,
+  .menu-drawer a[href*="plan-your-visit"]:focus-visible {
+    color: var(--escala-black);
+    background: var(--escala-yellow);
+    border-color: var(--escala-yellow);
+    transform: translateY(-2px);
+  }
+  .menu-drawer a[href*="plan-your-visit"]::after {
+    content: "↗";
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+  /* drawer footer */
+  .menu-drawer .menu-drawer__utility-links {
+    background: var(--escala-black);
+    border-top: 1px solid var(--escala-brown);
+  }
+  .menu-drawer .menu-drawer__account {
+    color: var(--escala-yellow);
+  }
+  /* backdrop */
+  .menu-drawer__backdrop {
+    background: rgba(0, 0, 0, 0.78);
+  }
+  /* visible keyboard focus */
+  .menu-drawer a:focus-visible,
+  .menu-drawer button:focus-visible {
+    outline: 2px solid var(--escala-yellow);
+    outline-offset: -2px;
   }
 }
