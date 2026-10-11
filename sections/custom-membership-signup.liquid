@@ -5,29 +5,28 @@
   <div class="membership-signup__inner">
     <header class="membership-signup__header">
       <div class="membership-signup__meta">
-        <span>{{ section.settings.eyebrow | escape }}</span>
-        <span>{{ section.settings.number | escape }}</span>
+        <span>{{ section.settings.eyebrow }}</span>
       </div>
 
       <h1 class="membership-signup__title">
-        {{ section.settings.title_line_1 | escape }}
-        <span>{{ section.settings.title_line_2 | escape }}</span>
+        {{ section.settings.title_line_1 }}
+        <span>{{ section.settings.title_line_2 }}</span>
       </h1>
 
       <p class="membership-signup__intro">
-        {{ section.settings.intro | escape }}
+        {{ section.settings.intro }}
       </p>
     </header>
 
     <div class="membership-signup__layout">
       <aside class="membership-signup__aside">
         <span class="membership-signup__aside-label">
-          {{ section.settings.aside_label | escape }}
+          {{ section.settings.aside_label }}
         </span>
 
-        <h2>{{ section.settings.aside_title | escape }}</h2>
+        <h2>{{ section.settings.aside_title }}</h2>
 
-        <p>{{ section.settings.aside_text | escape }}</p>
+        <p>{{ section.settings.aside_text }}</p>
 
         <div class="membership-signup__aside-footer">
           <span>ESC-ALA®</span>
@@ -45,8 +44,8 @@
           {% if form.posted_successfully? %}
             <div class="membership-signup__success" tabindex="-1" role="status">
               <span class="membership-signup__success-number">01 / RECEIVED</span>
-              <h2>{{ section.settings.success_title | escape }}</h2>
-              <p>{{ section.settings.success_text | escape }}</p>
+              <h2>{{ section.settings.success_title }}</h2>
+              <p>{{ section.settings.success_text }}</p>
             </div>
           {% else %}
             {% if form.errors %}
@@ -69,7 +68,7 @@
                 name="contact[name]"
                 autocomplete="name"
                 placeholder="Your name"
-                value="{{ form.name | escape }}"
+                value="{{ form.name }}"
                 required
               >
             </div>
@@ -84,7 +83,7 @@
                 autocorrect="off"
                 autocapitalize="off"
                 placeholder="you@example.com"
-                value="{{ form.email | escape }}"
+                value="{{ form.email }}"
                 required
               >
             </div>
@@ -111,8 +110,8 @@
                 {% for option in membership_options %}
                   {% assign plan_name = option | strip %}
                   {% if plan_name != blank %}
-                    <option value="{{ plan_name | escape }}">
-                      {{ plan_name | escape }}
+                    <option value="{{ plan_name }}">
+                      {{ plan_name }}
                     </option>
                   {% endif %}
                 {% endfor %}
@@ -130,12 +129,12 @@
             </div>
 
             <button class="membership-signup__submit" type="submit">
-              <span>{{ section.settings.button_label | escape }}</span>
+              <span>{{ section.settings.button_label }}</span>
               <span aria-hidden="true">↗</span>
             </button>
 
             <p class="membership-signup__disclaimer">
-              {{ section.settings.disclaimer | escape }}
+              {{ section.settings.disclaimer }}
             </p>
           {% endif %}
         {% endform %}
@@ -202,7 +201,7 @@
 
   .membership-signup__aside {
     position: sticky;
-    top: 40px;
+    top: 80px;
     padding: 28px;
     background: #17110c;
     border-top: 4px solid #ed5825;
@@ -454,12 +453,6 @@
     },
     {
       "type": "text",
-      "id": "number",
-      "label": "Section number",
-      "default": "01 / 04"
-    },
-    {
-      "type": "text",
       "id": "title_line_1",
       "label": "Title line 1",
       "default": "YOUR NEXT"
@@ -498,7 +491,7 @@
       "type": "text",
       "id": "membership_options",
       "label": "Membership options (comma separated)",
-      "default": "Monthly Membership, Annual Membership, Student Membership, Not sure yet"
+      "default": "Day pass, Annual Membership, Unlimited Membership, Not sure yet"
     },
     {
       "type": "text",
