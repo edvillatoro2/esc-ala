@@ -52,7 +52,7 @@ function initAnimations() {
     $$(".about-hero").forEach((section) => {
       const timeline = gsap.timeline({
         defaults: {
-          ease: "power3.out",
+          ease: "power2.out",
         },
       });
 
@@ -272,18 +272,22 @@ function initAnimations() {
       };
     });
   });
-  ScrollTrigger.refresh();
+  requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+  });
 }
 
-// Inititalization
-function scheduleInit(delay = 500) {
+/* Initialization */
+function scheduleInit(delay = 0) {
   clearTimeout(initTimeout);
-  initTimeout = setTimeout(() => {
+  if (delay > 0) {
+    initTimeout = setTimeout(initAnimations, delay);
+  } else {
     initAnimations();
-  }, delay);
+  }
 }
 const start = () => {
-  scheduleInit(500);
+  initAnimations();
 };
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", start, { once: true });
@@ -292,5 +296,5 @@ if (document.readyState === "loading") {
 }
 // Shopify theme editor
 document.addEventListener("shopify:section:load", () => {
-  scheduleInit(100);
+  scheduleInit(0);
 });
