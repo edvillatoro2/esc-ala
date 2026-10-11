@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-membership-signup",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

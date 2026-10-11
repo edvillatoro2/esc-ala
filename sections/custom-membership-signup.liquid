@@ -1,0 +1,534 @@
+{% assign form_id = 'MembershipSignupForm-' | append: section.id %}
+{% assign membership_options = section.settings.membership_options | split: ',' %}
+
+<div class="membership-signup">
+  <div class="membership-signup__inner">
+    <header class="membership-signup__header">
+      <div class="membership-signup__meta">
+        <span>{{ section.settings.eyebrow | escape }}</span>
+        <span>{{ section.settings.number | escape }}</span>
+      </div>
+
+      <h1 class="membership-signup__title">
+        {{ section.settings.title_line_1 | escape }}
+        <span>{{ section.settings.title_line_2 | escape }}</span>
+      </h1>
+
+      <p class="membership-signup__intro">
+        {{ section.settings.intro | escape }}
+      </p>
+    </header>
+
+    <div class="membership-signup__layout">
+      <aside class="membership-signup__aside">
+        <span class="membership-signup__aside-label">
+          {{ section.settings.aside_label | escape }}
+        </span>
+
+        <h2>{{ section.settings.aside_title | escape }}</h2>
+
+        <p>{{ section.settings.aside_text | escape }}</p>
+
+        <div class="membership-signup__aside-footer">
+          <span>ESC-ALA®</span>
+          <span>CLIMB. CONNECT. CREATE.</span>
+        </div>
+      </aside>
+
+      <div class="membership-signup__form-wrap">
+        <div class="membership-signup__form-heading">
+          <span>01 / YOUR DETAILS</span>
+          <p>Tell us a little about yourself. Our team will follow up to help finalize your membership.</p>
+        </div>
+
+        {% form 'contact', id: form_id %}
+          {% if form.posted_successfully? %}
+            <div class="membership-signup__success" tabindex="-1" role="status">
+              <span class="membership-signup__success-number">01 / RECEIVED</span>
+              <h2>{{ section.settings.success_title | escape }}</h2>
+              <p>{{ section.settings.success_text | escape }}</p>
+            </div>
+          {% else %}
+            {% if form.errors %}
+              <div class="membership-signup__errors" role="alert">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+
+            <input
+              type="hidden"
+              name="contact[subject]"
+              value="ESC-ALA Membership Inquiry"
+            >
+
+            <div class="membership-signup__field">
+              <label for="SignupName-{{ section.id }}">FULL NAME *</label>
+              <input
+                id="SignupName-{{ section.id }}"
+                type="text"
+                name="contact[name]"
+                autocomplete="name"
+                placeholder="Your name"
+                value="{{ form.name | escape }}"
+                required
+              >
+            </div>
+
+            <div class="membership-signup__field">
+              <label for="SignupEmail-{{ section.id }}">EMAIL ADDRESS *</label>
+              <input
+                id="SignupEmail-{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                placeholder="you@example.com"
+                value="{{ form.email | escape }}"
+                required
+              >
+            </div>
+
+            <div class="membership-signup__field">
+              <label for="SignupPhone-{{ section.id }}">PHONE NUMBER <span>(OPTIONAL)</span></label>
+              <input
+                id="SignupPhone-{{ section.id }}"
+                type="tel"
+                name="contact[phone]"
+                autocomplete="tel"
+                placeholder="Your phone number"
+              >
+            </div>
+
+            <div class="membership-signup__field">
+              <label for="SignupPlan-{{ section.id }}">WHICH MEMBERSHIP INTERESTS YOU? *</label>
+              <select
+                id="SignupPlan-{{ section.id }}"
+                name="contact[Membership]"
+                required
+              >
+                <option value="" disabled selected>Select a membership</option>
+                {% for option in membership_options %}
+                  {% assign plan_name = option | strip %}
+                  {% if plan_name != blank %}
+                    <option value="{{ plan_name | escape }}">
+                      {{ plan_name | escape }}
+                    </option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="membership-signup__field">
+              <label for="SignupMessage-{{ section.id }}">ANYTHING ELSE WE SHOULD KNOW? <span>(OPTIONAL)</span></label>
+              <textarea
+                id="SignupMessage-{{ section.id }}"
+                name="contact[body]"
+                rows="4"
+                placeholder="Questions, goals, or anything you'd like to share..."
+              ></textarea>
+            </div>
+
+            <button class="membership-signup__submit" type="submit">
+              <span>{{ section.settings.button_label | escape }}</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+
+            <p class="membership-signup__disclaimer">
+              {{ section.settings.disclaimer | escape }}
+            </p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .membership-signup {
+    background: #000;
+    color: #fff;
+    padding: 120px 24px 100px;
+  }
+
+  .membership-signup__inner {
+    width: min(1240px, 100%);
+    margin: 0 auto;
+  }
+
+  .membership-signup__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #754c29;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .membership-signup__title {
+    max-width: 1100px;
+    margin: 55px 0 28px;
+    font-size: clamp(64px, 11vw, 150px);
+    font-weight: 900;
+    letter-spacing: -0.075em;
+    line-height: 0.82;
+    text-transform: uppercase;
+  }
+
+  .membership-signup__title span {
+    display: block;
+    color: #fbb040;
+  }
+
+  .membership-signup__intro {
+    max-width: 540px;
+    margin: 0 0 72px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.6;
+    text-transform: uppercase;
+  }
+
+  .membership-signup__layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+    gap: clamp(40px, 8vw, 120px);
+    align-items: start;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 40px;
+  }
+
+  .membership-signup__aside {
+    position: sticky;
+    top: 40px;
+    padding: 28px;
+    background: #17110c;
+    border-top: 4px solid #ed5825;
+  }
+
+  .membership-signup__aside-label,
+  .membership-signup__form-heading > span,
+  .membership-signup__success-number {
+    color: #fbb040;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .membership-signup__aside h2 {
+    margin: 45px 0 16px;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 900;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .membership-signup__aside > p {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .membership-signup__aside-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 64px;
+    padding-top: 18px;
+    border-top: 1px solid #754c29;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .membership-signup__aside-footer span:first-child {
+    color: #fbb040;
+  }
+
+  .membership-signup__form-heading {
+    margin-bottom: 35px;
+  }
+
+  .membership-signup__form-heading p {
+    max-width: 520px;
+    margin: 14px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .membership-signup__field {
+    margin-bottom: 28px;
+  }
+
+  .membership-signup__field label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+  }
+
+  .membership-signup__field label span {
+    color: #fbb040;
+    font-size: 9px;
+  }
+
+  .membership-signup__field input,
+  .membership-signup__field select,
+  .membership-signup__field textarea {
+    display: block;
+    width: 100%;
+    min-height: 54px;
+    padding: 15px 16px;
+    border: 1px solid #754c29;
+    border-radius: 0;
+    background: #0d0d0d;
+    color: #fff;
+    font: inherit;
+    font-size: 14px;
+    box-shadow: none;
+  }
+
+  .membership-signup__field textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .membership-signup__field input::placeholder,
+  .membership-signup__field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.42);
+  }
+
+  .membership-signup__field input:focus-visible,
+  .membership-signup__field select:focus-visible,
+  .membership-signup__field textarea:focus-visible {
+    outline: 2px solid #fbb040;
+    outline-offset: 3px;
+    border-color: #fbb040;
+  }
+
+  .membership-signup__submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ed5825;
+    border-radius: 0;
+    background: #ed5825;
+    color: #000;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .membership-signup__submit span:last-child {
+    font-size: 24px;
+  }
+
+  .membership-signup__submit:hover {
+    background: #fbb040;
+    border-color: #fbb040;
+  }
+
+  .membership-signup__disclaimer {
+    margin-top: 18px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .membership-signup__errors {
+    margin-bottom: 24px;
+    padding: 16px;
+    border: 1px solid #ed5825;
+    color: #fff;
+  }
+
+  .membership-signup__success {
+    padding: 32px;
+    border-left: 4px solid #fbb040;
+    background: #17110c;
+  }
+
+  .membership-signup__success h2 {
+    margin: 25px 0 12px;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+
+  .membership-signup__success p {
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    .membership-signup {
+      padding: 100px 16px 64px;
+    }
+
+    .membership-signup__title {
+      margin-top: 42px;
+      font-size: clamp(58px, 17vw, 100px);
+    }
+
+    .membership-signup__intro {
+      margin-bottom: 48px;
+      font-size: 13px;
+    }
+
+    .membership-signup__layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding-top: 24px;
+    }
+
+    .membership-signup__aside {
+      position: static;
+      padding: 24px;
+    }
+
+    .membership-signup__aside h2 {
+      margin-top: 32px;
+    }
+
+    .membership-signup__aside-footer {
+      margin-top: 36px;
+    }
+
+    .membership-signup__field {
+      margin-bottom: 24px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .membership-signup__submit {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section || section.dataset.membershipSignupReady) return;
+    section.dataset.membershipSignupReady = 'true';
+
+    const select = section.querySelector('#SignupPlan-{{ section.id }}');
+    if (!select) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const requestedPlan = params.get('plan');
+    if (!requestedPlan) return;
+
+    const matchingOption = Array.from(select.options).find(
+      (option) => option.value.toLowerCase() === requestedPlan.replace(/[-_]/g, ' ').toLowerCase()
+    );
+
+    if (matchingOption) {
+      select.value = matchingOption.value;
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Membership Sign Up",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "MEMBERSHIP / GET STARTED"
+    },
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Section number",
+      "default": "01 / 04"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title line 1",
+      "default": "YOUR NEXT"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Highlighted title",
+      "default": "CHAPTER."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "READY TO MAKE CLIMBING PART OF YOUR ROUTINE? TELL US WHAT YOU'RE LOOKING FOR AND WE'LL HELP YOU FIND YOUR FIT."
+    },
+    {
+      "type": "text",
+      "id": "aside_label",
+      "label": "Side label",
+      "default": "YOUR NEXT PROJECT STARTS HERE"
+    },
+    {
+      "type": "text",
+      "id": "aside_title",
+      "label": "Side heading",
+      "default": "LET'S GET YOU ON THE WALL."
+    },
+    {
+      "type": "textarea",
+      "id": "aside_text",
+      "label": "Side text",
+      "default": "Whether you're new to bouldering or ready to climb every week, send us your details. Our team will follow up about your membership options and next steps."
+    },
+    {
+      "type": "text",
+      "id": "membership_options",
+      "label": "Membership options (comma separated)",
+      "default": "Monthly Membership, Annual Membership, Student Membership, Not sure yet"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit button",
+      "default": "SEND MEMBERSHIP INQUIRY"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Form note",
+      "default": "THIS FORM SENDS AN INQUIRY, NOT A PAYMENT OR FINAL MEMBERSHIP AGREEMENT."
+    },
+    {
+      "type": "text",
+      "id": "success_title",
+      "label": "Success heading",
+      "default": "YOU'RE ON YOUR WAY."
+    },
+    {
+      "type": "textarea",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "Thanks for reaching out to ESC-ALA. Your inquiry has been submitted. Our team will follow up with you about the membership you selected."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Membership Sign Up"
+    }
+  ]
+}
+{% endschema %}
