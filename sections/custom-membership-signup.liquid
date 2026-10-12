@@ -1,45 +1,36 @@
 {% assign form_id = 'MembershipSignupForm-' | append: section.id %}
 {% assign membership_options = section.settings.membership_options | split: ',' %}
-
 <div class="membership-signup">
   <div class="membership-signup__inner">
     <header class="membership-signup__header">
       <div class="membership-signup__meta">
         <span>{{ section.settings.eyebrow }}</span>
       </div>
-
       <h1 class="membership-signup__title">
         {{ section.settings.title_line_1 }}
         <span>{{ section.settings.title_line_2 }}</span>
       </h1>
-
       <p class="membership-signup__intro">
         {{ section.settings.intro }}
       </p>
     </header>
-
     <div class="membership-signup__layout">
       <aside class="membership-signup__aside">
         <span class="membership-signup__aside-label">
           {{ section.settings.aside_label }}
         </span>
-
         <h2>{{ section.settings.aside_title }}</h2>
-
         <p>{{ section.settings.aside_text }}</p>
-
         <div class="membership-signup__aside-footer">
-          <span>ESC-ALA®</span>
+          <span>ESC_ALA®</span>
           <span>CLIMB. CONNECT. CREATE.</span>
         </div>
       </aside>
-
       <div class="membership-signup__form-wrap">
         <div class="membership-signup__form-heading">
           <span>01 / YOUR DETAILS</span>
           <p>Tell us a little about yourself. Our team will follow up to help finalize your membership.</p>
         </div>
-
         {% form 'contact', id: form_id %}
           {% if form.posted_successfully? %}
             <div class="membership-signup__success" tabindex="-1" role="status">
@@ -57,9 +48,8 @@
             <input
               type="hidden"
               name="contact[subject]"
-              value="ESC-ALA Membership Inquiry"
+              value="ESC_ALA Membership Inquiry"
             >
-
             <div class="membership-signup__field">
               <label for="SignupName-{{ section.id }}">FULL NAME *</label>
               <input
@@ -87,7 +77,6 @@
                 required
               >
             </div>
-
             <div class="membership-signup__field">
               <label for="SignupPhone-{{ section.id }}">PHONE NUMBER <span>(OPTIONAL)</span></label>
               <input
@@ -98,7 +87,6 @@
                 placeholder="Your phone number"
               >
             </div>
-
             <div class="membership-signup__field">
               <label for="SignupPlan-{{ section.id }}">WHICH MEMBERSHIP INTERESTS YOU? *</label>
               <select
@@ -117,7 +105,6 @@
                 {% endfor %}
               </select>
             </div>
-
             <div class="membership-signup__field">
               <label for="SignupMessage-{{ section.id }}">ANYTHING ELSE WE SHOULD KNOW? <span>(OPTIONAL)</span></label>
               <textarea
@@ -127,12 +114,10 @@
                 placeholder="Questions, goals, or anything you'd like to share..."
               ></textarea>
             </div>
-
             <button class="membership-signup__submit" type="submit">
               <span>{{ section.settings.button_label }}</span>
               <span aria-hidden="true">↗</span>
             </button>
-
             <p class="membership-signup__disclaimer">
               {{ section.settings.disclaimer }}
             </p>
@@ -149,12 +134,10 @@
     color: #fff;
     padding: 120px 24px 100px;
   }
-
   .membership-signup__inner {
     width: min(1240px, 100%);
     margin: 0 auto;
   }
-
   .membership-signup__meta {
     display: flex;
     justify-content: space-between;
@@ -165,7 +148,6 @@
     font-weight: 800;
     letter-spacing: 0.12em;
   }
-
   .membership-signup__title {
     max-width: 1100px;
     margin: 55px 0 28px;
@@ -175,12 +157,10 @@
     line-height: 0.82;
     text-transform: uppercase;
   }
-
   .membership-signup__title span {
     display: block;
     color: #fbb040;
   }
-
   .membership-signup__intro {
     max-width: 540px;
     margin: 0 0 72px;
@@ -189,7 +169,6 @@
     line-height: 1.6;
     text-transform: uppercase;
   }
-
   .membership-signup__layout {
     display: grid;
     grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
@@ -198,7 +177,6 @@
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     padding-top: 40px;
   }
-
   .membership-signup__aside {
     position: sticky;
     top: 80px;
@@ -206,7 +184,6 @@
     background: #17110c;
     border-top: 4px solid #ed5825;
   }
-
   .membership-signup__aside-label,
   .membership-signup__form-heading > span,
   .membership-signup__success-number {
@@ -215,7 +192,6 @@
     font-weight: 800;
     letter-spacing: 0.12em;
   }
-
   .membership-signup__aside h2 {
     margin: 45px 0 16px;
     font-size: clamp(32px, 4vw, 54px);
@@ -224,13 +200,11 @@
     line-height: 0.95;
     text-transform: uppercase;
   }
-
   .membership-signup__aside > p {
     color: rgba(255, 255, 255, 0.72);
     font-size: 14px;
     line-height: 1.7;
   }
-
   .membership-signup__aside-footer {
     display: flex;
     flex-direction: column;
@@ -242,15 +216,12 @@
     font-weight: 800;
     letter-spacing: 0.08em;
   }
-
   .membership-signup__aside-footer span:first-child {
     color: #fbb040;
   }
-
   .membership-signup__form-heading {
     margin-bottom: 35px;
   }
-
   .membership-signup__form-heading p {
     max-width: 520px;
     margin: 14px 0 0;
@@ -258,11 +229,9 @@
     font-size: 14px;
     line-height: 1.6;
   }
-
   .membership-signup__field {
     margin-bottom: 28px;
   }
-
   .membership-signup__field label {
     display: block;
     margin-bottom: 12px;
@@ -270,12 +239,10 @@
     font-weight: 800;
     letter-spacing: 0.07em;
   }
-
   .membership-signup__field label span {
     color: #fbb040;
     font-size: 9px;
   }
-
   .membership-signup__field input,
   .membership-signup__field select,
   .membership-signup__field textarea {
@@ -291,17 +258,14 @@
     font-size: 14px;
     box-shadow: none;
   }
-
   .membership-signup__field textarea {
     min-height: 130px;
     resize: vertical;
   }
-
   .membership-signup__field input::placeholder,
   .membership-signup__field textarea::placeholder {
     color: rgba(255, 255, 255, 0.42);
   }
-
   .membership-signup__field input:focus-visible,
   .membership-signup__field select:focus-visible,
   .membership-signup__field textarea:focus-visible {
@@ -309,7 +273,6 @@
     outline-offset: 3px;
     border-color: #fbb040;
   }
-
   .membership-signup__submit {
     display: flex;
     align-items: center;
@@ -329,36 +292,30 @@
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease;
   }
-
   .membership-signup__submit span:last-child {
     font-size: 24px;
   }
-
   .membership-signup__submit:hover {
     background: #fbb040;
     border-color: #fbb040;
   }
-
   .membership-signup__disclaimer {
     margin-top: 18px;
     color: rgba(255, 255, 255, 0.55);
     font-size: 11px;
     line-height: 1.6;
   }
-
   .membership-signup__errors {
     margin-bottom: 24px;
     padding: 16px;
     border: 1px solid #ed5825;
     color: #fff;
   }
-
   .membership-signup__success {
     padding: 32px;
     border-left: 4px solid #fbb040;
     background: #17110c;
   }
-
   .membership-signup__success h2 {
     margin: 25px 0 12px;
     font-size: clamp(32px, 5vw, 58px);
@@ -366,51 +323,41 @@
     line-height: 0.95;
     text-transform: uppercase;
   }
-
   .membership-signup__success p {
     color: rgba(255, 255, 255, 0.75);
     line-height: 1.7;
   }
-
   @media screen and (max-width: 749px) {
     .membership-signup {
       padding: 100px 16px 64px;
     }
-
     .membership-signup__title {
       margin-top: 42px;
       font-size: clamp(58px, 17vw, 100px);
     }
-
     .membership-signup__intro {
       margin-bottom: 48px;
       font-size: 13px;
     }
-
     .membership-signup__layout {
       grid-template-columns: 1fr;
       gap: 40px;
       padding-top: 24px;
     }
-
     .membership-signup__aside {
       position: static;
       padding: 24px;
     }
-
     .membership-signup__aside h2 {
       margin-top: 32px;
     }
-
     .membership-signup__aside-footer {
       margin-top: 36px;
     }
-
     .membership-signup__field {
       margin-bottom: 24px;
     }
   }
-
   @media (prefers-reduced-motion: reduce) {
     .membership-signup__submit {
       transition: none;
@@ -515,7 +462,7 @@
       "type": "textarea",
       "id": "success_text",
       "label": "Success message",
-      "default": "Thanks for reaching out to ESC-ALA. Your inquiry has been submitted. Our team will follow up with you about the membership you selected."
+      "default": "Thanks for reaching out to ESC_ALA. Your inquiry has been submitted. Our team will follow up with you about the membership you selected."
     }
   ],
   "presets": [
