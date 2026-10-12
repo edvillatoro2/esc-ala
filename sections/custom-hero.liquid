@@ -35,7 +35,14 @@
   {% if section.settings.image %}
     <div class="climb-hero__image">
       <img
-        src="{{ section.settings.image | image_url: width: 1600 }}"
+        src="{{ section.settings.image | image_url: width: 2000 }}"
+        srcset="
+          {{ section.settings.image | image_url: width: 1200 }} 1200w,
+          {{ section.settings.image | image_url: width: 1800 }} 1800w,
+          {{ section.settings.image | image_url: width: 2400 }} 2400w
+        "
+        sizes="100vw"
+        fetchpriority="high"
         alt="{{ section.settings.heading | escape }}"
         width="{{ section.settings.image.width }}"
         height="{{ section.settings.image.height }}"
@@ -132,6 +139,7 @@
     height: 100%;
     z-index: 1;
     overflow: hidden;
+    contain: paint;
     clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 25% 100%, 8% 75%, 5% 45%);
   }
   .climb-hero__image img {
@@ -140,6 +148,8 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    will-change: transform;
+    backface-visibility: hidden;
   }
   .climb-hero::after {
     content: '';

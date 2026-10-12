@@ -4,8 +4,9 @@
       {% if section.settings.eyebrow != blank %}
         <span class="about-cta__eyebrow">{{ section.settings.eyebrow }}</span>
       {% endif %}
-      {% if section.settings.number != blank %}
-        <span class="about-cta__number">{{ section.settings.number }}</span>
+      {% if section.settings.number_label != blank %}
+        {{ section.index | prepend: '00' | slice: -2, 2 }}
+        / {{ section.settings.number_label }}
       {% endif %}
     </div>
     <div class="about-cta__content">
@@ -181,9 +182,9 @@
     },
     {
       "type": "text",
-      "id": "number",
-      "label": "Number",
-      "default": " 05 / READY TO CLIMB?"
+      "id": "number_label",
+      "label": "Number Label",
+      "default": "READY TO CLIMB?"
     },
     {
       "type": "text",

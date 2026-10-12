@@ -115,6 +115,7 @@
     position: relative;
     min-height: 620px;
     overflow: hidden;
+    contain: paint;
     background: #1a1e3b;
   }
   .about-community__center {
@@ -149,6 +150,8 @@
     display: block;
     width: 65px;
     height: 52px;
+    will-change: transform;
+    backface-visibility: hidden;
     background: radial-gradient(rgba(255, 255, 255, 0.22) 0, rgba(255, 255, 255, 0.22) 0.7px, transparent 1.1px) 0 0 /
         4px 4px,
       radial-gradient(rgba(0, 0, 0, 0.22) 0, rgba(0, 0, 0, 0.22) 0.7px, transparent 1.1px) 2px 2px / 5px 5px,
@@ -162,10 +165,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    clip-path: inherit;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 45%, rgba(90, 45, 0, 0.18));
   }
-
   .hold::before {
     content: '';
     position: absolute;
