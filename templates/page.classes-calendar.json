@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-classes-calendar",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

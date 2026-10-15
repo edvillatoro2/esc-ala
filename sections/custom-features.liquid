@@ -39,6 +39,15 @@
               {{ block.settings.text }}
             </div>
           {% endif %}
+          {% if block.settings.button_text != blank %}
+            <a
+              href="{{ block.settings.button_link }}"
+              class="custom-feature__link"
+            >
+              {{ block.settings.button_text }}
+              <span aria-hidden="true">→</span>
+            </a>
+          {% endif %}
         </div>
       </article>
     {% endfor %}

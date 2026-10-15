@@ -1,0 +1,996 @@
+<div class="class-schedule-page" id="ClassSchedule-{{ section.id }}">
+  <!-- HERO -->
+  <div class="class-schedule-page__hero">
+    <div class="class-schedule-page__hero-copy">
+      <p class="class-schedule-page__eyebrow">
+        {{ section.settings.eyebrow | escape }}
+      </p>
+
+      <h1 class="class-schedule-page__title">
+        {{ section.settings.title_line_1 | escape }}
+        <span>{{ section.settings.title_highlight | escape }}</span>
+      </h1>
+
+      <p class="class-schedule-page__intro">
+        {{ section.settings.intro | escape }}
+      </p>
+
+      <div class="class-schedule-page__hero-meta">
+        <span>{{ section.settings.meta_label | escape }}</span>
+        <span class="class-schedule-page__hero-line"></span>
+        <span>{{ section.settings.meta_value | escape }}</span>
+      </div>
+    </div>
+
+    {% if section.settings.hero_image != blank %}
+      <div class="class-schedule-page__hero-image">
+        {{ section.settings.hero_image | image_url: width: 1200 | image_tag: loading: 'eager' }}
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- WEEKLY CALENDAR -->
+  <div class="class-schedule-page__calendar-wrap">
+    <div class="class-schedule-page__section-head">
+      <div>
+        <p class="class-schedule-page__eyebrow">
+          {{ section.settings.calendar_eyebrow | escape }}
+        </p>
+        <h2>{{ section.settings.calendar_title | escape }}</h2>
+      </div>
+
+      <div class="class-schedule-page__week-controls">
+        <button type="button" data-week-prev>← PREVIOUS WEEK</button>
+        <p data-date-range aria-live="polite"></p>
+        <button type="button" data-week-next>NEXT WEEK →</button>
+      </div>
+    </div>
+
+    <div class="class-schedule-page__calendar-scroll">
+      <div class="class-schedule-page__calendar">
+        <div class="class-schedule-page__time-heading">TIME</div>
+
+        {% assign days = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday' | split: ',' %}
+
+        {% for day in days %}
+          <div class="class-schedule-page__day-heading">
+            <span>{{ day | slice: 0, 3 | upcase }}</span>
+            <strong data-day-date="{{ forloop.index0 }}">--</strong>
+          </div>
+        {% endfor %}
+
+        {% assign times = '9:00 AM,10:00 AM,11:00 AM,12:30 PM,2:00 PM,4:00 PM,5:30 PM,6:00 PM' | split: ',' %}
+
+        {% for time in times %}
+          <div class="class-schedule-page__time-cell">
+            {{ time }}
+          </div>
+
+          {% for day in days %}
+            {% assign current_day_index = forloop.index0 %}
+
+            <div class="class-schedule-page__slot">
+              {% for block in section.blocks %}
+                {% assign block_day_index = block.settings.day | plus: 0 %}
+
+                {% if block_day_index == current_day_index and block.settings.time == time %}
+                  <button
+                    type="button"
+                    class="class-schedule-page__class-card class-schedule-page__class-card--{{ block.settings.level }}"
+                    data-class-card
+                    data-title="{{ block.settings.title | escape }}"
+                    data-day="{{ day | escape }}"
+                    data-time="{{ block.settings.time | escape }}"
+                    data-level="{{ block.settings.level_label | escape }}"
+                    data-duration="{{ block.settings.duration | escape }}"
+                    data-description="{{ block.settings.description | escape }}"
+                    data-instructor="{{ block.settings.instructor | escape }}"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span class="class-schedule-page__card-level">
+                      {{ block.settings.level_label | escape }}
+                    </span>
+
+                    <strong>{{ block.settings.title | escape }}</strong>
+
+                    <span class="class-schedule-page__card-time">
+                      {{ block.settings.time | escape }}
+                      · {{ block.settings.duration | escape }}
+                    </span>
+
+                    <span class="class-schedule-page__card-more"> VIEW DETAILS ↗ </span>
+                  </button>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <p class="class-schedule-page__scroll-note">ON MOBILE, SWIPE TO EXPLORE THE FULL WEEK →</p>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="class-schedule-page__cta">
+    <div>
+      <p class="class-schedule-page__eyebrow">
+        {{ section.settings.cta_eyebrow | escape }}
+      </p>
+
+      <h2>{{ section.settings.cta_title | escape }}</h2>
+
+      <p>{{ section.settings.cta_text | escape }}</p>
+    </div>
+
+    <a
+      class="class-schedule-page__cta-button"
+      href="{{ section.settings.button_link | default: '/pages/contact' }}"
+    >
+      {{ section.settings.button_label | escape }} ↗
+    </a>
+  </div>
+
+  <!-- CLASS DETAILS -->
+  <dialog class="class-schedule-page__dialog" data-class-dialog>
+    <button type="button" data-dialog-close aria-label="Close">×</button>
+
+    <p class="class-schedule-page__eyebrow" data-dialog-level></p>
+    <h2 data-dialog-title></h2>
+    <p data-dialog-meta></p>
+    <div data-dialog-description></div>
+    <p data-dialog-instructor></p>
+
+    <a
+      class="class-schedule-page__cta-button"
+      href="{{ section.settings.button_link | default: '/pages/contact' }}"
+    >
+      ASK ABOUT THIS CLASS ↗
+    </a>
+  </dialog>
+</div>
+
+<style>
+  #ClassSchedule-{{ section.id }} {
+    --schedule-yellow: #FBB040;
+    --schedule-orange: #ED5825;
+    --schedule-brown: #754C29;
+    --schedule-black: #000000;
+    --schedule-white: #FFFFFF;
+    --schedule-muted: #a5a5a5;
+    background: var(--schedule-black);
+    color: var(--schedule-white);
+    overflow: hidden;
+  }
+
+  #ClassSchedule-{{ section.id }} * {
+    box-sizing: border-box;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    min-height: 520px;
+    border-bottom: 1px solid #333;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(36px, 7vw, 100px);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__eyebrow {
+    margin: 0 0 22px;
+    color: var(--schedule-yellow);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__title {
+    max-width: 720px;
+    margin: 0;
+    font-size: clamp(48px, 7vw, 100px);
+    font-weight: 900;
+    letter-spacing: -0.065em;
+    line-height: 0.92;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__title span {
+    display: block;
+    color: var(--schedule-yellow);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__intro {
+    max-width: 470px;
+    margin: 28px 0 0;
+    color: #d0d0d0;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 38px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero-line {
+    display: inline-block;
+    width: 35px;
+    height: 2px;
+    background: var(--schedule-orange);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero-image {
+    min-height: 420px;
+    overflow: hidden;
+    background: #191919;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__hero-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__calendar-wrap {
+    padding: clamp(40px, 6vw, 88px) clamp(20px, 5vw, 72px);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 34px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__section-head .class-schedule-page__eyebrow {
+    margin-bottom: 12px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__section-head h2,
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta h2 {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 54px);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls button {
+    padding: 12px 14px;
+    border: 1px solid #454545;
+    background: transparent;
+    color: var(--schedule-white);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls button:hover {
+    border-color: var(--schedule-yellow);
+    background: var(--schedule-yellow);
+    color: var(--schedule-black);
+  }
+
+  #ClassSchedule-{{ section.id }} [data-date-range] {
+    min-width: 130px;
+    margin: 0;
+    color: #d0d0d0;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__calendar-scroll {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #383838;
+    scrollbar-color: var(--schedule-brown) #181818;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__calendar {
+    display: grid;
+    grid-template-columns: 84px repeat(7, minmax(145px, 1fr));
+    min-width: 1150px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__time-heading,
+  #ClassSchedule-{{ section.id }} .class-schedule-page__day-heading {
+    display: flex;
+    min-height: 76px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px;
+    padding: 12px;
+    border-right: 1px solid #383838;
+    border-bottom: 1px solid #383838;
+    background: #151515;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__time-heading {
+    color: var(--schedule-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__day-heading span {
+    color: var(--schedule-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__day-heading strong {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__time-cell {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 18px 8px;
+    border-right: 1px solid #383838;
+    border-bottom: 1px solid #303030;
+    color: var(--schedule-muted);
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__slot {
+    min-width: 0;
+    min-height: 100px;
+    padding: 7px;
+    border-right: 1px solid #303030;
+    border-bottom: 1px solid #303030;
+    background: #090909;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card {
+    display: flex;
+    width: 100%;
+    min-height: 84px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--schedule-brown);
+    border-left: 3px solid var(--schedule-yellow);
+    border-radius: 0;
+    background: #20180f;
+    color: var(--schedule-white);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--schedule-yellow);
+    background: #342311;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card--beginner {
+    border-left-color: var(--schedule-yellow);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card--intermediate {
+    border-left-color: var(--schedule-orange);
+    background: #25130e;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card--advanced {
+    border-left-color: #b58a65;
+    background: #211a16;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__card-level,
+  #ClassSchedule-{{ section.id }} .class-schedule-page__card-more {
+    color: var(--schedule-yellow);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__class-card strong {
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__card-time {
+    color: #d1d1d1;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__card-more {
+    margin-top: auto;
+    color: #c6c6c6;
+    font-size: 8px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__scroll-note {
+    margin: 14px 0 0;
+    color: var(--schedule-muted);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-align: right;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 36px;
+    padding: clamp(36px, 6vw, 80px) clamp(20px, 5vw, 72px);
+    border-top: 1px solid #383838;
+    background: #15110d;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta > div {
+    max-width: 700px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta .class-schedule-page__eyebrow {
+    margin-bottom: 16px;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta > div > p:last-child {
+    max-width: 560px;
+    margin: 20px 0 0;
+    color: #d0d0d0;
+    line-height: 1.7;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta-button {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 17px 22px;
+    border: 1px solid var(--schedule-yellow);
+    background: var(--schedule-yellow);
+    color: var(--schedule-black);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__cta-button:hover {
+    background: transparent;
+    color: var(--schedule-yellow);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog {
+    position: fixed;
+    width: min(560px, calc(100% - 32px));
+    max-width: 560px;
+    max-height: calc(100% - 32px);
+    padding: clamp(28px, 5vw, 48px);
+    border: 1px solid var(--schedule-brown);
+    border-top: 4px solid var(--schedule-yellow);
+    background: #111;
+    color: var(--schedule-white);
+    overflow-y: auto;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog::backdrop {
+    background: rgb(0 0 0 / 78%);
+    backdrop-filter: blur(4px);
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog [data-dialog-close] {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    border: 0;
+    background: transparent;
+    color: var(--schedule-white);
+    font-size: 32px;
+    cursor: pointer;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog h2 {
+    margin: 0 0 14px;
+    padding-right: 20px;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog [data-dialog-meta],
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog [data-dialog-instructor] {
+    color: var(--schedule-yellow);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog [data-dialog-description] {
+    margin: 24px 0;
+    color: #d0d0d0;
+    line-height: 1.8;
+  }
+
+  #ClassSchedule-{{ section.id }} .class-schedule-page__dialog .class-schedule-page__cta-button {
+    margin-top: 12px;
+  }
+
+  #ClassSchedule-{{ section.id }} :is(button, a):focus-visible {
+    outline: 2px solid var(--schedule-yellow);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 900px) {
+    #ClassSchedule-{{ section.id }} .class-schedule-page__hero {
+      grid-template-columns: 1fr;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__hero-copy {
+      padding: 60px 28px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__hero-image,
+    #ClassSchedule-{{ section.id }} .class-schedule-page__hero-image img {
+      min-height: 360px;
+      max-height: 520px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__section-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls {
+      justify-content: flex-start;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__cta {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 520px) {
+    #ClassSchedule-{{ section.id }} .class-schedule-page__hero-copy {
+      padding: 48px 22px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__title {
+      font-size: clamp(46px, 14vw, 70px);
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__intro {
+      font-size: 14px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__calendar-wrap {
+      padding: 48px 16px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    #ClassSchedule-{{ section.id }} [data-date-range] {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      text-align: left;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__week-controls button {
+      padding: 12px 8px;
+      font-size: 9px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__cta {
+      padding: 48px 22px;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__cta-button {
+      width: 100%;
+    }
+
+    #ClassSchedule-{{ section.id }} .class-schedule-page__scroll-note {
+      font-size: 8px;
+      text-align: left;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #ClassSchedule-{{ section.id }} *,
+    #ClassSchedule-{{ section.id }} *::before,
+    #ClassSchedule-{{ section.id }} *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.getElementById('ClassSchedule-{{ section.id }}');
+    if (!root || root.dataset.scheduleInitialized === 'true') return;
+
+    root.dataset.scheduleInitialized = 'true';
+
+    const previousButton = root.querySelector('[data-week-prev]');
+    const nextButton = root.querySelector('[data-week-next]');
+    const rangeLabel = root.querySelector('[data-date-range]');
+    const dayDates = root.querySelectorAll('[data-day-date]');
+    const dialog = root.querySelector('[data-class-dialog]');
+    const closeButton = root.querySelector('[data-dialog-close]');
+
+    if (!previousButton || !nextButton || !rangeLabel || !dialog) return;
+
+    // Start with the current week, Monday through Sunday.
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+
+    const monday = new Date(today);
+    const dayOfWeek = (today.getDay() + 6) % 7;
+    monday.setDate(today.getDate() - dayOfWeek);
+
+    let weekOffset = 0;
+
+    const formatDate = (date, options) => new Intl.DateTimeFormat('en-US', options).format(date);
+
+    const getWeekStart = () => {
+      const start = new Date(monday);
+      start.setDate(monday.getDate() + weekOffset * 7);
+      return start;
+    };
+
+    const updateCalendarDates = () => {
+      const start = getWeekStart();
+      const end = new Date(start);
+      end.setDate(start.getDate() + 6);
+
+      rangeLabel.textContent =
+        `${formatDate(start, { month: 'short', day: 'numeric' })} – ` +
+        `${formatDate(end, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+
+      dayDates.forEach((element) => {
+        const index = Number(element.dataset.dayDate);
+        const date = new Date(start);
+        date.setDate(start.getDate() + index);
+
+        element.textContent = date.getDate();
+
+        const isToday = date.toDateString() === today.toDateString();
+        element.closest('.class-schedule-page__day-heading')?.classList.toggle('is-today', isToday);
+
+        element.setAttribute(
+          'aria-label',
+          formatDate(date, {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+          })
+        );
+      });
+    };
+
+    previousButton.addEventListener('click', () => {
+      weekOffset -= 1;
+      updateCalendarDates();
+    });
+
+    nextButton.addEventListener('click', () => {
+      weekOffset += 1;
+      updateCalendarDates();
+    });
+
+    root.querySelectorAll('[data-class-card]').forEach((card) => {
+      card.addEventListener('click', () => {
+        root.querySelector('[data-dialog-level]').textContent = card.dataset.level || '';
+
+        root.querySelector('[data-dialog-title]').textContent = card.dataset.title || 'Class details';
+
+        root.querySelector('[data-dialog-meta]').textContent =
+          `${card.dataset.day || ''} · ${card.dataset.time || ''}` +
+          (card.dataset.duration ? ` · ${card.dataset.duration}` : '');
+
+        root.querySelector('[data-dialog-description]').textContent =
+          card.dataset.description || 'Contact us to learn more about this class.';
+
+        const instructor = root.querySelector('[data-dialog-instructor]');
+        instructor.textContent = card.dataset.instructor ? `INSTRUCTOR: ${card.dataset.instructor}` : '';
+
+        if (typeof dialog.showModal === 'function') {
+          dialog.showModal();
+        }
+      });
+    });
+
+    closeButton?.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    updateCalendarDates();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Classes calendar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page hero"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "FIND YOUR NEXT CHALLENGE"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title — first line",
+      "default": "THE CLASS"
+    },
+    {
+      "type": "text",
+      "id": "title_highlight",
+      "label": "Title — highlighted line",
+      "default": "SCHEDULE."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "From first climbs to technical training, find a session that helps you move with confidence. Explore our weekly schedule and find your next challenge."
+    },
+    {
+      "type": "text",
+      "id": "meta_label",
+      "label": "Hero metadata label",
+      "default": "ALL LEVELS WELCOME"
+    },
+    {
+      "type": "text",
+      "id": "meta_value",
+      "label": "Hero metadata value",
+      "default": "CLIMB AT YOUR PACE"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "header",
+      "content": "Calendar"
+    },
+    {
+      "type": "text",
+      "id": "calendar_eyebrow",
+      "label": "Calendar eyebrow",
+      "default": "PLAN YOUR SESSION"
+    },
+    {
+      "type": "text",
+      "id": "calendar_title",
+      "label": "Calendar heading",
+      "default": "THIS WEEK AT ESC-ALA."
+    },
+    {
+      "type": "header",
+      "content": "Contact call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "CTA eyebrow",
+      "default": "NEED A HAND?"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA heading",
+      "default": "LET'S GET YOU CLIMBING."
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA text",
+      "default": "Have a question about a class, your experience level, or what to bring? Reach out and we'll help you find the right fit."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "CTA button label",
+      "default": "ASK US A QUESTION"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "CTA button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "class",
+      "name": "Scheduled class",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Class name",
+          "default": "Intro to Bouldering"
+        },
+        {
+          "type": "select",
+          "id": "day",
+          "label": "Day of week",
+          "default": "0",
+          "options": [
+            { "value": "0", "label": "Monday" },
+            { "value": "1", "label": "Tuesday" },
+            { "value": "2", "label": "Wednesday" },
+            { "value": "3", "label": "Thursday" },
+            { "value": "4", "label": "Friday" },
+            { "value": "5", "label": "Saturday" },
+            { "value": "6", "label": "Sunday" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "time",
+          "label": "Start time",
+          "default": "6:00 PM",
+          "options": [
+            { "value": "9:00 AM", "label": "9:00 AM" },
+            { "value": "10:00 AM", "label": "10:00 AM" },
+            { "value": "11:00 AM", "label": "11:00 AM" },
+            { "value": "12:30 PM", "label": "12:30 PM" },
+            { "value": "2:00 PM", "label": "2:00 PM" },
+            { "value": "4:00 PM", "label": "4:00 PM" },
+            { "value": "5:30 PM", "label": "5:30 PM" },
+            { "value": "6:00 PM", "label": "6:00 PM" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "level",
+          "label": "Card style",
+          "default": "beginner",
+          "options": [
+            { "value": "beginner", "label": "Beginner" },
+            { "value": "intermediate", "label": "Intermediate" },
+            { "value": "advanced", "label": "Advanced" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "level_label",
+          "label": "Level label",
+          "default": "ALL LEVELS"
+        },
+        {
+          "type": "text",
+          "id": "duration",
+          "label": "Duration",
+          "default": "60 MIN"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Class description",
+          "default": "Learn the fundamentals of bouldering, including movement, basic technique, and gym etiquette."
+        },
+        {
+          "type": "text",
+          "id": "instructor",
+          "label": "Instructor",
+          "default": "ESC-ALA TEAM"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Class schedule page",
+      "blocks": [
+        {
+          "type": "class",
+          "settings": {
+            "title": "Intro to Bouldering",
+            "day": "0",
+            "time": "6:00 PM",
+            "level": "beginner",
+            "level_label": "BEGINNER",
+            "duration": "60 MIN",
+            "description": "Learn the fundamentals of bouldering, including movement, basic technique, and gym etiquette.",
+            "instructor": "ESC-ALA TEAM"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "title": "Technique Lab",
+            "day": "2",
+            "time": "5:30 PM",
+            "level": "intermediate",
+            "level_label": "INTERMEDIATE",
+            "duration": "60 MIN",
+            "description": "Practice efficient footwork, body positioning, and movement strategies on the wall.",
+            "instructor": "ESC-ALA TEAM"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "title": "Youth Climbing",
+            "day": "5",
+            "time": "10:00 AM",
+            "level": "beginner",
+            "level_label": "YOUTH",
+            "duration": "60 MIN",
+            "description": "A welcoming session focused on climbing fundamentals, confidence, and movement.",
+            "instructor": "ESC-ALA TEAM"
+          }
+        },
+        {
+          "type": "class",
+          "settings": {
+            "title": "Project Session",
+            "day": "6",
+            "time": "2:00 PM",
+            "level": "advanced",
+            "level_label": "ADVANCED",
+            "duration": "90 MIN",
+            "description": "Work on challenging problems, refine your approach, and practice deliberate movement.",
+            "instructor": "ESC-ALA TEAM"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
