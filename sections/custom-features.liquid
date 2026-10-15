@@ -39,15 +39,6 @@
               {{ block.settings.text }}
             </div>
           {% endif %}
-          {% if block.settings.button_text != blank %}
-            <a
-              href="{{ block.settings.button_link }}"
-              class="custom-feature__link"
-            >
-              {{ block.settings.button_text }}
-              <span aria-hidden="true">→</span>
-            </a>
-          {% endif %}
         </div>
       </article>
     {% endfor %}
@@ -237,17 +228,6 @@
           "id": "text",
           "label": "Description",
           "default": "<p>Climb, explore, and challenge yourself on walls designed for every level.</p>"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button text",
-          "default": "Learn More"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
         }
       ]
     }
